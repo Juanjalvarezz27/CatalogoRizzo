@@ -6,11 +6,37 @@ import SearchBar from "@/components/SearchBar";
 import CategoryFilter from "@/components/CategoryFilter";
 import ProductGrid from "@/components/ProductGrid";
 import { products, type Category } from "@/data/products";
-import { LayoutGrid, MapPin, Phone } from "lucide-react";
+import { LayoutGrid, MapPin, Phone, Share2, Check } from "lucide-react";
 
 export default function CatalogView() {
   const [selectedCategory, setSelectedCategory] = useState<Category>("Todos");
   const [searchQuery, setSearchQuery] = useState("");
+  const [isCopied, setIsCopied] = useState(false);
+
+  const handleShare = async () => {
+    const shareData = {
+      title: "Licorería Rizzo - Catálogo al Mayor",
+      text: "Descubre nuestro catálogo de licores al mayor con los mejores precios.",
+      url: "https://catalogo-rizzo.vercel.app",
+    };
+
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+      } catch (error) {
+        // Usuario canceló u ocurrió un error
+      }
+    } else {
+      // Fallback: Copiar al portapapeles
+      try {
+        await navigator.clipboard.writeText(shareData.url);
+        setIsCopied(true);
+        setTimeout(() => setIsCopied(false), 2000);
+      } catch (error) {
+        console.error("Error al copiar al portapapeles", error);
+      }
+    }
+  };
 
   const filteredProducts = useMemo(() => {
     let filtered = products;
@@ -64,16 +90,27 @@ export default function CatalogView() {
         <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-5 sm:px-6 sm:py-6">
           {/* ── Título + filtros ─────────────────────── */}
           <div className="mb-6">
-            <div className="mb-5 flex flex-col items-start gap-1">
-              <div className="flex items-center gap-2">
-                <LayoutGrid className="h-7 w-7 text-gold-400" />
-                <h2 className="font-montserrat text-2xl font-extrabold tracking-tight text-white sm:text-3xl">
-                  Nuestro Catálogo
-                </h2>
+            <div className="mb-5 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex flex-col items-start gap-1">
+                <div className="flex items-center gap-2">
+                  <LayoutGrid className="h-7 w-7 text-gold-400" />
+                  <h2 className="font-montserrat text-2xl font-extrabold tracking-tight text-white sm:text-3xl">
+                    Nuestro Catálogo
+                  </h2>
+                </div>
+                <p className="font-poppins text-sm text-night-300">
+                  Filtra por categoría o busca por nombre
+                </p>
               </div>
-              <p className="font-poppins text-sm text-night-300">
-                Filtra por categoría o busca por nombre
-              </p>
+
+              {/* Botón Compartir Catálogo */}
+              <button
+                onClick={handleShare}
+                className="flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl bg-night-800/60 px-4 py-2.5 font-poppins text-sm font-medium text-night-200 ring-1 ring-night-700/50 transition-all duration-200 hover:bg-night-800 hover:text-white hover:ring-gold-400/50 hover:shadow-lg hover:shadow-gold-400/10 focus:outline-none"
+              >
+                {isCopied ? <Check className="h-4 w-4 text-green-400" /> : <Share2 className="h-4 w-4 text-gold-400" />}
+                <span>{isCopied ? "¡Enlace copiado!" : "Compartir Catálogo"}</span>
+              </button>
             </div>
 
             {/* ── Barra de búsqueda + Filtro de categoría ── */}
