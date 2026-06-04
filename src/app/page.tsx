@@ -1,7 +1,5 @@
+import CatalogView from "@/components/CatalogView";
+
 export default function Home() {
-  return (
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
-  )
+  return <CatalogView />;
 }
