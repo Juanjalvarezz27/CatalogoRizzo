@@ -1,10 +1,13 @@
 "use client";
 
-import { Sparkles, Share2, Check } from "lucide-react";
+import { Sparkles, Share2, Check, Download, Loader2 } from "lucide-react";
 import { useState } from "react";
+import { products } from "@/data/products";
+import { generateCatalogPdf } from "@/utils/generateCatalogPdf";
 
 export default function HeroBanner() {
   const [isCopied, setIsCopied] = useState(false);
+  const [isGeneratingPdf, setIsGeneratingPdf] = useState(false);
 
   const handleShare = async () => {
     const shareData = {
@@ -29,6 +32,20 @@ export default function HeroBanner() {
       }
     }
   };
+
+  const handleDownloadPdf = async () => {
+    if (isGeneratingPdf) return;
+    setIsGeneratingPdf(true);
+    try {
+      await generateCatalogPdf(products);
+    } catch (error) {
+      console.error("Error al generar PDF:", error);
+      alert("Hubo un error al generar el PDF. Asegúrate de tener conexión a internet.");
+    } finally {
+      setIsGeneratingPdf(false);
+    }
+  };
+
   return (
     <section className="relative overflow-visible">
       {/* ── Iluminación exclusiva del Hero ───── */}
@@ -62,14 +79,27 @@ export default function HeroBanner() {
               Filtra por categoría, busca por nombre y descubre nuestra selección premium de licores al mayor.
             </p>
 
-            {/* Botón Compartir */}
-            <div className="mt-6 flex w-full justify-center sm:justify-start">
+            {/* Botones de Acción */}
+            <div className="mt-6 flex w-full flex-col sm:flex-row justify-center sm:justify-start gap-3">
               <button
                 onClick={handleShare}
                 className="flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl bg-night-800/80 px-5 py-2.5 font-poppins text-sm font-medium text-white ring-1 ring-night-700/50 transition-all duration-200 hover:bg-night-800 hover:ring-gold-400/50 hover:shadow-lg hover:shadow-gold-400/10 focus:outline-none"
               >
                 {isCopied ? <Check className="h-4 w-4 text-green-400" /> : <Share2 className="h-4 w-4 text-gold-400" />}
                 <span>{isCopied ? "¡Enlace copiado!" : "Compartir Catálogo"}</span>
+              </button>
+
+              <button
+                onClick={handleDownloadPdf}
+                disabled={isGeneratingPdf}
+                className="flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl bg-gold-500/10 px-5 py-2.5 font-poppins text-sm font-medium text-gold-400 ring-1 ring-gold-500/30 transition-all duration-200 hover:bg-gold-500/20 hover:ring-gold-500/50 hover:shadow-lg hover:shadow-gold-400/10 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isGeneratingPdf ? (
+                  <Loader2 className="h-4 w-4 animate-spin text-gold-400" />
+                ) : (
+                  <Download className="h-4 w-4 text-gold-400" />
+                )}
+                <span>{isGeneratingPdf ? "Generando PDF..." : "Descargar Catálogo"}</span>
               </button>
             </div>
           </div>
