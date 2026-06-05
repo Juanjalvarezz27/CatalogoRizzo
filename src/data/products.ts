@@ -87,7 +87,7 @@ export const products: Product[] = [
     id: 10,
     nombre: "Grey Goose Original",
     categoria: "Vodka",
-    presentaciones: ["0.70L", "1L", "1.75L"],
+    presentaciones: ["0.70L", "1L", "1.75L", "3L"],
     imagen_url: "https://img.thewhiskyexchange.com/900/vodka_gre1.jpg",
   },
 ];

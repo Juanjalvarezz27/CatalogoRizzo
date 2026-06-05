@@ -57,10 +57,10 @@ export default function HeroBanner() {
       </div>
 
       {/* ── Contenido ─────────────────────────────────── */}
-      <div className="relative z-10 mx-auto max-w-6xl px-4 pt-8 pb-6 sm:px-6 sm:pt-12 sm:pb-8">
-        <div className="flex flex-col items-center text-center sm:flex-row sm:text-left sm:justify-center gap-8 sm:gap-16 lg:gap-24">
+      <div className="relative z-10 mx-auto max-w-6xl px-4 pt-4 pb-6 sm:px-6 sm:pt-12 sm:pb-8">
+        <div className="flex flex-col-reverse items-center text-center sm:flex-row sm:text-left sm:justify-center gap-6 sm:gap-16 lg:gap-24">
           {/* ── Lado izquierdo: Textos ─────── */}
-          <div className="flex flex-col items-center sm:items-start max-w-lg">
+          <div className="flex flex-col items-center sm:items-start max-w-lg mt-2 sm:mt-0">
             {/* Badge */}
             <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-gold-400/10 px-3.5 py-1.5 ring-1 ring-gold-400/20">
               <Sparkles className="h-3.5 w-3.5 text-gold-400" />
@@ -75,7 +75,7 @@ export default function HeroBanner() {
               <span className="text-gradient-gold">catálogo</span>
             </h2>
 
-            <p className="mt-4 font-poppins text-sm sm:text-base leading-relaxed text-night-300">
+            <p className="mt-4 font-poppins text-sm sm:text-base leading-relaxed text-white/90 drop-shadow-md">
               Filtra por categoría, busca por nombre y descubre nuestra selección premium de licores al mayor.
             </p>
 
@@ -104,15 +104,15 @@ export default function HeroBanner() {
             </div>
           </div>
 
-          {/* ── Lado derecho: Logo ────────── */}
-          <div className="hidden sm:flex sm:flex-shrink-0 sm:items-center sm:justify-center">
+          {/* ── Lado derecho (Mobile Arriba): Logo ────────── */}
+          <div className="flex flex-shrink-0 items-center justify-center">
             <div className="relative">
               {/* Halo dorado detrás */}
-              <div className="absolute inset-0 scale-110 rounded-full bg-gold-400/10 blur-2xl animate-pulse-gold" />
+              <div className="absolute inset-0 scale-110 rounded-full bg-gold-400/15 blur-2xl animate-pulse-gold" />
               <img
                 src="/Logo.jpg"
                 alt="Licorería Rizzo Logo"
-                className="relative h-40 w-40 sm:h-48 sm:w-48 lg:h-56 lg:w-56 rounded-full object-cover ring-2 ring-gold-400/50 shadow-2xl shadow-gold-500/20"
+                className="relative h-32 w-32 sm:h-48 sm:w-48 lg:h-56 lg:w-56 rounded-full object-cover ring-2 ring-gold-400/50 shadow-2xl shadow-gold-500/20"
                 loading="eager"
                 decoding="async"
               />

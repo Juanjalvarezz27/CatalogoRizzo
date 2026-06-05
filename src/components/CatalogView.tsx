@@ -41,22 +41,22 @@ export default function CatalogView() {
       {/* ── Fondo Iluminado Premium (Manchas esparcidas) ──────────── */}
       <div className="pointer-events-none fixed inset-0 z-0 bg-[#0a0a0c]">
         {/* Superior Izquierda */}
-        <div className="absolute left-[-10%] top-[5%] h-[250px] w-[250px] md:left-[5%] md:h-[350px] md:w-[350px] bg-gold-400/20 blur-[90px] md:blur-[100px] rounded-full mix-blend-screen" />
+        <div className="absolute left-[-10%] top-[5%] h-[200px] w-[200px] md:left-[5%] md:h-[350px] md:w-[350px] bg-gold-400/15 md:bg-gold-400/25 blur-[80px] md:blur-[100px] rounded-full mix-blend-screen" />
         
-        {/* Superior Derecha */}
-        <div className="absolute right-[-10%] top-[20%] h-[200px] w-[200px] md:right-[10%] md:top-[15%] md:h-[400px] md:w-[400px] bg-gold-500/15 blur-[80px] md:blur-[120px] rounded-full mix-blend-screen" />
+        {/* Superior Derecha (Solo Desktop) */}
+        <div className="hidden md:block absolute right-[-20%] top-[15%] h-[350px] w-[350px] md:right-[10%] md:top-[15%] md:h-[400px] md:w-[400px] bg-gold-500/20 blur-[90px] md:blur-[120px] rounded-full mix-blend-screen" />
         
-        {/* Medio Izquierda (Solo en Desktop) */}
-        <div className="hidden md:block absolute left-[15%] top-[45%] h-[300px] w-[300px] bg-gold-600/20 blur-[90px] rounded-full mix-blend-screen" />
+        {/* Medio Izquierda (Solo Desktop) */}
+        <div className="hidden md:block absolute left-[-15%] top-[45%] h-[350px] w-[350px] md:left-[15%] md:h-[300px] md:w-[300px] bg-gold-600/20 blur-[90px] rounded-full mix-blend-screen" />
         
-        {/* Medio Derecha (Solo en Desktop) */}
-        <div className="hidden md:block absolute right-[5%] top-[55%] h-[450px] w-[450px] bg-gold-400/15 blur-[110px] rounded-full mix-blend-screen" />
+        {/* Medio Derecha */}
+        <div className="absolute right-[-10%] top-[40%] h-[250px] w-[250px] md:right-[5%] md:top-[55%] md:h-[450px] md:w-[450px] bg-gold-400/15 md:bg-gold-400/20 blur-[90px] md:blur-[110px] rounded-full mix-blend-screen" />
         
         {/* Inferior Centro-Izquierda */}
-        <div className="absolute left-[10%] bottom-[5%] h-[250px] w-[250px] md:left-[30%] md:bottom-[10%] md:h-[350px] md:w-[350px] bg-gold-500/20 blur-[90px] md:blur-[100px] rounded-full mix-blend-screen" />
+        <div className="absolute left-[-5%] bottom-[10%] h-[200px] w-[200px] md:left-[30%] md:bottom-[10%] md:h-[350px] md:w-[350px] bg-gold-500/15 md:bg-gold-500/20 blur-[80px] md:blur-[100px] rounded-full mix-blend-screen" />
         
-        {/* Inferior Derecha (Solo en Desktop) */}
-        <div className="hidden md:block absolute right-[20%] bottom-[-5%] h-[400px] w-[400px] bg-gold-600/15 blur-[120px] rounded-full mix-blend-screen" />
+        {/* Inferior Derecha (Solo Desktop) */}
+        <div className="hidden md:block absolute right-[-15%] bottom-[-5%] h-[350px] w-[350px] md:right-[20%] md:bottom-[-5%] md:h-[400px] md:w-[400px] bg-gold-600/25 blur-[100px] md:blur-[120px] rounded-full mix-blend-screen" />
       </div>
 
       {/* ── Contenido principal ──────────────────────── */}
