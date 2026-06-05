@@ -4,6 +4,8 @@ import { Sparkles, Share2, Check, Download, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { products } from "@/data/products";
 import { generateCatalogPdf } from "@/utils/generateCatalogPdf";
+import Image from "next/image";
+
 
 export default function HeroBanner() {
   const [isCopied, setIsCopied] = useState(false);
@@ -109,12 +111,13 @@ export default function HeroBanner() {
             <div className="relative">
               {/* Halo dorado detrás */}
               <div className="absolute inset-0 scale-110 rounded-full bg-gold-400/15 blur-2xl animate-pulse-gold" />
-              <img
+              <Image
                 src="/Logo.jpg"
                 alt="Licorería Rizzo Logo"
+                width={224}
+                height={224}
+                priority
                 className="relative h-32 w-32 sm:h-48 sm:w-48 lg:h-56 lg:w-56 rounded-full object-cover ring-2 ring-gold-400/50 shadow-2xl shadow-gold-500/20"
-                loading="eager"
-                decoding="async"
               />
             </div>
           </div>

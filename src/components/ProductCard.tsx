@@ -1,5 +1,7 @@
 import { type Product } from "@/data/products";
 import { ArrowBigDownDash } from "lucide-react";
+import Image from "next/image";
+
 
 interface ProductCardProps {
   product: Product;
@@ -25,13 +27,15 @@ export default function ProductCard({ product, index }: ProductCardProps) {
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(212,175,55,0.15)_0%,_transparent_70%)]" />
         </div>
 
-        <img
-          src={product.imagen_url}
-          alt={product.nombre}
-          loading="lazy"
-          decoding="async"
-          className="relative z-10 h-[85%] w-[85%] object-contain mix-blend-multiply transition-transform duration-700 ease-out group-hover:scale-[1.15] group-hover:-translate-y-2"
-        />
+        <div className="relative z-10 h-[85%] w-[85%] transition-transform duration-700 ease-out group-hover:scale-[1.15] group-hover:-translate-y-2">
+          <Image
+            src={product.imagen_url}
+            alt={product.nombre}
+            fill
+            sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 20vw"
+            className="object-contain mix-blend-multiply"
+          />
+        </div>
       </div>
 
       {/* ── Info del Producto (Tipografía limpia iOS) ── */}

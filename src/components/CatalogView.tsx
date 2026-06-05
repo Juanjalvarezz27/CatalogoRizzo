@@ -8,6 +8,8 @@ import CategoryFilter from "@/components/CategoryFilter";
 import ProductGrid from "@/components/ProductGrid";
 import { products, type Category } from "@/data/products";
 import { LayoutGrid, MapPin, Phone, Package } from "lucide-react";
+import Image from "next/image";
+
 
 export default function CatalogView() {
   const [selectedCategory, setSelectedCategory] = useState<Category>("Todos");
@@ -110,9 +112,11 @@ export default function CatalogView() {
               
               {/* Logo y Descripción */}
               <div className="flex flex-col items-center text-center md:items-start md:text-left">
-                <img
+                <Image
                   src="/Logo.jpg"
                   alt="Licorería Rizzo"
+                  width={64}
+                  height={64}
                   className="mb-4 h-16 w-16 rounded-full object-cover ring-2 ring-gold-400/30 shadow-lg"
                 />
                 <h3 className="font-montserrat text-lg font-bold text-white">

@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { Home, MessageCircle } from "lucide-react";
 import { useState, useEffect } from "react";
+import Image from "next/image";
+
 
 export default function Header() {
   const [isVisible, setIsVisible] = useState(true);
@@ -39,9 +41,12 @@ export default function Header() {
         <div className="flex items-center justify-between gap-4">
           {/* ── Logo + nombre ─────────────────────────── */}
           <Link href="/" className="flex items-center gap-3">
-            <img
+            <Image
               src="/Logo.jpg"
               alt="Licorería Rizzo"
+              width={48}
+              height={48}
+              priority
               className="h-12 w-12 rounded-full object-cover ring-2 ring-gold-400/40 shadow-lg shadow-gold-900/30 sm:h-11 sm:w-11"
             />
             <div>

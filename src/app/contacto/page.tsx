@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Link from "next/link";
 import { ChevronRight, ArrowLeft } from "lucide-react";
+import Image from "next/image";
+
 
 export const metadata: Metadata = {
   title: "Contacto — Licorería Rizzo",
@@ -34,11 +36,14 @@ export default function ContactPage() {
           {/* ── Header de contacto más premium ───────── */}
           <div className="mb-12 flex flex-col items-center text-center">
             <div className="relative mb-6">
-              <img
-                src="/Logo.jpg"
-                alt="Licorería Rizzo"
-                className="relative h-24 w-24 rounded-full object-cover ring-1 ring-gold-400/30 sm:h-32 sm:w-32"
-              />
+            <Image
+              src="/Logo.jpg"
+              alt="Licorería Rizzo"
+              width={128}
+              height={128}
+              priority
+              className="relative h-24 w-24 rounded-full object-cover ring-1 ring-gold-400/30 sm:h-32 sm:w-32"
+            />
             </div>
             <h2 className="font-montserrat text-3xl font-extrabold tracking-tight text-white sm:text-5xl">
               Hablemos de <span className="text-gradient-gold">Negocios</span>
