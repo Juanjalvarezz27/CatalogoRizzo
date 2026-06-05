@@ -31,12 +31,11 @@ export default function Header() {
   return (
     <header
       id="header"
-      className={`glass-night sticky top-0 z-50 border-b border-gold-900/30 transition-transform duration-300 ${
+      className={`glass-night sticky top-0 z-50 border-b border-white/5 shadow-sm transition-transform duration-300 ${
         isVisible ? "translate-y-0" : "-translate-y-full"
       }`}
     >
-      {/* py-5 en mobile para hacerlo más alto, sm:py-3 para mantenerlo delgado en desktop */}
-      <div className="mx-auto max-w-7xl px-4 py-5 sm:px-6 sm:py-3">
+      <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 sm:py-3">
         <div className="flex items-center justify-between gap-4">
           {/* ── Logo + nombre ─────────────────────────── */}
           <Link href="/" className="flex items-center gap-3">
@@ -57,10 +56,10 @@ export default function Header() {
           </Link>
 
           {/* ── Botones de navegación ──────────────────── */}
-          <div className="flex items-center gap-2 sm:gap-3">
+          <div className="flex items-center gap-3 sm:gap-4">
             <Link
               href="/"
-              className="flex items-center gap-2 rounded-xl bg-night-800/40 px-3 py-2 font-poppins text-sm font-medium text-night-300 ring-1 ring-night-700/50 transition-all duration-200 hover:bg-night-800 hover:text-white hover:ring-night-600"
+              className="flex items-center gap-2 rounded-xl px-3 py-2 sm:px-4 font-poppins text-sm font-medium text-white/80 transition-colors hover:text-white hover:bg-white/5"
             >
               <Home className="h-4 w-4" />
               <span className="hidden sm:inline">Catálogo</span>
@@ -69,7 +68,7 @@ export default function Header() {
             <Link
               href="/contacto"
               id="contact-btn"
-              className="flex items-center gap-2 rounded-xl bg-gold-400/10 px-4 py-2 font-poppins text-sm font-semibold text-gold-400 ring-1 ring-gold-400/25 transition-all duration-200 hover:bg-gold-400/20 hover:ring-gold-400/40 hover:shadow-lg hover:shadow-gold-400/10"
+              className="flex items-center gap-2 rounded-xl bg-night-900 px-4 py-2 font-poppins text-sm font-semibold text-gold-400 ring-1 ring-gold-400/40 transition-all duration-300 hover:bg-gold-400/10 hover:ring-gold-400 hover:shadow-[0_0_15px_rgba(212,175,55,0.2)]"
             >
               <MessageCircle className="h-4 w-4" />
               <span className="hidden sm:inline">Contacto</span>

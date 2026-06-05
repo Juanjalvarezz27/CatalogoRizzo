@@ -37,12 +37,12 @@ export default function CategoryFilter({ selected, onSelect }: CategoryFilterPro
         onClick={() => setIsOpen(!isOpen)}
         className={`
           flex w-full cursor-pointer items-center justify-between
-          rounded-xl px-4 py-3 font-poppins text-sm font-medium
-          transition-all duration-200
+          rounded-2xl px-5 py-3.5 font-poppins text-sm font-medium
+          backdrop-blur-xl shadow-xl transition-all duration-300
           ${
             isOpen
-              ? "bg-night-700 ring-2 ring-gold-400/40 text-white"
-              : "bg-night-800 ring-1 ring-night-600/50 text-night-300 hover:bg-night-700 hover:text-white"
+              ? "bg-white/10 ring-2 ring-gold-400 shadow-[0_0_20px_rgba(212,175,55,0.2)] text-white"
+              : "bg-white/5 ring-1 ring-white/20 text-white hover:bg-white/10 hover:ring-white/30"
           }
         `}
       >
@@ -58,7 +58,7 @@ export default function CategoryFilter({ selected, onSelect }: CategoryFilterPro
 
         {/* Chevron */}
         <svg
-          className={`h-4 w-4 text-night-400 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+          className={`h-5 w-5 transition-transform duration-200 ${isOpen ? "rotate-180 text-gold-400" : "text-white/60"}`}
           fill="none"
           viewBox="0 0 24 24"
           strokeWidth={2}
@@ -70,7 +70,7 @@ export default function CategoryFilter({ selected, onSelect }: CategoryFilterPro
 
       {/* ── Lista desplegable ─────────────────────── */}
       {isOpen && (
-        <div className="absolute left-0 top-full z-50 mt-2 w-full overflow-hidden rounded-xl bg-night-800 shadow-xl shadow-black/40 ring-1 ring-night-600/50 animate-fade-in-up" style={{ animationDuration: "0.15s" }}>
+        <div className="absolute left-0 top-full z-50 mt-2 w-full overflow-hidden rounded-2xl bg-[#111116]/95 backdrop-blur-2xl shadow-2xl shadow-black/60 ring-1 ring-white/20 animate-fade-in-up" style={{ animationDuration: "0.15s" }}>
           {categories.map((cat) => {
             const isActive = selected === cat;
             const count = getCategoryCount(cat);
@@ -85,12 +85,12 @@ export default function CategoryFilter({ selected, onSelect }: CategoryFilterPro
                 }}
                 className={`
                   flex w-full cursor-pointer items-center justify-between
-                  px-4 py-2.5 font-poppins text-sm
-                  transition-colors duration-150
+                  px-5 py-3 font-poppins text-sm
+                  transition-colors duration-200
                   ${
                     isActive
-                      ? "bg-gold-400/10 text-gold-400 font-semibold"
-                      : "text-night-300 hover:bg-night-700 hover:text-white"
+                      ? "bg-gold-500/20 text-gold-400 font-semibold"
+                      : "text-white/80 hover:bg-white/10 hover:text-white"
                   }
                 `}
               >

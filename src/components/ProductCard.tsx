@@ -1,4 +1,5 @@
 import { type Product } from "@/data/products";
+import { ArrowBigDownDash  } from "lucide-react";
 
 interface ProductCardProps {
   product: Product;
@@ -9,57 +10,51 @@ export default function ProductCard({ product, index }: ProductCardProps) {
   return (
     <article
       id={`product-${product.id}`}
-      className="animate-fade-in-up group relative flex flex-col overflow-hidden rounded-2xl bg-night-800/70 ring-1 ring-night-600/40 transition-all duration-400 hover:ring-gold-400/30 hover:shadow-xl hover:shadow-gold-900/20 hover:bg-night-800"
-      style={{ animationDelay: `${index * 70}ms` }}
+      className="animate-fade-in-up group relative flex flex-col overflow-hidden rounded-[32px] bg-[#2c2c2e] shadow-lg ring-1 ring-white/10 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(212,175,55,0.25)] hover:ring-gold-500/50"
+      style={{ animationDelay: `${index * 50}ms` }}
     >
-      {/* ── Badge de categoría ─────────────────────────── */}
-      <span className="absolute left-3 top-3 z-10 rounded-lg bg-night-950/70 px-2.5 py-1 font-poppins text-[10px] font-semibold tracking-wider text-gold-400 uppercase backdrop-blur-md ring-1 ring-gold-400/20">
-        {product.categoria}
-      </span>
-
-      {/* ── Imagen (Estudio Blanco) ────────────────────── */}
-      <div className="relative flex aspect-[4/5] items-center justify-center overflow-hidden bg-white p-6">
-        {/* Sutil sombra interior para darle profundidad al marco blanco */}
-        <div className="pointer-events-none absolute inset-0 shadow-[inset_0_0_20px_rgba(0,0,0,0.05)]" />
-
-        {/* Glow dorado en hover, adaptado para fondo blanco */}
-        <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-          <div className="absolute left-1/2 top-1/2 h-40 w-40 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold-400/20 blur-3xl mix-blend-multiply" />
+      {/* ── Imagen en Isla Flotante Blanca Pura ── */}
+      <div className="relative mx-3 mt-3 flex aspect-[4/5] items-center justify-center overflow-hidden rounded-[24px] bg-white shadow-sm transition-transform duration-500 group-hover:scale-[1.02]">
+        
+        {/* Adorno decorativo superior derecho (No es un botón) */}
+        <div className="absolute right-4 top-4 z-20 text-gold-500/80 transition-all duration-500 group-hover:text-gold-400 group-hover:scale-110">
+          <ArrowBigDownDash className="h-5 w-5" strokeWidth={2} />
+        </div>
+        
+        {/* Resplandor radial dinámico en hover */}
+        <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-100">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(212,175,55,0.15)_0%,_transparent_70%)]" />
         </div>
 
-        {/* Decoración: línea dorada sutil en la esquina */}
-        <div className="pointer-events-none absolute right-0 top-0 h-16 w-[2px] bg-gradient-to-b from-gold-400/50 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-        <div className="pointer-events-none absolute right-0 top-0 h-[2px] w-16 bg-gradient-to-l from-gold-400/50 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-
-        {/*
-          Se usa <img> estándar. Como son JPEGs con fondo blanco,
-          el fondo de la caja en 'bg-white' hace que se vean transparentes.
-        */}
+        {/* NOTA: Eliminado drop-shadow porque en JPEGs crea un cuadro gris */}
         <img
           src={product.imagen_url}
           alt={product.nombre}
           loading="lazy"
           decoding="async"
-          className="relative z-[1] h-full w-full object-contain transition-all duration-500 ease-out group-hover:scale-110"
+          className="relative z-10 h-[85%] w-[85%] object-contain mix-blend-multiply transition-transform duration-700 ease-out group-hover:scale-[1.15] group-hover:-translate-y-2"
         />
       </div>
 
-      {/* ── Separador dorado ──────────────────────────── */}
-      <div className="mx-4 h-[1px] bg-gradient-to-r from-transparent via-gold-400/25 to-transparent" />
+      {/* ── Info del Producto (Tipografía limpia iOS) ── */}
+      <div className="flex flex-1 flex-col p-5 pt-4">
+        {/* Categoría reubicada como overline limpio */}
+        <div className="mb-1.5 flex items-center gap-1.5">
+          <span className="font-poppins text-[10px] font-bold tracking-[0.2em] text-gold-300 uppercase">
+            {product.categoria}
+          </span>
+        </div>
 
-      {/* ── Info ───────────────────────────────────────── */}
-      <div className="flex flex-1 flex-col gap-2.5 p-4 pt-3">
-        {/* Nombre del producto */}
-        <h3 className="font-montserrat text-[14px] font-bold leading-snug tracking-tight text-white/90 line-clamp-2 group-hover:text-gold-200 transition-colors duration-300 sm:text-[15px]">
+        <h3 className="mb-3 font-montserrat text-[16px] font-semibold leading-snug tracking-tight text-white/95 line-clamp-2 transition-colors duration-300 group-hover:text-gold-400">
           {product.nombre}
         </h3>
 
-        {/* Presentaciones (pills) */}
-        <div className="mt-auto flex flex-wrap gap-1.5">
+        {/* Presentaciones (iOS Pills Doradas Permanentes) */}
+        <div className="mt-auto flex flex-wrap gap-2">
           {product.presentaciones.map((pres) => (
             <span
               key={pres}
-              className="inline-flex items-center rounded-md bg-gold-400/10 px-2 py-0.5 font-poppins text-[11px] font-semibold text-gold-400 ring-1 ring-gold-400/20 transition-all duration-200 group-hover:bg-gold-400/15 group-hover:ring-gold-400/30"
+              className="inline-flex items-center rounded-full bg-gold-500/15 px-3 py-1.5 font-poppins text-[11px] font-semibold text-gold-400 ring-1 ring-gold-500/30 shadow-[0_0_10px_rgba(212,175,55,0.1)] transition-transform duration-300 hover:scale-105"
             >
               {pres}
             </span>

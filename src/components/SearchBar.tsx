@@ -18,18 +18,18 @@ export default function SearchBar({ query, onSearch }: SearchBarProps) {
     <div
       id="search-bar"
       className={`
-        relative flex items-center overflow-hidden rounded-xl
-        transition-all duration-300
+        relative flex items-center overflow-hidden rounded-2xl
+        backdrop-blur-xl shadow-xl transition-all duration-300
         ${
           isFocused
-            ? "ring-2 ring-gold-400/50 shadow-lg shadow-gold-400/10 bg-night-800"
-            : "ring-1 ring-night-600/50 bg-night-800/60"
+            ? "ring-2 ring-gold-400 bg-white/10 shadow-[0_0_20px_rgba(212,175,55,0.2)]"
+            : "ring-1 ring-white/20 bg-white/5 hover:bg-white/10 hover:ring-white/30"
         }
       `}
     >
       {/* Search icon */}
       <svg
-        className={`pointer-events-none absolute left-3.5 h-4 w-4 transition-colors duration-200 ${isFocused ? "text-gold-400" : "text-night-400"}`}
+        className={`pointer-events-none absolute left-4 h-5 w-5 transition-colors duration-200 ${isFocused ? "text-gold-400" : "text-white/60"}`}
         fill="none"
         viewBox="0 0 24 24"
         strokeWidth={2}
@@ -49,8 +49,8 @@ export default function SearchBar({ query, onSearch }: SearchBarProps) {
         onChange={(e) => onSearch(e.target.value)}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
-        placeholder="Buscar por nombre..."
-        className="w-full bg-transparent py-2.5 pl-10 pr-9 font-poppins text-sm text-white placeholder-night-400 outline-none"
+        placeholder="Buscar por nombre, categoría..."
+        className="w-full bg-transparent py-3.5 pl-12 pr-10 font-poppins text-sm text-white placeholder-white/50 outline-none"
       />
 
       {/* Botón limpiar */}
@@ -58,10 +58,10 @@ export default function SearchBar({ query, onSearch }: SearchBarProps) {
         <button
           id="clear-search"
           onClick={handleClear}
-          className="absolute right-2.5 flex h-5 w-5 cursor-pointer items-center justify-center rounded-full bg-night-500 text-night-300 transition-colors hover:bg-gold-400/20 hover:text-gold-400"
+          className="absolute right-3 flex h-6 w-6 cursor-pointer items-center justify-center rounded-full bg-night-600/50 text-night-200 transition-all hover:bg-gold-500 hover:text-night-950"
           aria-label="Limpiar búsqueda"
         >
-          <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor">
+          <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
