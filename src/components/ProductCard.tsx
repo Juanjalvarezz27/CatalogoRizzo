@@ -1,4 +1,5 @@
 import { type Product } from "@/data/products";
+import { ArrowBigDownDash, Package } from "lucide-react";
 import Image from "next/image";
 
 
@@ -18,10 +19,22 @@ export default function ProductCard({ product, index }: ProductCardProps) {
       {/* ── Imagen en Isla Flotante Blanca Pura ── */}
       <div className="relative mx-3 mt-3 flex aspect-[4/5] items-center justify-center overflow-hidden rounded-[24px] bg-white shadow-sm transition-transform duration-500 group-hover:scale-[1.02]">
         
+        <div className="absolute right-4 top-4 z-20 text-gold-500/80 transition-all duration-500 group-hover:text-gold-400 group-hover:scale-110">
+          <ArrowBigDownDash className="h-5 w-5" strokeWidth={2} />
+        </div>
+
+        {/* Burbuja de Cantidad por Caja (Flotante) */}
         {product.cantidad_caja && (
-          <div className="absolute right-3 top-3 z-20 flex items-center justify-center overflow-hidden rounded-full bg-gold-500/25 px-3 py-1 ring-1 ring-gold-500/40 shadow-[0_0_10px_rgba(212,175,55,0.15)] transition-all duration-300 group-hover:scale-105 group-hover:bg-gold-500/35 group-hover:ring-gold-500/60 group-hover:shadow-[0_0_15px_rgba(212,175,55,0.25)]">
-            <span className="relative z-10 font-poppins text-[10px] font-bold tracking-wider text-gold-700 uppercase">
-              {product.cantidad_caja} / caja
+          <div 
+            className="absolute bottom-3 right-3 z-20 flex shrink-0 items-center gap-1.5 rounded-full bg-[#1c1c1e]/90 px-3 py-1.5 shadow-[0_4px_12px_rgba(0,0,0,0.15)] ring-1 ring-white/10 backdrop-blur-md transition-transform duration-300 hover:scale-105"
+            title={`${product.cantidad_caja} unidades por caja`}
+          >
+            <Package 
+              className="h-3.5 w-3.5 text-gold-400 drop-shadow-[0_0_8px_rgba(212,175,55,0.5)]" 
+              strokeWidth={2.5} 
+            />
+            <span className="font-poppins text-xs font-bold tracking-wide text-white">
+              x {product.cantidad_caja}
             </span>
           </div>
         )}
@@ -61,7 +74,7 @@ export default function ProductCard({ product, index }: ProductCardProps) {
             {product.presentaciones.map((pres) => (
               <div
                 key={pres}
-                className="group relative flex items-center justify-center overflow-hidden rounded-full bg-gold-500/15 px-3.5 py-1.5 ring-1 ring-gold-500/30 shadow-[0_0_10px_rgba(212,175,55,0.15)] transition-all duration-300 hover:scale-105 hover:bg-gold-500/25 hover:ring-gold-400/50 hover:shadow-[0_0_15px_rgba(212,175,55,0.25)]"
+                className="group relative flex items-center justify-center overflow-hidden rounded-full bg-gold-500/15 px-3.5 py-1.5 shadow-[0_0_10px_rgba(212,175,55,0.15)] ring-1 ring-gold-500/30 transition-all duration-300 hover:scale-105 hover:bg-gold-500/25 hover:shadow-[0_0_15px_rgba(212,175,55,0.25)] hover:ring-gold-400/50"
               >
                 <span className="relative z-10 font-poppins text-xs font-bold tracking-wider text-gold-400">
                   {pres}
