@@ -413,7 +413,7 @@ export const products: Product[] = [
       "0.70L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/35.webp"
+    "imagenUrl": "/images/productos/35 - bajo 0.png"
   },
   {
     "id": 36,
@@ -828,7 +828,7 @@ export const products: Product[] = [
       "Única"
     ],
     "cantidad_caja": 24,
-    "imagenUrl": "/images/productos/71.webp"
+    "imagenUrl": "/images/productos/73 - 9 Soda Toronja - Ginger - Aguakina.png"
   },
   {
     "id": 74,
@@ -852,7 +852,7 @@ export const products: Product[] = [
       "0.70L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/75.webp"
+    "imagenUrl": "/images/productos/75 - Jarabe De Fresa-goma-frambues.png"
   },
   {
     "id": 76,
@@ -862,7 +862,7 @@ export const products: Product[] = [
       "0.70L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/76.webp"
+    "imagenUrl": "/images/productos/76 - Naiguata Coco  Coco Y Piña.png"
   },
   {
     "id": 77,
@@ -1148,7 +1148,7 @@ export const products: Product[] = [
       "1.75L."
     ],
     "cantidad_caja": 6,
-    "imagenUrl": "/images/productos/104.webp"
+    "imagenUrl": "/images/productos/104 - sangria Caroreña Tinta-blanca - Rosada.png"
   },
   {
     "id": 105,
@@ -1168,7 +1168,7 @@ export const products: Product[] = [
       "250ML."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/106.webp"
+    "imagenUrl": "/images/productos/106 - Caroreña Verano Lata Tinta- Blanca.png"
   },
 
   {
@@ -1209,17 +1209,17 @@ export const products: Product[] = [
       "1.75L."
     ],
     "cantidad_caja": 6,
-    "imagenUrl": "/images/productos/111.webp"
+    "imagenUrl": "/images/productos/111 - La Que Manda Tinta - Rosada - Blanca.png"
   },
   {
     "id": 112,
-    "nombre": "LA TOXICA ΜΑΝΖΑΝΑ - TINTA ROSADA",
+    "nombre": "LA TOXICA MANZANA - TINTA ROSADA",
     "categoria": "Sangrías",
     "presentaciones": [
       "1.75L."
     ],
     "cantidad_caja": 6,
-    "imagenUrl": "/images/productos/112.webp"
+    "imagenUrl": "/images/productos/112 - La Toxica Manzana- Tinta Rosada.png"
   },
   {
     "id": 113,
@@ -1249,7 +1249,7 @@ export const products: Product[] = [
       "1.75L."
     ],
     "cantidad_caja": 6,
-    "imagenUrl": "/images/productos/115.webp"
+    "imagenUrl": "/images/productos/115 - Mal Portada Tinta Blanca Rosada.png"
   },
   {
     "id": 116,

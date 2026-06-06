@@ -2,10 +2,10 @@ import { jsPDF } from "jspdf";
 import { type Product } from "@/data/products";
 
 /**
- * Carga una imagen desde una URL, la redimensiona en un canvas (max 300px)
- * y la convierte a JPEG base64. Esto es CRÍTICO para no agotar la RAM en móviles.
+ * Carga una imagen desde una URL, la redimensiona en un canvas simulando 'object-fit: contain'
+ * dentro del aspect ratio de destino. Esto previene que jsPDF estire las imágenes.
  */
-async function toJpegBase64(url: string): Promise<string> {
+async function toJpegBase64(url: string, targetRatio: number = 1): Promise<string> {
   try {
     const res = await fetch(url);
     if (!res.ok) return "";
@@ -16,32 +16,49 @@ async function toJpegBase64(url: string): Promise<string> {
       const img = new Image();
       img.onload = () => {
         try {
+          const MAX_W = 300;
+          const MAX_H = Math.round(MAX_W / targetRatio);
+
           const canvas = document.createElement("canvas");
-          
-          // Redimensionar para evitar agotar la memoria en móviles
-          const MAX_SIZE = 300;
-          let width = img.naturalWidth;
-          let height = img.naturalHeight;
-
-          if (width > MAX_SIZE || height > MAX_SIZE) {
-            if (width > height) {
-              height = Math.round((height * MAX_SIZE) / width);
-              width = MAX_SIZE;
-            } else {
-              width = Math.round((width * MAX_SIZE) / height);
-              height = MAX_SIZE;
-            }
-          }
-
-          canvas.width = width;
-          canvas.height = height;
+          canvas.width = MAX_W;
+          canvas.height = MAX_H;
           const ctx = canvas.getContext("2d")!;
+          
+          // Fondo blanco para la isla de la imagen
           ctx.fillStyle = "#ffffff";
           ctx.fillRect(0, 0, canvas.width, canvas.height);
-          ctx.drawImage(img, 0, 0, width, height);
           
-          // Calidad 0.85 para un buen equilibrio entre nitidez y peso (menor consumo de memoria y tamaño de archivo final)
-          const data = canvas.toDataURL("image/jpeg", 0.85);
+          let imgW = img.naturalWidth;
+          let imgH = img.naturalHeight;
+          const imgRatio = imgW / imgH;
+
+          let drawW, drawH, drawX, drawY;
+
+          // object-fit: contain math
+          if (imgRatio > targetRatio) {
+            drawW = MAX_W;
+            drawH = MAX_W / imgRatio;
+            drawX = 0;
+            drawY = (MAX_H - drawH) / 2;
+          } else {
+            drawH = MAX_H;
+            drawW = MAX_H * imgRatio;
+            drawY = 0;
+            drawX = (MAX_W - drawW) / 2;
+          }
+
+          // Padding interior del 8% para que la botella no toque los bordes blancos
+          const pad = MAX_W * 0.08; 
+          const scale = (drawW - pad*2) / drawW;
+          
+          const innerDrawW = drawW * scale;
+          const innerDrawH = drawH * scale;
+          const innerDrawX = drawX + (drawW - innerDrawW)/2;
+          const innerDrawY = drawY + (drawH - innerDrawH)/2;
+
+          ctx.drawImage(img, innerDrawX, innerDrawY, innerDrawW, innerDrawH);
+          
+          const data = canvas.toDataURL("image/jpeg", 0.88);
           canvas.width = 0;
           canvas.height = 0;
           URL.revokeObjectURL(objectUrl);
@@ -70,7 +87,6 @@ function toTitleCase(str: string) {
     .join(" ");
 }
 
-// Helpers para jsPDF
 function hexToRgb(hex: string): [number, number, number] {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   return result
@@ -94,54 +110,63 @@ export async function generateCatalogPdf(
 
   const PAGE_WIDTH = 210;
   const PAGE_HEIGHT = 297;
-  const MARGIN_X = 15;
-  const MARGIN_Y = 15;
+  
+  // Ajustes de diseño fieles a la imagen
+  const MARGIN_X = 12;
+  const MARGIN_Y = 12;
   
   const COLS = 4;
   const ROWS = 5;
-  const ITEMS_PER_PAGE = COLS * ROWS; // 20 por página
+  const ITEMS_PER_PAGE = COLS * ROWS;
   
-  const GRID_GAP = 4;
+  const GRID_GAP = 5;
   const USABLE_WIDTH = PAGE_WIDTH - (MARGIN_X * 2);
   const CARD_WIDTH = (USABLE_WIDTH - (GRID_GAP * (COLS - 1))) / COLS;
   
-  const HEADER_HEIGHT = 25;
-  const FOOTER_HEIGHT = 10;
+  const HEADER_HEIGHT = 22;
+  const FOOTER_HEIGHT = 8;
   
   const USABLE_HEIGHT = PAGE_HEIGHT - MARGIN_Y - HEADER_HEIGHT - FOOTER_HEIGHT - MARGIN_Y;
-  const CARD_HEIGHT = Math.min((USABLE_HEIGHT - (GRID_GAP * (ROWS - 1))) / ROWS, 46); // Max 46mm
+  const CARD_HEIGHT = Math.min((USABLE_HEIGHT - (GRID_GAP * (ROWS - 1))) / ROWS, 48);
 
-  // Pre-cargar logo
-  const logoB64 = await toJpegBase64("/Logo.jpg");
+  const imgIslandHeight = 24;
+  const islandRatio = (CARD_WIDTH - 4) / imgIslandHeight;
 
+  // Pre-cargar logo ajustado a ratio 1 (cuadrado/círculo)
+  const logoB64 = await toJpegBase64("/Logo.jpg", 1);
   const totalPages = Math.ceil(products.length / ITEMS_PER_PAGE);
 
   for (let i = 0; i < totalPages; i++) {
     const start = i * ITEMS_PER_PAGE;
     const chunk = products.slice(start, start + ITEMS_PER_PAGE);
 
-    // Fondo de la página (#121214)
-    doc.setFillColor(...hexToRgb("#121214"));
+    // Fondo global oscuro (#151515)
+    doc.setFillColor(...hexToRgb("#151515"));
     doc.rect(0, 0, PAGE_WIDTH, PAGE_HEIGHT, "F");
 
     // --- HEADER ---
     let currentY = MARGIN_Y;
     
     if (logoB64) {
-      // jsPDF no tiene clip circular nativo fácil, así que dibujamos la imagen cuadrada
+      // Dibujar fondo blanco circular para el logo
+      doc.setFillColor(...hexToRgb("#ffffff"));
+      doc.circle(MARGIN_X + 8, currentY + 8, 8.5, "F");
+      // Como jsPDF no recorta circular fácil, la imagen se superpone sobre el círculo
+      // Aseguramos que la imagen del logo tenga fondo blanco transparente o recortado.
+      // toJpegBase64 ya le puso fondo blanco cuadrado, así que queda como cuadrado redondeado por el círculo visualmente si el logo es blanco.
       doc.addImage(logoB64, "JPEG", MARGIN_X, currentY, 16, 16);
     }
     
     // Textos Header
     doc.setTextColor(...hexToRgb("#ffffff"));
     doc.setFont("helvetica", "bold");
-    doc.setFontSize(18);
-    doc.text("LICORERÍA RIZZO", MARGIN_X + 20, currentY + 7);
+    doc.setFontSize(22);
+    doc.text("LICORERÍA RIZZO", MARGIN_X + 22, currentY + 7);
     
     doc.setTextColor(...hexToRgb("#d4af37"));
     doc.setFont("helvetica", "bold");
     doc.setFontSize(9);
-    doc.text("CATÁLOGO DE PRODUCTOS", MARGIN_X + 20, currentY + 12);
+    doc.text("CATÁLOGO DE PRODUCTOS", MARGIN_X + 23, currentY + 12);
     
     // Textos Header (Derecha)
     doc.setTextColor(...hexToRgb("#999999"));
@@ -153,17 +178,15 @@ export async function generateCatalogPdf(
     
     // Línea dorada separadora tenue
     doc.setDrawColor(...hexToRgb("#d4af37"));
-    doc.setLineWidth(0.2);
-    doc.line(MARGIN_X, currentY + 20, PAGE_WIDTH - MARGIN_X, currentY + 20);
+    doc.setLineWidth(0.3);
+    doc.line(MARGIN_X, currentY + 18, PAGE_WIDTH - MARGIN_X, currentY + 18);
     
     currentY += HEADER_HEIGHT;
 
     // --- GRID DE PRODUCTOS ---
-    // Pre-cargar imágenes para esta página (max 20)
-    // Se hace secuencial para no ahogar la red en móviles
     const images: string[] = [];
     for (const p of chunk) {
-      images.push(await toJpegBase64(p.imagenUrl));
+      images.push(await toJpegBase64(p.imagenUrl, islandRatio));
     }
 
     for (let index = 0; index < chunk.length; index++) {
@@ -176,75 +199,78 @@ export async function generateCatalogPdf(
       const x = MARGIN_X + col * (CARD_WIDTH + GRID_GAP);
       const y = currentY + row * (CARD_HEIGHT + GRID_GAP);
       
-      // Fondo de la tarjeta (#2c2c2e)
-      doc.setFillColor(...hexToRgb("#2c2c2e"));
-      // roundedRect(x, y, w, h, rx, ry, style)
-      doc.roundedRect(x, y, CARD_WIDTH, CARD_HEIGHT, 2, 2, "F");
+      // Fondo de la tarjeta (gris oscuro elegante)
+      doc.setFillColor(...hexToRgb("#262628"));
+      doc.roundedRect(x, y, CARD_WIDTH, CARD_HEIGHT, 3, 3, "F");
       
       // Isla blanca para la imagen
-      const imgIslandHeight = 22;
-      const pad = 2;
-      doc.setFillColor(...hexToRgb("#ffffff"));
-      doc.roundedRect(x + pad, y + pad, CARD_WIDTH - (pad*2), imgIslandHeight, 1.5, 1.5, "F");
+      const pad = 2; // Margen interno de la tarjeta
       
-      // Colocar Imagen
       if (imgB64) {
-        // Asumimos que queremos centrarla y hacer que encaje
-        const imgPad = 1;
-        doc.addImage(imgB64, "JPEG", x + pad + imgPad, y + pad + imgPad, CARD_WIDTH - (pad*2) - (imgPad*2), imgIslandHeight - (imgPad*2));
+        // La isla blanca ya está incrustada en la imagen B64 gracias a la modificación en toJpegBase64
+        // que dibuja el fondo blanco y ajusta la imagen con object-fit.
+        // Solo la dibujamos con esquinas redondeadas simuladas agregando pequeños rectángulos blancos si quisiéramos,
+        // pero jsPDF no permite clipping fácil, así que dibujaremos la isla blanca con `roundedRect` y la 
+        // imagen se superpondrá. Si la imagen ya tiene fondo blanco cuadrado, tapará las esquinas redondeadas arriba.
+        doc.setFillColor(...hexToRgb("#ffffff"));
+        doc.roundedRect(x + pad, y + pad, CARD_WIDTH - (pad*2), imgIslandHeight, 2, 2, "F");
+        
+        // Hacemos que la imagen cubra toda la isla blanca menos un mínimo borde inferior para que no tape 
+        // las esquinas redondeadas inferiores (que no las hay en la isla superior).
+        // Sin embargo, jsPDF tapará los bordes redondeados.
+        doc.addImage(imgB64, "JPEG", x + pad + 0.5, y + pad + 0.5, CARD_WIDTH - (pad*2) - 1, imgIslandHeight - 1);
       } else {
+        doc.setFillColor(...hexToRgb("#ffffff"));
+        doc.roundedRect(x + pad, y + pad, CARD_WIDTH - (pad*2), imgIslandHeight, 2, 2, "F");
         doc.setTextColor(...hexToRgb("#cccccc"));
         doc.setFontSize(6);
         doc.text("Sin imagen", x + CARD_WIDTH/2, y + pad + imgIslandHeight/2, { align: "center" });
       }
       
       // Textos del producto
-      let textY = y + pad + imgIslandHeight + 4;
+      let textY = y + pad + imgIslandHeight + 4.5;
       
       // Categoría
       doc.setTextColor(...hexToRgb("#d4af37"));
       doc.setFont("helvetica", "bold");
       doc.setFontSize(6);
-      doc.text(p.categoria.toUpperCase(), x + pad, textY);
-      textY += 3.5;
+      doc.text(p.categoria.toUpperCase(), x + pad + 1, textY);
+      textY += 4;
       
       // Nombre
       doc.setTextColor(...hexToRgb("#ffffff"));
       doc.setFont("helvetica", "bold");
-      doc.setFontSize(8);
+      doc.setFontSize(8.5);
       
-      // Truncar nombre si es muy largo o separarlo en líneas
-      const nameLines = doc.splitTextToSize(toTitleCase(p.nombre), CARD_WIDTH - (pad*2));
-      doc.text(nameLines.slice(0, 2), x + pad, textY); // Max 2 lineas
+      const nameLines = doc.splitTextToSize(toTitleCase(p.nombre), CARD_WIDTH - (pad*2) - 2);
+      doc.text(nameLines.slice(0, 2), x + pad + 1, textY);
       
-      // Línea separadora tenue
-      const bottomAreaY = y + CARD_HEIGHT - 5;
-      doc.setDrawColor(...hexToRgb("#d4af37"));
-      doc.setLineWidth(0.1);
-      doc.line(x + pad, bottomAreaY - 2, x + CARD_WIDTH - pad, bottomAreaY - 2);
+      // Línea separadora dorada oscura
+      const bottomAreaY = y + CARD_HEIGHT - 6;
+      doc.setDrawColor(...hexToRgb("#8a7122"));
+      doc.setLineWidth(0.15);
+      doc.line(x + pad + 1, bottomAreaY - 2.5, x + CARD_WIDTH - pad - 1, bottomAreaY - 2.5);
       
       // Presentaciones
       doc.setTextColor(...hexToRgb("#d4af37"));
       doc.setFont("helvetica", "bold");
-      doc.setFontSize(6);
-      const presentacionesText = p.presentaciones.join(" | ");
-      const presLines = doc.splitTextToSize(presentacionesText, CARD_WIDTH - (pad*2));
-      doc.text(presLines.slice(0,1), x + pad, bottomAreaY + 1);
+      doc.setFontSize(6.5);
+      const presentacionesText = p.presentaciones.join("  |  ");
+      const presLines = doc.splitTextToSize(presentacionesText, CARD_WIDTH - (pad*2) - 2);
+      doc.text(presLines.slice(0,1), x + pad + 1, bottomAreaY + 1);
     }
 
     // --- FOOTER ---
     doc.setTextColor(...hexToRgb("#666666"));
     doc.setFont("helvetica", "normal");
     doc.setFontSize(7);
-    doc.text(`Página ${i + 1} de ${totalPages}`, PAGE_WIDTH / 2, PAGE_HEIGHT - MARGIN_Y, { align: "center" });
+    doc.text(`Página ${i + 1} de ${totalPages}`, PAGE_WIDTH / 2, PAGE_HEIGHT - (MARGIN_Y / 2), { align: "center" });
 
     if (i < totalPages - 1) {
       doc.addPage();
     }
 
-    // Reportar progreso
     if (onProgress) {
-      // Damos un pequeño respiro para que UI se actualice
       await new Promise((resolve) => setTimeout(resolve, 10));
       const percent = Math.round(((i + 1) / totalPages) * 100);
       onProgress(percent);
