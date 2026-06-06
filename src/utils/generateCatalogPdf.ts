@@ -163,6 +163,25 @@ async function toCircularPngBase64(url: string): Promise<string> {
   }
 }
 
+async function fetchFontBase64(url: string): Promise<string> {
+  try {
+    const res = await fetch(url);
+    if (!res.ok) return "";
+    const blob = await res.blob();
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const dataUrl = reader.result as string;
+        resolve(dataUrl.split(",")[1]);
+      };
+      reader.onerror = () => resolve("");
+      reader.readAsDataURL(blob);
+    });
+  } catch {
+    return "";
+  }
+}
+
 function toTitleCase(str: string) {
   return str
     .toLowerCase()
@@ -218,6 +237,24 @@ export async function generateCatalogPdf(
 
   // Pre-cargar logo ajustado a círculo con esquinas transparentes
   const logoB64 = await toCircularPngBase64("/Logo.jpg");
+  
+  // Pre-cargar fuentes premium (Montserrat)
+  const fontBoldB64 = await fetchFontBase64("/fonts/Montserrat-Bold.ttf");
+  const fontRegB64 = await fetchFontBase64("/fonts/Montserrat-Regular.ttf");
+  
+  let fontBold = "helvetica";
+  let fontReg = "helvetica";
+  
+  if (fontBoldB64 && fontRegB64) {
+    doc.addFileToVFS("Montserrat-Bold.ttf", fontBoldB64);
+    doc.addFont("Montserrat-Bold.ttf", "Montserrat", "bold");
+    fontBold = "Montserrat";
+    
+    doc.addFileToVFS("Montserrat-Regular.ttf", fontRegB64);
+    doc.addFont("Montserrat-Regular.ttf", "Montserrat", "normal");
+    fontReg = "Montserrat";
+  }
+
   const totalPages = Math.ceil(products.length / ITEMS_PER_PAGE);
 
   for (let i = 0; i < totalPages; i++) {
@@ -241,18 +278,18 @@ export async function generateCatalogPdf(
     
     // Textos Header
     doc.setTextColor(...hexToRgb("#ffffff"));
-    doc.setFont("helvetica", "bold");
+    doc.setFont(fontBold, "bold");
     doc.setFontSize(22);
     doc.text("LICORERÍA RIZZO", MARGIN_X + 22, currentY + 7);
     
     doc.setTextColor(...hexToRgb("#d4af37"));
-    doc.setFont("helvetica", "bold");
+    doc.setFont(fontBold, "bold");
     doc.setFontSize(9);
     doc.text("CATÁLOGO DE PRODUCTOS", MARGIN_X + 23, currentY + 12);
     
     // Textos Header (Derecha)
     doc.setTextColor(...hexToRgb("#999999"));
-    doc.setFont("helvetica", "normal");
+    doc.setFont(fontReg, "normal");
     doc.setFontSize(8);
     doc.text("IG: @licoreriarizzo", PAGE_WIDTH - MARGIN_X, currentY + 4, { align: "right" });
     doc.text("Tel: 0416-6713911", PAGE_WIDTH - MARGIN_X, currentY + 9, { align: "right" });
@@ -314,14 +351,14 @@ export async function generateCatalogPdf(
       
       // Categoría
       doc.setTextColor(...hexToRgb("#d4af37"));
-      doc.setFont("helvetica", "bold");
+      doc.setFont(fontBold, "bold");
       doc.setFontSize(6);
       doc.text(p.categoria.toUpperCase(), x + pad + 1, textY);
       textY += 4;
       
       // Nombre
       doc.setTextColor(...hexToRgb("#ffffff"));
-      doc.setFont("helvetica", "bold");
+      doc.setFont(fontBold, "bold");
       doc.setFontSize(8.5);
       
       const nameLines = doc.splitTextToSize(toTitleCase(p.nombre), CARD_WIDTH - (pad*2) - 2);
@@ -335,7 +372,7 @@ export async function generateCatalogPdf(
       
       // Presentaciones
       doc.setTextColor(...hexToRgb("#d4af37"));
-      doc.setFont("helvetica", "bold");
+      doc.setFont(fontBold, "bold");
       doc.setFontSize(6.5);
       const presentacionesText = p.presentaciones.join("  |  ");
       const presLines = doc.splitTextToSize(presentacionesText, CARD_WIDTH - (pad*2) - 2);
@@ -344,7 +381,7 @@ export async function generateCatalogPdf(
 
     // --- FOOTER ---
     doc.setTextColor(...hexToRgb("#666666"));
-    doc.setFont("helvetica", "normal");
+    doc.setFont(fontReg, "normal");
     doc.setFontSize(7);
     doc.text(`Página ${i + 1} de ${totalPages}`, PAGE_WIDTH / 2, PAGE_HEIGHT - (MARGIN_Y / 2), { align: "center" });
 
