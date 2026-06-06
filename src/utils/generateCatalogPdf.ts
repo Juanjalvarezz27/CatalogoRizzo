@@ -20,7 +20,11 @@ async function toJpegBase64(url: string): Promise<string> {
         ctx.fillStyle = "#ffffff";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(img, 0, 0);
-        resolve(canvas.toDataURL("image/jpeg", 0.85));
+        const data = canvas.toDataURL("image/jpeg", 0.85);
+        // Liberar memoria RAM explícitamente (Crítico para iOS Safari)
+        canvas.width = 0;
+        canvas.height = 0;
+        resolve(data);
       } catch {
         resolve("");
       }
@@ -181,16 +185,23 @@ export async function generateCatalogPdf(
     await new Promise((resolve) => requestAnimationFrame(resolve));
     await new Promise((resolve) => setTimeout(resolve, 50));
 
-    // Capturar con html2canvas (volvemos a scale 1.5 para máxima nitidez)
+    // Determinar si estamos en un teléfono para evitar reventar la memoria RAM
+    const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+
+    // Capturar con html2canvas (En móvil usamos scale 1 para no crashear, en desktop 1.5 para calidad premium)
     const canvas = await html2canvas(pageDiv, {
-      scale: 1.5,
+      scale: isMobile ? 1 : 1.5,
       useCORS: true,
       backgroundColor: "#121214",
       logging: false,
     });
 
-    // Volver a calidad 0.92 para eliminar los cuadros feos en los fondos oscuros
-    const imgData = canvas.toDataURL("image/jpeg", 0.92);
+    // Bajar la calidad ligeramente en móvil ayuda a reducir la saturación de memoria
+    const imgData = canvas.toDataURL("image/jpeg", isMobile ? 0.85 : 0.92);
+    
+    // Destruir canvas masivo inmediatamente para liberar la VRAM de la gráfica
+    canvas.width = 0;
+    canvas.height = 0;
 
     if (i > 0) {
       doc.addPage();
