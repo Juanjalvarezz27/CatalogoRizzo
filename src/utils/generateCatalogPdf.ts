@@ -8,30 +8,42 @@ import { type Product } from "@/data/products";
  * puede fallar con WEBP en ciertos navegadores.
  */
 async function toJpegBase64(url: string): Promise<string> {
-  return new Promise((resolve) => {
-    const img = new Image();
-    img.crossOrigin = "anonymous";
-    img.onload = () => {
-      try {
-        const canvas = document.createElement("canvas");
-        canvas.width = img.naturalWidth;
-        canvas.height = img.naturalHeight;
-        const ctx = canvas.getContext("2d")!;
-        ctx.fillStyle = "#ffffff";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.drawImage(img, 0, 0);
-        const data = canvas.toDataURL("image/jpeg", 0.85);
-        // Liberar memoria RAM explícitamente (Crítico para iOS Safari)
-        canvas.width = 0;
-        canvas.height = 0;
-        resolve(data);
-      } catch {
+  try {
+    const res = await fetch(url);
+    if (!res.ok) return "";
+    const blob = await res.blob();
+    const objectUrl = URL.createObjectURL(blob);
+
+    return new Promise((resolve) => {
+      const img = new Image();
+      img.onload = () => {
+        try {
+          const canvas = document.createElement("canvas");
+          canvas.width = img.naturalWidth;
+          canvas.height = img.naturalHeight;
+          const ctx = canvas.getContext("2d")!;
+          ctx.fillStyle = "#ffffff";
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+          ctx.drawImage(img, 0, 0);
+          const data = canvas.toDataURL("image/jpeg", 0.85);
+          canvas.width = 0;
+          canvas.height = 0;
+          URL.revokeObjectURL(objectUrl);
+          resolve(data);
+        } catch {
+          URL.revokeObjectURL(objectUrl);
+          resolve("");
+        }
+      };
+      img.onerror = () => {
+        URL.revokeObjectURL(objectUrl);
         resolve("");
-      }
-    };
-    img.onerror = () => resolve("");
-    img.src = url;
-  });
+      };
+      img.src = objectUrl; // Cargamos el blob local, 0 problemas de CORS
+    });
+  } catch {
+    return "";
+  }
 }
 
 function toTitleCase(str: string) {
@@ -91,9 +103,13 @@ export async function generateCatalogPdf(
     const start = i * ITEMS_PER_PAGE;
     const chunk = products.slice(start, start + ITEMS_PER_PAGE);
 
-    // ── Pre-cargar imágenes de ESTA página solamente ──────────
-    const imagePromises = chunk.map((p) => toJpegBase64(p.imagenUrl));
-    const images = await Promise.all(imagePromises);
+    // ── Pre-cargar imágenes de ESTA página secuencialmente ──────────
+    // En móviles, hacer 25 peticiones concurrentes puede congelar la red (Connection Limit).
+    const images: string[] = [];
+    for (const p of chunk) {
+      const b64 = await toJpegBase64(p.imagenUrl);
+      images.push(b64);
+    }
 
     // Asociar las imágenes a los productos
     const chunkWithImages = chunk.map((p, idx) => ({
@@ -191,7 +207,7 @@ export async function generateCatalogPdf(
     // Capturar con html2canvas (En móvil usamos scale 1 para no crashear, en desktop 1.5 para calidad premium)
     const canvas = await html2canvas(pageDiv, {
       scale: isMobile ? 1 : 1.5,
-      useCORS: true,
+      // Se eliminó useCORS porque ahora inyectamos los recursos localmente (Blobs) y evitamos cuelgues en Safari
       backgroundColor: "#121214",
       logging: false,
     });
