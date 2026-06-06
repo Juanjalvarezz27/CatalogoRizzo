@@ -1,20 +1,19 @@
+import { memo } from "react";
 import { type Product } from "@/data/products";
 import { ArrowBigDownDash, Package } from "lucide-react";
-import Image from "next/image";
-
 
 interface ProductCardProps {
   product: Product;
   index: number;
 }
 
-export default function ProductCard({ product, index }: ProductCardProps) {
+export default memo(function ProductCard({ product, index }: ProductCardProps) {
   return (
     <article
       id={`product-${product.id}`}
       // Añadimos h-full para que la tarjeta se estire uniformemente en el grid
       className="animate-fade-in-up group relative flex flex-col h-full overflow-hidden rounded-[32px] bg-[#2c2c2e] shadow-lg ring-1 ring-white/10 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(212,175,55,0.25)] hover:ring-gold-500/50"
-      style={{ animationDelay: `${index * 50}ms` }}
+      style={{ animationDelay: `${Math.min(index * 30, 400)}ms` }}
     >
       {/* ── Imagen en Isla Flotante Blanca Pura ── */}
       <div className="relative mx-3 mt-3 flex aspect-[4/5] items-center justify-center overflow-hidden rounded-[24px] bg-white shadow-sm transition-transform duration-500 group-hover:scale-[1.02]">
@@ -23,33 +22,31 @@ export default function ProductCard({ product, index }: ProductCardProps) {
           <ArrowBigDownDash className="h-5 w-5" strokeWidth={2} />
         </div>
 
-        {/* Burbuja de Cantidad por Caja (Flotante) */}
         {product.cantidad_caja && (
           <div 
             className="absolute bottom-3 right-3 z-20 flex shrink-0 items-center gap-1.5 rounded-full bg-[#1c1c1e]/90 px-3 py-1.5 shadow-[0_4px_12px_rgba(0,0,0,0.15)] ring-1 ring-white/10 backdrop-blur-md transition-transform duration-300 hover:scale-105"
-            title={`${product.cantidad_caja} unidades por caja`}
+            title={`${Array.isArray(product.cantidad_caja) ? Array.from(new Set(product.cantidad_caja)).join('/') : product.cantidad_caja} unidades por caja`}
           >
             <Package 
               className="h-3.5 w-3.5 text-gold-400 drop-shadow-[0_0_8px_rgba(212,175,55,0.5)]" 
               strokeWidth={2.5} 
             />
             <span className="font-poppins text-xs font-bold tracking-wide text-white">
-              x {product.cantidad_caja}
+              x {Array.isArray(product.cantidad_caja) ? Array.from(new Set(product.cantidad_caja)).join('/') : product.cantidad_caja}
             </span>
           </div>
         )}
-        
         <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-100">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(212,175,55,0.15)_0%,_transparent_70%)]" />
         </div>
 
-        <div className="relative z-10 h-[85%] w-[85%] transition-transform duration-700 ease-out group-hover:scale-[1.15] group-hover:-translate-y-2">
-          <Image
-            src={product.imagen_url}
+        <div className="relative z-10 w-full h-full flex items-center justify-center transition-transform duration-700 ease-out group-hover:scale-[1.05] group-hover:-translate-y-1">
+          <img
+            src={product.imagenUrl}
             alt={product.nombre}
-            fill
-            sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 20vw"
-            className="object-contain mix-blend-multiply"
+            className="max-h-[85%] max-w-[85%] object-contain mix-blend-multiply"
+            loading="lazy"
+            decoding="async"
           />
         </div>
       </div>
@@ -86,4 +83,4 @@ export default function ProductCard({ product, index }: ProductCardProps) {
       </div>
     </article>
   );
-}
+});

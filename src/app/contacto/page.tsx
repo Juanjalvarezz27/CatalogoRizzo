@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Link from "next/link";
-import { ChevronRight, ArrowLeft } from "lucide-react";
+import { ChevronRight, ArrowLeft, Mail } from "lucide-react";
 import Image from "next/image";
 
 
@@ -11,7 +11,9 @@ export const metadata: Metadata = {
 };
 
 export default function ContactPage() {
-  const phoneNumber = "584127510158";
+  const phoneNumber = "584166713911";
+  const displayPhone = "0416-6713911";
+  const emailAddress = "licoreriarizzo@gmail.com";
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent("Hola, me interesa hacer un pedido al mayor 🍸")}`;
   const instagramUrl = "https://instagram.com/licoreriarizzo";
   return (
@@ -53,8 +55,8 @@ export default function ContactPage() {
             </p>
           </div>
 
-          {/* ── Grid de Contacto (2 columnas) ────────── */}
-          <div className="grid w-full max-w-3xl gap-6 sm:grid-cols-2">
+          {/* ── Grid de Contacto (3 columnas) ────────── */}
+          <div className="grid w-full max-w-5xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
 
             {/* WhatsApp Premium Card */}
             <a
@@ -73,7 +75,7 @@ export default function ContactPage() {
                 </div>
                 <h3 className="font-montserrat text-lg font-bold text-white group-hover:text-[#25D366] transition-colors">Ventas WhatsApp</h3>
                 <p className="mt-2 text-center font-poppins text-sm text-night-300">
-                  +58 412 751 0158
+                  {displayPhone}
                 </p>
                 <div className="mt-4 flex items-center gap-2 text-[#25D366] opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                   <span className="font-poppins text-[10px] font-bold uppercase tracking-widest">Escribir ahora</span>
@@ -103,6 +105,28 @@ export default function ContactPage() {
                 </p>
                 <div className="mt-4 flex items-center gap-2 text-[#E1306C] opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                   <span className="font-poppins text-[10px] font-bold uppercase tracking-widest">Visitar perfil</span>
+                  <ChevronRight className="h-4 w-4" />
+                </div>
+              </div>
+            </a>
+
+            {/* Email Premium Card */}
+            <a
+              href={`mailto:${emailAddress}`}
+              className="group relative overflow-hidden rounded-3xl bg-white/5 p-1 ring-1 ring-white/10 transition-all duration-300 hover:-translate-y-1 hover:bg-white/10 hover:ring-white/20 hover:shadow-2xl hover:shadow-gold-500/10"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-gold-500/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              
+              <div className="relative flex h-full flex-col items-center justify-center rounded-[22px] bg-night-950/80 p-8 backdrop-blur-sm">
+                <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-gold-500/10 ring-1 ring-gold-500/30 transition-transform duration-500 group-hover:scale-110 group-hover:bg-gold-500/20">
+                  <Mail className="h-8 w-8 text-gold-400" />
+                </div>
+                <h3 className="font-montserrat text-lg font-bold text-white group-hover:text-gold-400 transition-colors">Correo</h3>
+                <p className="mt-2 text-center font-poppins text-sm text-night-300 break-all">
+                  {emailAddress}
+                </p>
+                <div className="mt-4 flex items-center gap-2 text-gold-400 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  <span className="font-poppins text-[10px] font-bold uppercase tracking-widest">Enviar correo</span>
                   <ChevronRight className="h-4 w-4" />
                 </div>
               </div>

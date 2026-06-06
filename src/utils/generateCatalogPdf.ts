@@ -53,7 +53,7 @@ export async function generateCatalogPdf(products: Product[]) {
   // 1. Pre-cargar todas las imágenes en Base64
   const productsWithBase64 = await Promise.all(
     products.map(async (p) => {
-      const base64 = await getBase64Image(p.imagen_url);
+      const base64 = await getBase64Image(p.imagenUrl);
       return { ...p, base64 };
     })
   );
@@ -112,8 +112,9 @@ export async function generateCatalogPdf(products: Product[]) {
             </div>
           </div>
           <div style="text-align: right; font-family: 'Poppins', sans-serif;">
-            <p style="color: #999999; font-size: 16px; margin: 0;">Instagram: @licoreriarizzo</p>
-            <p style="color: #999999; font-size: 16px; margin: 5px 0 0 0;">WhatsApp: +58 412 7510158</p>
+            <p style="color: #999999; font-size: 16px; margin: 0;">IG: @licoreriarizzo</p>
+            <p style="color: #999999; font-size: 16px; margin: 5px 0 0 0;">Tel: 0416-6713911</p>
+            <p style="color: #999999; font-size: 16px; margin: 5px 0 0 0;">Email: licoreriarizzo@gmail.com</p>
           </div>
         </div>
 

@@ -1,20 +1,33 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useDeferredValue } from "react";
 import Header from "@/components/Header";
 import HeroBanner from "@/components/HeroBanner";
 import SearchBar from "@/components/SearchBar";
 import CategoryFilter from "@/components/CategoryFilter";
 import ProductGrid from "@/components/ProductGrid";
 import { products, type Category } from "@/data/products";
-import { LayoutGrid, MapPin, Phone, Package } from "lucide-react";
+import { LayoutGrid, MapPin, Phone, Package, Mail } from "lucide-react";
 import Image from "next/image";
 
 
 export default function CatalogView() {
   const [selectedCategory, setSelectedCategory] = useState<Category>("Todos");
   const [searchQuery, setSearchQuery] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
 
+  const handleCategorySelect = (category: Category) => {
+    setSelectedCategory(category);
+    setCurrentPage(1); // Resetear a la primera página al filtrar
+  };
+
+  const handleSearch = (query: string) => {
+    setSearchQuery(query);
+    setCurrentPage(1); // Resetear a la primera página al buscar
+  };
+
+
+  const deferredSearchQuery = useDeferredValue(searchQuery);
 
   const filteredProducts = useMemo(() => {
     let filtered = products;
@@ -24,9 +37,9 @@ export default function CatalogView() {
       filtered = filtered.filter((p) => p.categoria === selectedCategory);
     }
 
-    // Filtrar por búsqueda (nombre, categoría y presentaciones)
-    if (searchQuery.trim()) {
-      const q = searchQuery.toLowerCase().trim();
+    // Filtrar por búsqueda (nombre, categoría y presentaciones) usando el valor diferido
+    if (deferredSearchQuery.trim()) {
+      const q = deferredSearchQuery.toLowerCase().trim();
       filtered = filtered.filter(
         (p) =>
           p.nombre.toLowerCase().includes(q) ||
@@ -36,29 +49,37 @@ export default function CatalogView() {
     }
 
     return filtered;
-  }, [selectedCategory, searchQuery]);
+  }, [selectedCategory, deferredSearchQuery]);
+
+  const ITEMS_PER_PAGE = 40;
+  const totalPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
+
+  const paginatedProducts = useMemo(() => {
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    return filteredProducts.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+  }, [filteredProducts, currentPage]);
 
   return (
     <div className="relative flex min-h-screen flex-col">
       {/* ── Fondo Iluminado Premium (Manchas esparcidas) ──────────── */}
       <div className="pointer-events-none fixed inset-0 z-0 bg-[#0a0a0c]">
         {/* Superior Izquierda */}
-        <div className="absolute left-[-10%] top-[5%] h-[200px] w-[200px] md:left-[5%] md:h-[350px] md:w-[350px] bg-gold-400/15 md:bg-gold-400/25 blur-[80px] md:blur-[100px] rounded-full mix-blend-screen" />
+        <div className="absolute left-[-10%] top-[5%] h-[200px] w-[200px] md:left-[5%] md:h-[350px] md:w-[350px] bg-gold-400/15 md:bg-gold-400/25 blur-[80px] md:blur-[100px] rounded-full mix-blend-screen transform-gpu will-change-transform" />
         
         {/* Superior Derecha (Solo Desktop) */}
-        <div className="hidden md:block absolute right-[-20%] top-[15%] h-[350px] w-[350px] md:right-[10%] md:top-[15%] md:h-[400px] md:w-[400px] bg-gold-500/20 blur-[90px] md:blur-[120px] rounded-full mix-blend-screen" />
+        <div className="hidden md:block absolute right-[-20%] top-[15%] h-[350px] w-[350px] md:right-[10%] md:top-[15%] md:h-[400px] md:w-[400px] bg-gold-500/20 blur-[90px] md:blur-[120px] rounded-full mix-blend-screen transform-gpu will-change-transform" />
         
         {/* Medio Izquierda (Solo Desktop) */}
-        <div className="hidden md:block absolute left-[-15%] top-[45%] h-[350px] w-[350px] md:left-[15%] md:h-[300px] md:w-[300px] bg-gold-600/20 blur-[90px] rounded-full mix-blend-screen" />
+        <div className="hidden md:block absolute left-[-15%] top-[45%] h-[350px] w-[350px] md:left-[15%] md:h-[300px] md:w-[300px] bg-gold-600/20 blur-[90px] rounded-full mix-blend-screen transform-gpu will-change-transform" />
         
         {/* Medio Derecha */}
-        <div className="absolute right-[-10%] top-[40%] h-[250px] w-[250px] md:right-[5%] md:top-[55%] md:h-[450px] md:w-[450px] bg-gold-400/15 md:bg-gold-400/20 blur-[90px] md:blur-[110px] rounded-full mix-blend-screen" />
+        <div className="absolute right-[-10%] top-[40%] h-[250px] w-[250px] md:right-[5%] md:top-[55%] md:h-[450px] md:w-[450px] bg-gold-400/15 md:bg-gold-400/20 blur-[90px] md:blur-[110px] rounded-full mix-blend-screen transform-gpu will-change-transform" />
         
         {/* Inferior Centro-Izquierda */}
-        <div className="absolute left-[-5%] bottom-[10%] h-[200px] w-[200px] md:left-[30%] md:bottom-[10%] md:h-[350px] md:w-[350px] bg-gold-500/15 md:bg-gold-500/20 blur-[80px] md:blur-[100px] rounded-full mix-blend-screen" />
+        <div className="absolute left-[-5%] bottom-[10%] h-[200px] w-[200px] md:left-[30%] md:bottom-[10%] md:h-[350px] md:w-[350px] bg-gold-500/15 md:bg-gold-500/20 blur-[80px] md:blur-[100px] rounded-full mix-blend-screen transform-gpu will-change-transform" />
         
         {/* Inferior Derecha (Solo Desktop) */}
-        <div className="hidden md:block absolute right-[-15%] bottom-[-5%] h-[350px] w-[350px] md:right-[20%] md:bottom-[-5%] md:h-[400px] md:w-[400px] bg-gold-600/25 blur-[100px] md:blur-[120px] rounded-full mix-blend-screen" />
+        <div className="hidden md:block absolute right-[-15%] bottom-[-5%] h-[350px] w-[350px] md:right-[20%] md:bottom-[-5%] md:h-[400px] md:w-[400px] bg-gold-600/25 blur-[100px] md:blur-[120px] rounded-full mix-blend-screen transform-gpu will-change-transform" />
       </div>
 
       {/* ── Contenido principal ──────────────────────── */}
@@ -75,11 +96,11 @@ export default function CatalogView() {
             {/* ── Barra de búsqueda + Filtro de categoría ── */}
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
               <div className="flex-1">
-                <SearchBar query={searchQuery} onSearch={setSearchQuery} />
+                <SearchBar query={searchQuery} onSearch={handleSearch} />
               </div>
               <CategoryFilter
                 selected={selectedCategory}
-                onSelect={setSelectedCategory}
+                onSelect={handleCategorySelect}
               />
             </div>
 
@@ -99,7 +120,53 @@ export default function CatalogView() {
           </div>
 
           {/* ── Grilla de productos ──────────────────── */}
-          <ProductGrid products={filteredProducts} />
+          <ProductGrid products={paginatedProducts} />
+
+          {/* ── Controles de Paginación ──────────────────── */}
+          {totalPages > 1 && (
+            <div className="mt-12 mb-4 flex flex-col sm:flex-row justify-center items-center gap-4">
+              <button
+                onClick={() => {
+                  setCurrentPage((p) => Math.max(1, p - 1));
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                disabled={currentPage === 1}
+                className="w-full sm:w-auto px-6 py-2.5 rounded-full bg-white/5 text-white/80 font-poppins text-sm font-medium hover:bg-white/10 disabled:opacity-40 disabled:cursor-not-allowed transition-all ring-1 ring-white/10"
+              >
+                Anterior
+              </button>
+              
+              <div className="flex flex-wrap justify-center items-center gap-2">
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                  <button
+                    key={page}
+                    onClick={() => {
+                      setCurrentPage(page);
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                    className={`h-10 w-10 rounded-full flex items-center justify-center font-poppins text-sm font-semibold transition-all ${
+                      currentPage === page
+                        ? "bg-gold-500 text-black shadow-[0_0_15px_rgba(212,175,55,0.4)]"
+                        : "bg-white/5 text-white/70 hover:bg-white/10 ring-1 ring-white/10"
+                    }`}
+                  >
+                    {page}
+                  </button>
+                ))}
+              </div>
+
+              <button
+                onClick={() => {
+                  setCurrentPage((p) => Math.min(totalPages, p + 1));
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                disabled={currentPage === totalPages}
+                className="w-full sm:w-auto px-6 py-2.5 rounded-full bg-white/5 text-white/80 font-poppins text-sm font-medium hover:bg-white/10 disabled:opacity-40 disabled:cursor-not-allowed transition-all ring-1 ring-white/10"
+              >
+                Siguiente
+              </button>
+            </div>
+          )}
         </main>
 
         {/* ── Footer ────────────────────────────────────── */}
@@ -138,9 +205,14 @@ export default function CatalogView() {
                   <span>@licoreriarizzo</span>
                 </a>
                 
-                <a href="https://wa.me/584127510158" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 font-poppins text-sm text-white/70 transition-colors hover:text-[#25D366]">
+                <a href="https://wa.me/584166713911" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 font-poppins text-sm text-white/70 transition-colors hover:text-[#25D366]">
                   <Phone className="h-4 w-4" />
-                  <span>+58 412 751 0158</span>
+                  <span>0416-6713911</span>
+                </a>
+
+                <a href="mailto:licoreriarizzo@gmail.com" className="flex items-center gap-2 font-poppins text-sm text-white/70 transition-colors hover:text-gold-400">
+                  <Mail className="h-4 w-4" />
+                  <span>licoreriarizzo@gmail.com</span>
                 </a>
 
                 <div className="flex items-center gap-2 font-poppins text-sm text-white/70">
