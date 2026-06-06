@@ -24,7 +24,7 @@ export default memo(function ProductCard({ product, index }: ProductCardProps) {
       style={{ animationDelay: `${Math.min(index * 30, 400)}ms` }}
     >
       {/* ── Imagen en Isla Flotante Blanca Pura ── */}
-      <div className="relative mx-3 mt-3 flex aspect-[4/5] items-center justify-center overflow-hidden rounded-[24px] bg-white shadow-sm">
+      <div className="relative mx-3 mt-3 flex aspect-[4/5] items-center justify-center overflow-hidden rounded-[24px] bg-white shadow-sm isolation-isolate transform-gpu">
         
         <div className="absolute right-4 top-4 z-20 text-gold-500/80">
           <ArrowBigDownDash className="h-5 w-5" strokeWidth={2} />
