@@ -71,7 +71,7 @@ export const products: Product[] = [
       "1L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/4.webp"
+    "imagenUrl": "/images/productos/4 - Calicanto.png"
   },
   {
     "id": 5,
@@ -693,16 +693,7 @@ export const products: Product[] = [
     "cantidad_caja": 12,
     "imagenUrl": "/images/productos/60.webp"
   },
-  {
-    "id": 61,
-    "nombre": "PIKA",
-    "categoria": "Licores de Ron",
-    "presentaciones": [
-      "0.35L."
-    ],
-    "cantidad_caja": 24,
-    "imagenUrl": "/images/productos/61.webp"
-  },
+
   {
     "id": 62,
     "nombre": "PIKARON LICOR DE RON",
@@ -817,7 +808,7 @@ export const products: Product[] = [
       "1L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/71.webp"
+    "imagenUrl": "/images/productos/71- tawala dorado.png"
   },
   {
     "id": 72,
@@ -827,7 +818,7 @@ export const products: Product[] = [
       "1L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/72.webp"
+    "imagenUrl": "/images/productos/74.webp"
   },
   {
     "id": 73,
@@ -837,7 +828,7 @@ export const products: Product[] = [
       "Única"
     ],
     "cantidad_caja": 24,
-    "imagenUrl": "/images/productos/73.webp"
+    "imagenUrl": "/images/productos/71.webp"
   },
   {
     "id": 74,
@@ -851,7 +842,7 @@ export const products: Product[] = [
       1,
       12
     ],
-    "imagenUrl": "/images/productos/74.webp"
+    "imagenUrl": "/images/productos/73.webp"
   },
   {
     "id": 75,
@@ -1179,16 +1170,7 @@ export const products: Product[] = [
     "cantidad_caja": 12,
     "imagenUrl": "/images/productos/106.webp"
   },
-  {
-    "id": 107,
-    "nombre": "GUARAPITA COCTEL",
-    "categoria": "Sangrías",
-    "presentaciones": [
-      "Única"
-    ],
-    "cantidad_caja": 6,
-    "imagenUrl": "/images/productos/107.webp"
-  },
+
   {
     "id": 108,
     "nombre": "LA DIOSA TINTA - DORADA 11°",
