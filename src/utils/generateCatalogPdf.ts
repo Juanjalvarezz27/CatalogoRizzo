@@ -57,7 +57,7 @@ function toTitleCase(str: string) {
 export async function generateCatalogPdf(
   products: Product[],
   onProgress?: (percent: number) => void
-) {
+): Promise<Blob> {
   // ── Dimensiones del render HTML ─────────────────────────────
   const RENDER_WIDTH = 1200;
   const COLS = 5;
@@ -231,5 +231,5 @@ export async function generateCatalogPdf(
   }
 
   document.body.removeChild(container);
-  doc.save("Catalogo_Premium_Rizzo.pdf");
+  return doc.output("blob");
 }
