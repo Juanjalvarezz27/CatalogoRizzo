@@ -126,13 +126,9 @@ export async function generateCatalogPdf(
     pageDiv.style.fontFamily = "'Poppins', system-ui, -apple-system, sans-serif";
 
     pageDiv.innerHTML = `
-      <!-- Destellos Dorados de fondo -->
-      <div style="position: absolute; top: -10%; left: -10%; width: 1200px; height: 1200px; background: radial-gradient(circle, rgba(212, 175, 55, 0.35) 0%, rgba(18, 18, 20, 0) 70%);"></div>
-      <div style="position: absolute; bottom: -10%; right: -10%; width: 1200px; height: 1200px; background: radial-gradient(circle, rgba(212, 175, 55, 0.35) 0%, rgba(18, 18, 20, 0) 70%);"></div>
-      <div style="position: absolute; top: 50%; left: 50%; width: 2000px; height: 1000px; background: radial-gradient(ellipse, rgba(212, 175, 55, 0.15) 0%, rgba(18, 18, 20, 0) 70%); transform: translate(-50%, -50%);"></div>
-      <div style="position: absolute; top: 15%; left: 35%; width: 800px; height: 800px; background: radial-gradient(circle, rgba(212, 175, 55, 0.25) 0%, rgba(18, 18, 20, 0) 60%);"></div>
-      <div style="position: absolute; top: 60%; left: 20%; width: 1000px; height: 1000px; background: radial-gradient(circle, rgba(212, 175, 55, 0.20) 0%, rgba(18, 18, 20, 0) 60%);"></div>
-      <div style="position: absolute; top: 80%; left: 45%; width: 800px; height: 800px; background: radial-gradient(circle, rgba(212, 175, 55, 0.30) 0%, rgba(18, 18, 20, 0) 60%);"></div>
+      <!-- Destellos Dorados de fondo (Optimizados para Mobile) -->
+      <div style="position: absolute; top: -10%; left: -10%; width: 800px; height: 800px; background: radial-gradient(circle, rgba(212, 175, 55, 0.20) 0%, rgba(18, 18, 20, 0) 60%);"></div>
+      <div style="position: absolute; bottom: -10%; right: -10%; width: 800px; height: 800px; background: radial-gradient(circle, rgba(212, 175, 55, 0.20) 0%, rgba(18, 18, 20, 0) 60%);"></div>
 
       <div style="padding: ${PAGE_PAD_TOP}px ${PAGE_PAD_X}px ${PAGE_PAD_BOTTOM}px ${PAGE_PAD_X}px; height: 100%; box-sizing: border-box; display: flex; flex-direction: column; position: relative; z-index: 10;">
         
@@ -201,19 +197,18 @@ export async function generateCatalogPdf(
     await new Promise((resolve) => requestAnimationFrame(resolve));
     await new Promise((resolve) => setTimeout(resolve, 50));
 
-    // Determinar si estamos en un teléfono para evitar reventar la memoria RAM
-    const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+    // Determinar de forma agresiva si estamos en un dispositivo móvil (iOS tiene estrictos límites de VRAM)
+    const isMobile = typeof window !== "undefined" && (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || window.innerWidth < 768);
 
-    // Capturar con html2canvas (En móvil usamos scale 1 para no crashear, en desktop 1.5 para calidad premium)
+    // Capturar con html2canvas
     const canvas = await html2canvas(pageDiv, {
       scale: isMobile ? 1 : 1.5,
-      // Se eliminó useCORS porque ahora inyectamos los recursos localmente (Blobs) y evitamos cuelgues en Safari
       backgroundColor: "#121214",
       logging: false,
     });
 
     // Bajar la calidad ligeramente en móvil ayuda a reducir la saturación de memoria
-    const imgData = canvas.toDataURL("image/jpeg", isMobile ? 0.85 : 0.92);
+    const imgData = canvas.toDataURL("image/jpeg", isMobile ? 0.75 : 0.92);
     
     // Destruir canvas masivo inmediatamente para liberar la VRAM de la gráfica
     canvas.width = 0;
