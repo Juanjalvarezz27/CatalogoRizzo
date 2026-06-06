@@ -45,23 +45,7 @@ export default function HeroBanner() {
         setPdfProgress(percent);
       });
 
-      const isMobile = typeof window !== "undefined" && (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || window.innerWidth < 768);
-
-      if (isMobile && navigator.share) {
-        const file = new File([pdfBlob], "Catalogo_Premium_Rizzo.pdf", { type: "application/pdf" });
-        if (navigator.canShare && navigator.canShare({ files: [file] })) {
-          await navigator.share({
-            title: "Catálogo Licorería Rizzo",
-            files: [file]
-          });
-        } else {
-          // Fallback a descarga si el navegador móvil no permite compartir archivos PDF
-          downloadBlob(pdfBlob);
-        }
-      } else {
-        // Comportamiento normal en Desktop
-        downloadBlob(pdfBlob);
-      }
+      downloadBlob(pdfBlob);
     } catch (error) {
       console.error("Error al generar PDF:", error);
       alert("Hubo un error al generar el PDF. Asegúrate de tener conexión a internet.");
@@ -72,14 +56,22 @@ export default function HeroBanner() {
   };
 
   const downloadBlob = (blob: Blob) => {
-    const url = URL.createObjectURL(blob);
+    // Forzar el tipo a octet-stream para que Safari iOS descargue el archivo
+    // en lugar de intentar abrirlo en su visor de PDFs (lo cual suele fallar con PDFs grandes)
+    const forceDownloadBlob = new Blob([blob], { type: "application/octet-stream" });
+    const url = URL.createObjectURL(forceDownloadBlob);
+    
     const a = document.createElement("a");
     a.href = url;
     a.download = "Catalogo_Premium_Rizzo.pdf";
+    a.style.display = "none";
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+    
+    setTimeout(() => {
+      URL.revokeObjectURL(url);
+    }, 100);
   };
 
   return (
@@ -134,18 +126,10 @@ export default function HeroBanner() {
                 className="flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl bg-gold-500/10 px-5 py-2.5 font-poppins text-sm font-medium text-gold-400 ring-1 ring-gold-500/30 transition-all duration-200 hover:bg-gold-500/20 hover:ring-gold-500/50 hover:shadow-lg hover:shadow-gold-400/10 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {!isGeneratingPdf && (
-                  <>
-                    <Share2 className="h-4 w-4 text-gold-400 sm:hidden" />
-                    <Download className="hidden sm:block h-4 w-4 text-gold-400" />
-                  </>
+                  <Download className="h-4 w-4 text-gold-400" />
                 )}
                 <span className="min-w-[145px] text-center whitespace-nowrap">
-                  {isGeneratingPdf ? `Generando... ${pdfProgress}%` : (
-                    <>
-                      <span className="inline sm:hidden">Compartir PDF</span>
-                      <span className="hidden sm:inline">Descargar Catálogo</span>
-                    </>
-                  )}
+                  {isGeneratingPdf ? `Generando... ${pdfProgress}%` : "Descargar Catálogo"}
                 </span>
               </button>
             </div>
