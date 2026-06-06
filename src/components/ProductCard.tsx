@@ -7,6 +7,14 @@ interface ProductCardProps {
   index: number;
 }
 
+function toTitleCase(str: string) {
+  return str
+    .toLowerCase()
+    .split(' ')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+}
+
 export default memo(function ProductCard({ product, index }: ProductCardProps) {
   return (
     <article
@@ -59,9 +67,9 @@ export default memo(function ProductCard({ product, index }: ProductCardProps) {
           </span>
         </div>
 
-        {/* Añadimos min-h-[44px] para igualar la altura de títulos cortos y largos */}
-        <h3 className="mb-4 font-montserrat text-[16px] font-semibold leading-snug tracking-tight text-white/95 line-clamp-2 min-h-[44px] transition-colors duration-300 group-hover:text-gold-400">
-          {product.nombre}
+        {/* Removimos line-clamp-2 para que los nombres largos se lean enteros en móvil */}
+        <h3 className="mb-4 font-montserrat text-[16px] font-semibold leading-snug tracking-tight text-white/95 transition-colors duration-300 group-hover:text-gold-400">
+          {toTitleCase(product.nombre)}
         </h3>
 
         {/* Presentaciones (Micro-Chips 3D Premium) */}
