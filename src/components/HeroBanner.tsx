@@ -10,6 +10,7 @@ import Image from "next/image";
 export default function HeroBanner() {
   const [isCopied, setIsCopied] = useState(false);
   const [isGeneratingPdf, setIsGeneratingPdf] = useState(false);
+  const [pdfProgress, setPdfProgress] = useState(0);
 
   const handleShare = async () => {
     const shareData = {
@@ -38,13 +39,17 @@ export default function HeroBanner() {
   const handleDownloadPdf = async () => {
     if (isGeneratingPdf) return;
     setIsGeneratingPdf(true);
+    setPdfProgress(0);
     try {
-      await generateCatalogPdf(products);
+      await generateCatalogPdf(products, (percent) => {
+        setPdfProgress(percent);
+      });
     } catch (error) {
       console.error("Error al generar PDF:", error);
       alert("Hubo un error al generar el PDF. Asegúrate de tener conexión a internet.");
     } finally {
       setIsGeneratingPdf(false);
+      setTimeout(() => setPdfProgress(0), 500); // Dar tiempo a que el botón vuelva a su estado normal suavemente
     }
   };
 
@@ -99,12 +104,12 @@ export default function HeroBanner() {
                 disabled={isGeneratingPdf}
                 className="flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl bg-gold-500/10 px-5 py-2.5 font-poppins text-sm font-medium text-gold-400 ring-1 ring-gold-500/30 transition-all duration-200 hover:bg-gold-500/20 hover:ring-gold-500/50 hover:shadow-lg hover:shadow-gold-400/10 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {isGeneratingPdf ? (
-                  <Loader2 className="h-4 w-4 animate-spin text-gold-400" />
-                ) : (
+                {!isGeneratingPdf && (
                   <Download className="h-4 w-4 text-gold-400" />
                 )}
-                <span>{isGeneratingPdf ? "Generando PDF..." : "Descargar Catálogo"}</span>
+                <span className="min-w-[145px] text-center whitespace-nowrap">
+                  {isGeneratingPdf ? `Generando... ${pdfProgress}%` : "Descargar Catálogo"}
+                </span>
               </button>
             </div>
           </div>
