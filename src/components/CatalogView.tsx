@@ -61,26 +61,22 @@ export default function CatalogView() {
 
   return (
     <div className="relative flex min-h-screen flex-col">
-      {/* ── Fondo Iluminado Premium (Manchas esparcidas) ──────────── */}
-      <div className="pointer-events-none fixed inset-0 z-0 bg-[#0a0a0c]">
-        {/* Superior Izquierda */}
-        <div className="absolute left-[-10%] top-[5%] h-[200px] w-[200px] md:left-[5%] md:h-[350px] md:w-[350px] bg-gold-400/15 md:bg-gold-400/25 blur-[80px] md:blur-[100px] rounded-full mix-blend-screen transform-gpu will-change-transform" />
-        
-        {/* Superior Derecha (Solo Desktop) */}
-        <div className="hidden md:block absolute right-[-20%] top-[15%] h-[350px] w-[350px] md:right-[10%] md:top-[15%] md:h-[400px] md:w-[400px] bg-gold-500/20 blur-[90px] md:blur-[120px] rounded-full mix-blend-screen transform-gpu will-change-transform" />
-        
-        {/* Medio Izquierda (Solo Desktop) */}
-        <div className="hidden md:block absolute left-[-15%] top-[45%] h-[350px] w-[350px] md:left-[15%] md:h-[300px] md:w-[300px] bg-gold-600/20 blur-[90px] rounded-full mix-blend-screen transform-gpu will-change-transform" />
-        
-        {/* Medio Derecha */}
-        <div className="absolute right-[-10%] top-[40%] h-[250px] w-[250px] md:right-[5%] md:top-[55%] md:h-[450px] md:w-[450px] bg-gold-400/15 md:bg-gold-400/20 blur-[90px] md:blur-[110px] rounded-full mix-blend-screen transform-gpu will-change-transform" />
-        
-        {/* Inferior Centro-Izquierda */}
-        <div className="absolute left-[-5%] bottom-[10%] h-[200px] w-[200px] md:left-[30%] md:bottom-[10%] md:h-[350px] md:w-[350px] bg-gold-500/15 md:bg-gold-500/20 blur-[80px] md:blur-[100px] rounded-full mix-blend-screen transform-gpu will-change-transform" />
-        
-        {/* Inferior Derecha (Solo Desktop) */}
-        <div className="hidden md:block absolute right-[-15%] bottom-[-5%] h-[350px] w-[350px] md:right-[20%] md:bottom-[-5%] md:h-[400px] md:w-[400px] bg-gold-600/25 blur-[100px] md:blur-[120px] rounded-full mix-blend-screen transform-gpu will-change-transform" />
-      </div>
+      {/* ── Fondo Iluminado Premium (Gradientes estáticos — cero costo GPU) ── */}
+      <div
+        className="pointer-events-none fixed inset-0 z-0"
+        style={{
+          background: `
+            #0a0a0c
+            radial-gradient(ellipse 600px 500px at 8% 8%, rgba(212,175,55,0.12) 0%, transparent 70%) no-repeat,
+            radial-gradient(ellipse 500px 450px at 85% 15%, rgba(212,175,55,0.09) 0%, transparent 70%) no-repeat,
+            radial-gradient(ellipse 400px 400px at 18% 50%, rgba(180,140,30,0.08) 0%, transparent 70%) no-repeat,
+            radial-gradient(ellipse 550px 500px at 90% 55%, rgba(212,175,55,0.10) 0%, transparent 70%) no-repeat,
+            radial-gradient(ellipse 450px 400px at 35% 85%, rgba(212,175,55,0.09) 0%, transparent 70%) no-repeat,
+            radial-gradient(ellipse 500px 450px at 78% 92%, rgba(180,140,30,0.10) 0%, transparent 70%) no-repeat,
+            #0a0a0c
+          `,
+        }}
+      />
 
       {/* ── Contenido principal ──────────────────────── */}
       <div className="relative z-10 flex min-h-screen flex-col">
@@ -105,7 +101,7 @@ export default function CatalogView() {
             </div>
 
             {/* Indicador de resultados */}
-            <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-white/5 px-4 py-2 ring-1 ring-white/10 backdrop-blur-md shadow-lg shadow-black/20">
+            <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-night-900/80 px-4 py-2 ring-1 ring-white/10 shadow-lg shadow-black/20">
               <Package className="h-4 w-4 text-gold-400" />
               <span className="font-poppins text-sm font-medium text-white/90">
                 {filteredProducts.length} <span className="text-white/60 font-normal">{filteredProducts.length === 1 ? "producto" : "productos"}</span>

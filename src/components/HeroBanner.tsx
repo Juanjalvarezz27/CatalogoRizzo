@@ -50,13 +50,16 @@ export default function HeroBanner() {
 
   return (
     <section className="relative overflow-visible">
-      {/* ── Iluminación exclusiva del Hero ───── */}
-      <div className="absolute inset-0 pointer-events-none">
-        {/* Luz detrás de los textos */}
-        <div className="absolute left-[-10%] top-0 h-[250px] w-[350px] md:left-[10%] md:h-[400px] md:w-[600px] bg-gold-400/15 blur-[90px] md:blur-[120px] rounded-full mix-blend-screen" />
-        {/* Luz detrás de la imagen de licores (Solo Desktop) */}
-        <div className="hidden md:block absolute right-[10%] top-[10%] h-[300px] w-[400px] bg-gold-300/20 blur-[100px] rounded-full mix-blend-screen" />
-      </div>
+      {/* ── Iluminación exclusiva del Hero (gradiente estático) ───── */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: `
+            radial-gradient(ellipse 600px 400px at 15% 30%, rgba(212,175,55,0.10) 0%, transparent 70%) no-repeat,
+            radial-gradient(ellipse 450px 350px at 80% 40%, rgba(212,175,55,0.08) 0%, transparent 70%) no-repeat
+          `,
+        }}
+      />
 
       {/* ── Contenido ─────────────────────────────────── */}
       <div className="relative z-10 mx-auto max-w-6xl px-4 pt-4 pb-6 sm:px-6 sm:pt-12 sm:pb-8">
@@ -110,7 +113,7 @@ export default function HeroBanner() {
           <div className="flex flex-shrink-0 items-center justify-center">
             <div className="relative">
               {/* Halo dorado detrás */}
-              <div className="absolute inset-0 scale-110 rounded-full bg-gold-400/15 blur-2xl animate-pulse-gold" />
+              <div className="absolute inset-0 scale-110 rounded-full bg-gold-400/15 blur-2xl" />
               <Image
                 src="/Logo.jpg"
                 alt="Licorería Rizzo Logo"

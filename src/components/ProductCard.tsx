@@ -20,19 +20,19 @@ export default memo(function ProductCard({ product, index }: ProductCardProps) {
     <article
       id={`product-${product.id}`}
       // Añadimos h-full para que la tarjeta se estire uniformemente en el grid
-      className="animate-fade-in-up group relative flex flex-col h-full overflow-hidden rounded-[32px] bg-[#2c2c2e] shadow-lg ring-1 ring-white/10 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(212,175,55,0.25)] hover:ring-gold-500/50"
+      className="animate-fade-in-up group relative flex flex-col h-full overflow-hidden rounded-[32px] bg-[#2c2c2e] shadow-lg ring-1 ring-white/10 transition-transform duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_40px_-15px_rgba(212,175,55,0.25)]"
       style={{ animationDelay: `${Math.min(index * 30, 400)}ms` }}
     >
       {/* ── Imagen en Isla Flotante Blanca Pura ── */}
-      <div className="relative mx-3 mt-3 flex aspect-[4/5] items-center justify-center overflow-hidden rounded-[24px] bg-white shadow-sm transition-transform duration-500 group-hover:scale-[1.02]">
+      <div className="relative mx-3 mt-3 flex aspect-[4/5] items-center justify-center overflow-hidden rounded-[24px] bg-white shadow-sm">
         
-        <div className="absolute right-4 top-4 z-20 text-gold-500/80 transition-all duration-500 group-hover:text-gold-400 group-hover:scale-110">
+        <div className="absolute right-4 top-4 z-20 text-gold-500/80">
           <ArrowBigDownDash className="h-5 w-5" strokeWidth={2} />
         </div>
 
         {product.cantidad_caja && (
           <div 
-            className="absolute bottom-3 right-3 z-20 flex shrink-0 items-center gap-1.5 rounded-full bg-[#1c1c1e]/90 px-3 py-1.5 shadow-[0_4px_12px_rgba(0,0,0,0.15)] ring-1 ring-white/10 backdrop-blur-md transition-transform duration-300 hover:scale-105"
+            className="absolute bottom-3 right-3 z-20 flex shrink-0 items-center gap-1.5 rounded-full bg-[#1c1c1e]/90 px-3 py-1.5 shadow-[0_4px_12px_rgba(0,0,0,0.15)] ring-1 ring-white/10"
             title={`${Array.isArray(product.cantidad_caja) ? Array.from(new Set(product.cantidad_caja)).join('/') : product.cantidad_caja} unidades por caja`}
           >
             <Package 
@@ -44,11 +44,9 @@ export default memo(function ProductCard({ product, index }: ProductCardProps) {
             </span>
           </div>
         )}
-        <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-100">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(212,175,55,0.15)_0%,_transparent_70%)]" />
-        </div>
 
-        <div className="relative z-10 w-full h-full flex items-center justify-center transition-transform duration-700 ease-out group-hover:scale-[1.05] group-hover:-translate-y-1">
+
+        <div className="relative z-10 w-full h-full flex items-center justify-center">
           <img
             src={product.imagenUrl}
             alt={product.nombre}
@@ -68,7 +66,7 @@ export default memo(function ProductCard({ product, index }: ProductCardProps) {
         </div>
 
         {/* Removimos line-clamp-2 para que los nombres largos se lean enteros en móvil */}
-        <h3 className="mb-4 font-montserrat text-[16px] font-semibold leading-snug tracking-tight text-white/95 transition-colors duration-300 group-hover:text-gold-400">
+        <h3 className="mb-4 font-montserrat text-[16px] font-semibold leading-snug tracking-tight text-white/95">
           {toTitleCase(product.nombre)}
         </h3>
 
@@ -79,7 +77,7 @@ export default memo(function ProductCard({ product, index }: ProductCardProps) {
             {product.presentaciones.map((pres) => (
               <div
                 key={pres}
-                className="group relative flex items-center justify-center overflow-hidden rounded-full bg-gold-500/15 px-3.5 py-1.5 shadow-[0_0_10px_rgba(212,175,55,0.15)] ring-1 ring-gold-500/30 transition-all duration-300 hover:scale-105 hover:bg-gold-500/25 hover:shadow-[0_0_15px_rgba(212,175,55,0.25)] hover:ring-gold-400/50"
+                className="flex items-center justify-center overflow-hidden rounded-full bg-gold-500/15 px-3.5 py-1.5 ring-1 ring-gold-500/30"
               >
                 <span className="relative z-10 font-poppins text-xs font-bold tracking-wider text-gold-400">
                   {pres}
