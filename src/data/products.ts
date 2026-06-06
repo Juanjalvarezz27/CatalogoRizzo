@@ -104,7 +104,6 @@ export const products: Product[] = [
     "nombre": "EL CHAMA",
     "categoria": "Aguardientes",
     "presentaciones": [
-      "0.222L.",
       "0.35L.",
       "0.70L.",
       "1L."
@@ -122,7 +121,7 @@ export const products: Product[] = [
     "nombre": "EL RECORD BLANCO / ROJO",
     "categoria": "Aguardientes",
     "presentaciones": [
-      "Única"
+      "1L"
     ],
     "cantidad_caja": 12,
     "imagenUrl": "/images/productos/8.webp"
@@ -134,7 +133,6 @@ export const products: Product[] = [
     "presentaciones": [
       "0.35L.",
       "1L.",
-      "1L. PROMO 4 CAJAS"
     ],
     "cantidad_caja": [
       24,
@@ -217,7 +215,7 @@ export const products: Product[] = [
   },
   {
     "id": 16,
-    "nombre": "ELECTRICO BLUE / LOVE / ORIGINAL / YELLOW",
+    "nombre": "ELECTRICO BLUE / YELLOW",
     "categoria": "Anís",
     "presentaciones": [
       "1L."
@@ -330,7 +328,7 @@ export const products: Product[] = [
     "nombre": "PONCHE CREMA NATAL",
     "categoria": "Cremas",
     "presentaciones": [
-      "Única"
+      "0.7L"
     ],
     "cantidad_caja": 6,
     "imagenUrl": "/images/productos/27.webp"
@@ -453,7 +451,7 @@ export const products: Product[] = [
   },
   {
     "id": 39,
-    "nombre": "WELLINGTΟΝ",
+    "nombre": "WELLINGTON",
     "categoria": "Ginebras",
     "presentaciones": [
       "0.70L."
@@ -699,6 +697,7 @@ export const products: Product[] = [
     "nombre": "PIKARON LICOR DE RON",
     "categoria": "Licores de Ron",
     "presentaciones": [
+      "0.35L",
       "1L.",
       "1.75L."
     ],
@@ -725,7 +724,6 @@ export const products: Product[] = [
     "presentaciones": [
       "0.35L.",
       "1L.",
-      "1L. PROMO 4 CAJAS"
     ],
     "cantidad_caja": [
       24,
@@ -890,7 +888,7 @@ export const products: Product[] = [
     "nombre": "DUNBAR",
     "categoria": "Licores de Whisky",
     "presentaciones": [
-      "Única"
+      "0.7L"
     ],
     "cantidad_caja": 12,
     "imagenUrl": "/images/productos/79.webp"
@@ -1616,16 +1614,6 @@ export const products: Product[] = [
     ],
     "cantidad_caja": 1,
     "imagenUrl": "/images/productos/151.webp"
-  },
-  {
-    "id": 152,
-    "nombre": "WHISKY SIR ALBERT",
-    "categoria": "Whisky",
-    "presentaciones": [
-      "0.70L."
-    ],
-    "cantidad_caja": 1,
-    "imagenUrl": "/images/productos/152.webp"
   },
   {
     "id": 153,
