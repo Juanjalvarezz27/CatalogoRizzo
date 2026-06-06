@@ -37,14 +37,36 @@ export default function ProductGrid({ products }: ProductGridProps) {
     );
   }
 
+  // Agrupar productos por categoría
+  const groupedProducts = products.reduce((acc, product) => {
+    if (!acc[product.categoria]) {
+      acc[product.categoria] = [];
+    }
+    acc[product.categoria].push(product);
+    return acc;
+  }, {} as Record<string, Product[]>);
+
   return (
-    <section
-      id="product-grid"
-      className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5"
-    >
-      {products.map((product, i) => (
-        <ProductCard key={product.id} product={product} index={i} />
+    <div className="flex flex-col gap-12">
+      {Object.entries(groupedProducts).map(([categoria, prods]) => (
+        <div key={categoria} className="flex flex-col gap-6">
+          {/* Título Elegante de Categoría */}
+          <div className="flex items-center gap-4">
+            <h2 className="font-montserrat text-2xl sm:text-3xl font-bold tracking-[0.15em] text-gold-400 uppercase">
+              {categoria}
+            </h2>
+            <div className="h-px flex-1 bg-gradient-to-r from-gold-500/50 via-gold-500/20 to-transparent"></div>
+          </div>
+          
+          <section
+            className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5"
+          >
+            {prods.map((product, i) => (
+              <ProductCard key={product.id} product={product} index={i} />
+            ))}
+          </section>
+        </div>
       ))}
-    </section>
+    </div>
   );
 }
