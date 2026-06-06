@@ -1,11 +1,9 @@
 import { jsPDF } from "jspdf";
-import html2canvas from "html2canvas";
 import { type Product } from "@/data/products";
 
 /**
- * Carga una imagen desde una URL y la convierte a JPEG base64
- * usando un canvas del navegador. Necesario porque html2canvas
- * puede fallar con WEBP en ciertos navegadores.
+ * Carga una imagen desde una URL, la redimensiona en un canvas (max 300px)
+ * y la convierte a JPEG base64. Esto es CRÍTICO para no agotar la RAM en móviles.
  */
 async function toJpegBase64(url: string): Promise<string> {
   try {
@@ -19,12 +17,30 @@ async function toJpegBase64(url: string): Promise<string> {
       img.onload = () => {
         try {
           const canvas = document.createElement("canvas");
-          canvas.width = img.naturalWidth;
-          canvas.height = img.naturalHeight;
+          
+          // Redimensionar para evitar agotar la memoria en móviles
+          const MAX_SIZE = 300;
+          let width = img.naturalWidth;
+          let height = img.naturalHeight;
+
+          if (width > MAX_SIZE || height > MAX_SIZE) {
+            if (width > height) {
+              height = Math.round((height * MAX_SIZE) / width);
+              width = MAX_SIZE;
+            } else {
+              width = Math.round((width * MAX_SIZE) / height);
+              height = MAX_SIZE;
+            }
+          }
+
+          canvas.width = width;
+          canvas.height = height;
           const ctx = canvas.getContext("2d")!;
           ctx.fillStyle = "#ffffff";
           ctx.fillRect(0, 0, canvas.width, canvas.height);
-          ctx.drawImage(img, 0, 0);
+          ctx.drawImage(img, 0, 0, width, height);
+          
+          // Calidad 0.85 para un buen equilibrio entre nitidez y peso (menor consumo de memoria y tamaño de archivo final)
           const data = canvas.toDataURL("image/jpeg", 0.85);
           canvas.width = 0;
           canvas.height = 0;
@@ -39,7 +55,7 @@ async function toJpegBase64(url: string): Promise<string> {
         URL.revokeObjectURL(objectUrl);
         resolve("");
       };
-      img.src = objectUrl; // Cargamos el blob local, 0 problemas de CORS
+      img.src = objectUrl;
     });
   } catch {
     return "";
@@ -54,182 +70,186 @@ function toTitleCase(str: string) {
     .join(" ");
 }
 
+// Helpers para jsPDF
+function hexToRgb(hex: string): [number, number, number] {
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result
+    ? [
+        parseInt(result[1], 16),
+        parseInt(result[2], 16),
+        parseInt(result[3], 16),
+      ]
+    : [0, 0, 0];
+}
+
 export async function generateCatalogPdf(
   products: Product[],
   onProgress?: (percent: number) => void
 ): Promise<Blob> {
-  // ── Dimensiones del render HTML ─────────────────────────────
-  const RENDER_WIDTH = 1200;
-  const COLS = 5;
-  const ROWS = 5;
-  const ITEMS_PER_PAGE = COLS * ROWS; // 25 por página
-
-  // Alturas de cada sección (en px del render) — más compactas para 5×5
-  const HEADER_HEIGHT = 110;
-  const GRID_GAP = 16;
-  const CARD_IMG_HEIGHT = 150;
-  const CARD_TEXT_HEIGHT = 105;
-  const CARD_HEIGHT = CARD_IMG_HEIGHT + CARD_TEXT_HEIGHT + 10;
-  const PAGE_PAD_TOP = 30;
-  const PAGE_PAD_BOTTOM = 30;
-  const PAGE_PAD_X = 40;
-  
-  // Calcular alto total de la página basado en el contenido real
-  const GRID_HEIGHT = ROWS * CARD_HEIGHT + (ROWS - 1) * GRID_GAP;
-  const RENDER_HEIGHT = PAGE_PAD_TOP + HEADER_HEIGHT + 20 + GRID_HEIGHT + PAGE_PAD_BOTTOM + 30;
-
   const doc = new jsPDF({
     orientation: "portrait",
     unit: "mm",
     format: "a4",
   });
 
-  const pdfWidth = doc.internal.pageSize.getWidth();
-  const pdfHeight = doc.internal.pageSize.getHeight();
+  const PAGE_WIDTH = 210;
+  const PAGE_HEIGHT = 297;
+  const MARGIN_X = 15;
+  const MARGIN_Y = 15;
+  
+  const COLS = 4;
+  const ROWS = 5;
+  const ITEMS_PER_PAGE = COLS * ROWS; // 20 por página
+  
+  const GRID_GAP = 4;
+  const USABLE_WIDTH = PAGE_WIDTH - (MARGIN_X * 2);
+  const CARD_WIDTH = (USABLE_WIDTH - (GRID_GAP * (COLS - 1))) / COLS;
+  
+  const HEADER_HEIGHT = 25;
+  const FOOTER_HEIGHT = 10;
+  
+  const USABLE_HEIGHT = PAGE_HEIGHT - MARGIN_Y - HEADER_HEIGHT - FOOTER_HEIGHT - MARGIN_Y;
+  const CARD_HEIGHT = Math.min((USABLE_HEIGHT - (GRID_GAP * (ROWS - 1))) / ROWS, 46); // Max 46mm
 
   // Pre-cargar logo
   const logoB64 = await toJpegBase64("/Logo.jpg");
 
   const totalPages = Math.ceil(products.length / ITEMS_PER_PAGE);
 
-  // Contenedor oculto
-  const container = document.createElement("div");
-  container.style.position = "absolute";
-  container.style.top = "-9999px";
-  container.style.left = "-9999px";
-  document.body.appendChild(container);
-
   for (let i = 0; i < totalPages; i++) {
     const start = i * ITEMS_PER_PAGE;
     const chunk = products.slice(start, start + ITEMS_PER_PAGE);
 
-    // ── Pre-cargar imágenes de ESTA página secuencialmente ──────────
-    // En móviles, hacer 25 peticiones concurrentes puede congelar la red (Connection Limit).
+    // Fondo de la página (#121214)
+    doc.setFillColor(...hexToRgb("#121214"));
+    doc.rect(0, 0, PAGE_WIDTH, PAGE_HEIGHT, "F");
+
+    // --- HEADER ---
+    let currentY = MARGIN_Y;
+    
+    if (logoB64) {
+      // jsPDF no tiene clip circular nativo fácil, así que dibujamos la imagen cuadrada
+      doc.addImage(logoB64, "JPEG", MARGIN_X, currentY, 16, 16);
+    }
+    
+    // Textos Header
+    doc.setTextColor(...hexToRgb("#ffffff"));
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(18);
+    doc.text("LICORERÍA RIZZO", MARGIN_X + 20, currentY + 7);
+    
+    doc.setTextColor(...hexToRgb("#d4af37"));
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(9);
+    doc.text("CATÁLOGO DE PRODUCTOS", MARGIN_X + 20, currentY + 12);
+    
+    // Textos Header (Derecha)
+    doc.setTextColor(...hexToRgb("#999999"));
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(8);
+    doc.text("IG: @licoreriarizzo", PAGE_WIDTH - MARGIN_X, currentY + 4, { align: "right" });
+    doc.text("Tel: 0416-6713911", PAGE_WIDTH - MARGIN_X, currentY + 9, { align: "right" });
+    doc.text("Email: licoreriarizzo@gmail.com", PAGE_WIDTH - MARGIN_X, currentY + 14, { align: "right" });
+    
+    // Línea dorada separadora tenue
+    doc.setDrawColor(...hexToRgb("#d4af37"));
+    doc.setLineWidth(0.2);
+    doc.line(MARGIN_X, currentY + 20, PAGE_WIDTH - MARGIN_X, currentY + 20);
+    
+    currentY += HEADER_HEIGHT;
+
+    // --- GRID DE PRODUCTOS ---
+    // Pre-cargar imágenes para esta página (max 20)
+    // Se hace secuencial para no ahogar la red en móviles
     const images: string[] = [];
     for (const p of chunk) {
-      const b64 = await toJpegBase64(p.imagenUrl);
-      images.push(b64);
+      images.push(await toJpegBase64(p.imagenUrl));
     }
 
-    // Asociar las imágenes a los productos
-    const chunkWithImages = chunk.map((p, idx) => ({
-      ...p,
-      base64: images[idx],
-    }));
+    for (let index = 0; index < chunk.length; index++) {
+      const p = chunk[index];
+      const imgB64 = images[index];
+      
+      const col = index % COLS;
+      const row = Math.floor(index / COLS);
+      
+      const x = MARGIN_X + col * (CARD_WIDTH + GRID_GAP);
+      const y = currentY + row * (CARD_HEIGHT + GRID_GAP);
+      
+      // Fondo de la tarjeta (#2c2c2e)
+      doc.setFillColor(...hexToRgb("#2c2c2e"));
+      // roundedRect(x, y, w, h, rx, ry, style)
+      doc.roundedRect(x, y, CARD_WIDTH, CARD_HEIGHT, 2, 2, "F");
+      
+      // Isla blanca para la imagen
+      const imgIslandHeight = 22;
+      const pad = 2;
+      doc.setFillColor(...hexToRgb("#ffffff"));
+      doc.roundedRect(x + pad, y + pad, CARD_WIDTH - (pad*2), imgIslandHeight, 1.5, 1.5, "F");
+      
+      // Colocar Imagen
+      if (imgB64) {
+        // Asumimos que queremos centrarla y hacer que encaje
+        const imgPad = 1;
+        doc.addImage(imgB64, "JPEG", x + pad + imgPad, y + pad + imgPad, CARD_WIDTH - (pad*2) - (imgPad*2), imgIslandHeight - (imgPad*2));
+      } else {
+        doc.setTextColor(...hexToRgb("#cccccc"));
+        doc.setFontSize(6);
+        doc.text("Sin imagen", x + CARD_WIDTH/2, y + pad + imgIslandHeight/2, { align: "center" });
+      }
+      
+      // Textos del producto
+      let textY = y + pad + imgIslandHeight + 4;
+      
+      // Categoría
+      doc.setTextColor(...hexToRgb("#d4af37"));
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(6);
+      doc.text(p.categoria.toUpperCase(), x + pad, textY);
+      textY += 3.5;
+      
+      // Nombre
+      doc.setTextColor(...hexToRgb("#ffffff"));
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(8);
+      
+      // Truncar nombre si es muy largo o separarlo en líneas
+      const nameLines = doc.splitTextToSize(toTitleCase(p.nombre), CARD_WIDTH - (pad*2));
+      doc.text(nameLines.slice(0, 2), x + pad, textY); // Max 2 lineas
+      
+      // Línea separadora tenue
+      const bottomAreaY = y + CARD_HEIGHT - 5;
+      doc.setDrawColor(...hexToRgb("#d4af37"));
+      doc.setLineWidth(0.1);
+      doc.line(x + pad, bottomAreaY - 2, x + CARD_WIDTH - pad, bottomAreaY - 2);
+      
+      // Presentaciones
+      doc.setTextColor(...hexToRgb("#d4af37"));
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(6);
+      const presentacionesText = p.presentaciones.join(" | ");
+      const presLines = doc.splitTextToSize(presentacionesText, CARD_WIDTH - (pad*2));
+      doc.text(presLines.slice(0,1), x + pad, bottomAreaY + 1);
+    }
 
-    const pageDiv = document.createElement("div");
-    pageDiv.style.width = `${RENDER_WIDTH}px`;
-    pageDiv.style.height = `${RENDER_HEIGHT}px`;
-    pageDiv.style.backgroundColor = "#121214";
-    pageDiv.style.position = "relative";
-    pageDiv.style.overflow = "hidden";
-    pageDiv.style.fontFamily = "'Poppins', system-ui, -apple-system, sans-serif";
+    // --- FOOTER ---
+    doc.setTextColor(...hexToRgb("#666666"));
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(7);
+    doc.text(`Página ${i + 1} de ${totalPages}`, PAGE_WIDTH / 2, PAGE_HEIGHT - MARGIN_Y, { align: "center" });
 
-    pageDiv.innerHTML = `
-      <!-- Destellos Dorados de fondo (Optimizados para Mobile) -->
-      <div style="position: absolute; top: -10%; left: -10%; width: 800px; height: 800px; background: radial-gradient(circle, rgba(212, 175, 55, 0.20) 0%, rgba(18, 18, 20, 0) 60%);"></div>
-      <div style="position: absolute; bottom: -10%; right: -10%; width: 800px; height: 800px; background: radial-gradient(circle, rgba(212, 175, 55, 0.20) 0%, rgba(18, 18, 20, 0) 60%);"></div>
-
-      <div style="padding: ${PAGE_PAD_TOP}px ${PAGE_PAD_X}px ${PAGE_PAD_BOTTOM}px ${PAGE_PAD_X}px; height: 100%; box-sizing: border-box; display: flex; flex-direction: column; position: relative; z-index: 10;">
-        
-        <!-- HEADER PREMIUM -->
-        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(212, 175, 55, 0.3); padding-bottom: 18px; margin-bottom: 18px; flex-shrink: 0;">
-          <div style="display: flex; align-items: center; gap: 18px;">
-            ${logoB64 ? `<img src="${logoB64}" style="width: 65px; height: 65px; border-radius: 50%; box-shadow: 0 0 15px rgba(212, 175, 55, 0.3); object-fit: cover;" />` : ""}
-            <div style="display: flex; flex-direction: column; justify-content: center;">
-              <h1 style="color: #ffffff; font-size: 34px; font-weight: 800; margin: 0; padding: 0; line-height: 1; letter-spacing: -1px; font-family: 'Montserrat', sans-serif;">LICORERÍA RIZZO</h1>
-              <p style="color: #d4af37; font-size: 14px; font-weight: 600; margin: 4px 0 0 0; padding: 0; letter-spacing: 2px;">CATÁLOGO DE PRODUCTOS</p>
-            </div>
-          </div>
-          <div style="text-align: right; font-family: 'Poppins', sans-serif;">
-            <p style="color: #999999; font-size: 13px; margin: 0;">IG: @licoreriarizzo</p>
-            <p style="color: #999999; font-size: 13px; margin: 4px 0 0 0;">Tel: 0416-6713911</p>
-            <p style="color: #999999; font-size: 13px; margin: 4px 0 0 0;">Email: licoreriarizzo@gmail.com</p>
-          </div>
-        </div>
-
-        <!-- GRID DE PRODUCTOS (5 Columnas) -->
-        <div style="display: grid; grid-template-columns: repeat(${COLS}, 1fr); grid-auto-rows: ${CARD_HEIGHT}px; gap: ${GRID_GAP}px; flex: 1; align-content: start;">
-          ${chunkWithImages
-            .map(
-              (p) => `
-            <div style="background-color: #2c2c2e; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.05); box-shadow: 0 8px 24px rgba(0,0,0,0.3); display: flex; flex-direction: column;">
-              
-              <!-- Isla Flotante Blanca -->
-              <div style="background-color: #ffffff; margin: 8px 8px 0 8px; border-radius: 12px; height: ${CARD_IMG_HEIGHT}px; display: flex; justify-content: center; align-items: center; position: relative; overflow: hidden;">
-                ${
-                  p.base64
-                    ? `<div style="width: 80%; height: 80%; background-image: url('${p.base64}'); background-size: contain; background-position: center; background-repeat: no-repeat;"></div>`
-                    : `<div style="color: #ccc; font-size: 11px;">Sin imagen</div>`
-                }
-              </div>
-
-              <!-- Info del Producto -->
-              <div style="padding: 10px 12px 14px 12px; display: flex; flex-direction: column; flex-grow: 1;">
-                <p style="color: #d4af37; font-size: 9px; font-weight: 700; letter-spacing: 1.5px; margin: 0 0 5px 0; text-transform: uppercase;">${p.categoria}</p>
-                
-                <div style="height: 42px; overflow: hidden; margin: 0 0 3px 0;">
-                  <h3 style="color: #ffffff; font-size: 14px; font-weight: 600; margin: 0; line-height: 1.25; font-family: 'Montserrat', sans-serif;">${toTitleCase(p.nombre)}</h3>
-                </div>
-
-                <div style="margin-top: auto; padding-top: 8px; border-top: 1px solid rgba(212, 175, 55, 0.15);">
-                  <p style="color: #d4af37; font-size: 10px; font-weight: 600; font-family: 'Poppins', sans-serif; margin: 0; letter-spacing: 0.5px;">
-                    ${p.presentaciones.join(' <span style="color: rgba(255,255,255,0.2); font-weight: 300; margin: 0 4px;">|</span> ')}
-                  </p>
-                </div>
-              </div>
-            </div>
-          `
-            )
-            .join("")}
-        </div>
-
-        <!-- Pie de página -->
-        <div style="text-align: center; padding-top: 12px; flex-shrink: 0;">
-          <p style="color: #666; font-size: 11px; margin: 0; font-family: 'Poppins', sans-serif;">Página ${i + 1} de ${totalPages}</p>
-        </div>
-      </div>
-    `;
-
-    container.appendChild(pageDiv);
-
-    // Forzar un "respiro" al navegador para que la animación del loader no se trabe
-    await new Promise((resolve) => requestAnimationFrame(resolve));
-    await new Promise((resolve) => setTimeout(resolve, 50));
-
-    // Determinar de forma agresiva si estamos en un dispositivo móvil (iOS tiene estrictos límites de VRAM)
-    const isMobile = typeof window !== "undefined" && (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || window.innerWidth < 768);
-
-    // Capturar con html2canvas
-    const canvas = await html2canvas(pageDiv, {
-      scale: isMobile ? 1 : 1.5,
-      backgroundColor: "#121214",
-      logging: false,
-    });
-
-    // Bajar la calidad ligeramente en móvil ayuda a reducir la saturación de memoria
-    const imgData = canvas.toDataURL("image/jpeg", isMobile ? 0.75 : 0.92);
-    
-    // Destruir canvas masivo inmediatamente para liberar la VRAM de la gráfica
-    canvas.width = 0;
-    canvas.height = 0;
-
-    if (i > 0) {
+    if (i < totalPages - 1) {
       doc.addPage();
     }
 
-    doc.addImage(imgData, "JPEG", 0, 0, pdfWidth, pdfHeight);
-    container.innerHTML = "";
-
-    // Otro respiro antes de la siguiente página
-    await new Promise((resolve) => setTimeout(resolve, 10));
-
+    // Reportar progreso
     if (onProgress) {
+      // Damos un pequeño respiro para que UI se actualice
+      await new Promise((resolve) => setTimeout(resolve, 10));
       const percent = Math.round(((i + 1) / totalPages) * 100);
       onProgress(percent);
     }
   }
 
-  document.body.removeChild(container);
   return doc.output("blob");
 }
