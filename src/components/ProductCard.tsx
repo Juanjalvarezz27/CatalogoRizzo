@@ -1,5 +1,4 @@
 import { type Product } from "@/data/products";
-import { ArrowBigDownDash } from "lucide-react";
 import Image from "next/image";
 
 
@@ -19,9 +18,13 @@ export default function ProductCard({ product, index }: ProductCardProps) {
       {/* ── Imagen en Isla Flotante Blanca Pura ── */}
       <div className="relative mx-3 mt-3 flex aspect-[4/5] items-center justify-center overflow-hidden rounded-[24px] bg-white shadow-sm transition-transform duration-500 group-hover:scale-[1.02]">
         
-        <div className="absolute right-4 top-4 z-20 text-gold-500/80 transition-all duration-500 group-hover:text-gold-400 group-hover:scale-110">
-          <ArrowBigDownDash className="h-5 w-5" strokeWidth={2} />
-        </div>
+        {product.cantidad_caja && (
+          <div className="absolute right-3 top-3 z-20 flex items-center justify-center overflow-hidden rounded-full bg-gold-500/25 px-3 py-1 ring-1 ring-gold-500/40 shadow-[0_0_10px_rgba(212,175,55,0.15)] transition-all duration-300 group-hover:scale-105 group-hover:bg-gold-500/35 group-hover:ring-gold-500/60 group-hover:shadow-[0_0_15px_rgba(212,175,55,0.25)]">
+            <span className="relative z-10 font-poppins text-[10px] font-bold tracking-wider text-gold-700 uppercase">
+              {product.cantidad_caja} / caja
+            </span>
+          </div>
+        )}
         
         <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-100">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(212,175,55,0.15)_0%,_transparent_70%)]" />
