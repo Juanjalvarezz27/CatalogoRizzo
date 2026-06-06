@@ -214,13 +214,11 @@ export async function generateCatalogPdf(
   const PAGE_WIDTH = 210;
   const PAGE_HEIGHT = 297;
   
-  // Ajustes de diseño fieles a la imagen
   const MARGIN_X = 12;
   const MARGIN_Y = 12;
   
   const COLS = 4;
-  const ROWS = 4;
-  const ITEMS_PER_PAGE = COLS * ROWS;
+  const ROWS = 4; // Referencia de cálculo
   
   const GRID_GAP = 5;
   const USABLE_WIDTH = PAGE_WIDTH - (MARGIN_X * 2);
@@ -232,13 +230,11 @@ export async function generateCatalogPdf(
   const USABLE_HEIGHT = PAGE_HEIGHT - MARGIN_Y - HEADER_HEIGHT - FOOTER_HEIGHT - MARGIN_Y;
   const CARD_HEIGHT = (USABLE_HEIGHT - (GRID_GAP * (ROWS - 1))) / ROWS;
 
-  const imgIslandHeight = CARD_HEIGHT * 0.53; // 53% de la altura de la tarjeta
+  const imgIslandHeight = CARD_HEIGHT * 0.53;
   const islandRatio = (CARD_WIDTH - 4) / imgIslandHeight;
 
-  // Pre-cargar logo ajustado a círculo con esquinas transparentes
+  // Pre-cargar recursos
   const logoB64 = await toCircularPngBase64("/Logo.jpg");
-  
-  // Pre-cargar fuentes premium (Montserrat)
   const fontBoldB64 = await fetchFontBase64("/fonts/Montserrat-Bold.ttf");
   const fontRegB64 = await fetchFontBase64("/fonts/Montserrat-Regular.ttf");
   
@@ -255,28 +251,36 @@ export async function generateCatalogPdf(
     fontReg = "Montserrat";
   }
 
-  const totalPages = Math.ceil(products.length / ITEMS_PER_PAGE);
+  // Agrupar productos
+  const groupedProducts: Record<string, Product[]> = {};
+  for (const p of products) {
+    if (!groupedProducts[p.categoria]) {
+      groupedProducts[p.categoria] = [];
+    }
+    groupedProducts[p.categoria].push(p);
+  }
 
-  for (let i = 0; i < totalPages; i++) {
-    const start = i * ITEMS_PER_PAGE;
-    const chunk = products.slice(start, start + ITEMS_PER_PAGE);
+  const categories = Object.keys(groupedProducts).sort();
+  const totalProducts = products.length;
+  let processedCount = 0;
+  
+  let currentY = MARGIN_Y;
+  let currentCol = 0;
+  let pageCount = 1;
+  const TOTAL_PAGES_EXP = "{totalPages}";
 
-    // Fondo global oscuro (#151515)
+  function drawPageShell() {
     doc.setFillColor(...hexToRgb("#151515"));
     doc.rect(0, 0, PAGE_WIDTH, PAGE_HEIGHT, "F");
 
-    // --- HEADER ---
-    let currentY = MARGIN_Y;
+    currentY = MARGIN_Y;
     
     if (logoB64) {
-      // Dibujar fondo blanco circular sutil por si el logo tiene transparencia irregular
       doc.setFillColor(...hexToRgb("#ffffff"));
       doc.circle(MARGIN_X + 8, currentY + 8, 8.2, "F");
-      // Añadir la imagen PNG transparente sobre el fondo
       doc.addImage(logoB64, "PNG", MARGIN_X, currentY, 16, 16);
     }
     
-    // Textos Header
     doc.setTextColor(...hexToRgb("#ffffff"));
     doc.setFont(fontBold, "bold");
     doc.setFontSize(22);
@@ -287,7 +291,6 @@ export async function generateCatalogPdf(
     doc.setFontSize(9);
     doc.text("CATÁLOGO DE PRODUCTOS", MARGIN_X + 23, currentY + 12);
     
-    // Textos Header (Derecha)
     doc.setTextColor(...hexToRgb("#999999"));
     doc.setFont(fontReg, "normal");
     doc.setFontSize(8);
@@ -295,48 +298,86 @@ export async function generateCatalogPdf(
     doc.text("Tel: 0416-6713911", PAGE_WIDTH - MARGIN_X, currentY + 9, { align: "right" });
     doc.text("Email: licoreriarizzo@gmail.com", PAGE_WIDTH - MARGIN_X, currentY + 14, { align: "right" });
     
-    // Línea dorada separadora tenue
     doc.setDrawColor(...hexToRgb("#d4af37"));
     doc.setLineWidth(0.3);
     doc.line(MARGIN_X, currentY + 18, PAGE_WIDTH - MARGIN_X, currentY + 18);
     
     currentY += HEADER_HEIGHT;
+    currentCol = 0;
+    
+    doc.setTextColor(...hexToRgb("#666666"));
+    doc.setFont(fontReg, "normal");
+    doc.setFontSize(7);
+    doc.text(`Página ${pageCount} de ${TOTAL_PAGES_EXP}`, PAGE_WIDTH / 2, PAGE_HEIGHT - (MARGIN_Y / 2), { align: "center" });
+  }
 
-    // --- GRID DE PRODUCTOS ---
-    const images: string[] = [];
-    for (const p of chunk) {
-      images.push(await toJpegBase64(p.imagenUrl, islandRatio));
+  // Primera página
+  drawPageShell();
+
+  const TITLE_HEIGHT = 16;
+
+  for (const cat of categories) {
+    const catProducts = groupedProducts[cat];
+    const spaceNeeded = TITLE_HEIGHT + CARD_HEIGHT;
+
+    // Si no estamos en la primera columna, saltar de línea para el título
+    if (currentCol > 0) {
+      currentY += CARD_HEIGHT + GRID_GAP;
+      currentCol = 0;
     }
 
-    for (let index = 0; index < chunk.length; index++) {
-      const p = chunk[index];
-      const imgB64 = images[index];
+    // Espaciado extra antes de nueva categoría (si no está al inicio de la página)
+    if (currentY > MARGIN_Y + HEADER_HEIGHT + 2) {
+      currentY += 8;
+    }
+
+    // Salto de página si el título y la primera fila no caben
+    if (currentY + spaceNeeded > PAGE_HEIGHT - FOOTER_HEIGHT - MARGIN_Y) {
+      doc.addPage();
+      pageCount++;
+      drawPageShell();
+    }
+
+    // Dibujar Título Categoría
+    doc.setTextColor(...hexToRgb("#d4af37"));
+    doc.setFont(fontBold, "bold");
+    doc.setFontSize(14);
+    doc.text(cat.toUpperCase(), MARGIN_X, currentY + 6);
+    
+    // Línea separadora de categoría
+    doc.setDrawColor(...hexToRgb("#d4af37"));
+    doc.setLineWidth(0.3);
+    doc.line(MARGIN_X, currentY + 9, PAGE_WIDTH - MARGIN_X, currentY + 9);
+    
+    currentY += TITLE_HEIGHT;
+
+    for (const p of catProducts) {
+      const imgB64 = await toJpegBase64(p.imagenUrl, islandRatio);
       
-      const col = index % COLS;
-      const row = Math.floor(index / COLS);
-      
-      const x = MARGIN_X + col * (CARD_WIDTH + GRID_GAP);
-      const y = currentY + row * (CARD_HEIGHT + GRID_GAP);
-      
-      // Fondo de la tarjeta (gris oscuro elegante)
+      // Control de Columnas y Filas
+      if (currentCol >= COLS) {
+        currentCol = 0;
+        currentY += CARD_HEIGHT + GRID_GAP;
+      }
+
+      if (currentY + CARD_HEIGHT > PAGE_HEIGHT - FOOTER_HEIGHT - MARGIN_Y) {
+        doc.addPage();
+        pageCount++;
+        drawPageShell();
+      }
+
+      const x = MARGIN_X + currentCol * (CARD_WIDTH + GRID_GAP);
+      const y = currentY;
+
+      // Fondo tarjeta
       doc.setFillColor(...hexToRgb("#262628"));
       doc.roundedRect(x, y, CARD_WIDTH, CARD_HEIGHT, 3, 3, "F");
       
-      // Isla blanca para la imagen
-      const pad = 2; // Margen interno de la tarjeta
+      const pad = 2;
       
       if (imgB64) {
-        // La isla blanca ya está incrustada en la imagen B64 gracias a la modificación en toJpegBase64
-        // que dibuja el fondo blanco y ajusta la imagen con object-fit.
-        // Solo la dibujamos con esquinas redondeadas simuladas agregando pequeños rectángulos blancos si quisiéramos,
-        // pero jsPDF no permite clipping fácil, así que dibujaremos la isla blanca con `roundedRect` y la 
-        // imagen se superpondrá. Si la imagen ya tiene fondo blanco cuadrado, tapará las esquinas redondeadas arriba.
         doc.setFillColor(...hexToRgb("#ffffff"));
         doc.roundedRect(x + pad, y + pad, CARD_WIDTH - (pad*2), imgIslandHeight, 2, 2, "F");
-        
-        // Hacemos que la imagen cubra toda la isla blanca menos un mínimo borde inferior para que no tape 
-        // las esquinas redondeadas inferiores (que no las hay en la isla superior).
-        // Sin embargo, jsPDF tapará los bordes redondeados.
         doc.addImage(imgB64, "JPEG", x + pad + 0.5, y + pad + 0.5, CARD_WIDTH - (pad*2) - 1, imgIslandHeight - 1);
       } else {
         doc.setFillColor(...hexToRgb("#ffffff"));
@@ -346,54 +387,45 @@ export async function generateCatalogPdf(
         doc.text("Sin imagen", x + CARD_WIDTH/2, y + pad + imgIslandHeight/2, { align: "center" });
       }
       
-      // Textos del producto
       let textY = y + pad + imgIslandHeight + 4.5;
       
-      // Categoría
       doc.setTextColor(...hexToRgb("#d4af37"));
       doc.setFont(fontBold, "bold");
       doc.setFontSize(6);
       doc.text(p.categoria.toUpperCase(), x + pad + 1, textY);
       textY += 4;
       
-      // Nombre
       doc.setTextColor(...hexToRgb("#ffffff"));
       doc.setFont(fontBold, "bold");
       doc.setFontSize(8.5);
-      
       const nameLines = doc.splitTextToSize(toTitleCase(p.nombre), CARD_WIDTH - (pad*2) - 2);
       doc.text(nameLines.slice(0, 2), x + pad + 1, textY);
       
-      // Línea separadora dorada oscura
       const bottomAreaY = y + CARD_HEIGHT - 6;
       doc.setDrawColor(...hexToRgb("#8a7122"));
       doc.setLineWidth(0.15);
       doc.line(x + pad + 1, bottomAreaY - 2.5, x + CARD_WIDTH - pad - 1, bottomAreaY - 2.5);
       
-      // Presentaciones
       doc.setTextColor(...hexToRgb("#d4af37"));
       doc.setFont(fontBold, "bold");
       doc.setFontSize(6.5);
       const presentacionesText = p.presentaciones.join("  |  ");
       const presLines = doc.splitTextToSize(presentacionesText, CARD_WIDTH - (pad*2) - 2);
       doc.text(presLines.slice(0,1), x + pad + 1, bottomAreaY + 1);
-    }
 
-    // --- FOOTER ---
-    doc.setTextColor(...hexToRgb("#666666"));
-    doc.setFont(fontReg, "normal");
-    doc.setFontSize(7);
-    doc.text(`Página ${i + 1} de ${totalPages}`, PAGE_WIDTH / 2, PAGE_HEIGHT - (MARGIN_Y / 2), { align: "center" });
+      currentCol++;
+      processedCount++;
 
-    if (i < totalPages - 1) {
-      doc.addPage();
+      if (onProgress) {
+        await new Promise((resolve) => setTimeout(resolve, 5));
+        const percent = Math.round((processedCount / totalProducts) * 100);
+        onProgress(percent);
+      }
     }
+  }
 
-    if (onProgress) {
-      await new Promise((resolve) => setTimeout(resolve, 10));
-      const percent = Math.round(((i + 1) / totalPages) * 100);
-      onProgress(percent);
-    }
+  if (typeof doc.putTotalPages === 'function') {
+    doc.putTotalPages(TOTAL_PAGES_EXP);
   }
 
   return doc.output("blob");
