@@ -71,7 +71,7 @@ export const products: Product[] = [
       "1L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/4 - Calicanto.png"
+    "imagenUrl": "/images/productos/4.webp"
   },
   {
     "id": 5,
@@ -217,7 +217,7 @@ export const products: Product[] = [
   },
   {
     "id": 16,
-    "nombre": "ELECTRICO BLUE-LOVE-ORIGINAL-YELLOW",
+    "nombre": "ELECTRICO BLUE / LOVE / ORIGINAL / YELLOW",
     "categoria": "Anís",
     "presentaciones": [
       "1L."
@@ -227,7 +227,7 @@ export const products: Product[] = [
   },
   {
     "id": 17,
-    "nombre": "RUMBERO NATURAL - AZUL",
+    "nombre": "RUMBERO NATURAL / AZUL",
     "categoria": "Anís",
     "presentaciones": [
       "1L."
@@ -347,7 +347,7 @@ export const products: Product[] = [
   },
   {
     "id": 29,
-    "nombre": "GATORADE MANDARINA-MORA-FRUTAS",
+    "nombre": "GATORADE MANDARINA / MORA / FRUTAS",
     "categoria": "Energizantes",
     "presentaciones": [
       "500 ML."
@@ -387,7 +387,7 @@ export const products: Product[] = [
   },
   {
     "id": 33,
-    "nombre": "VINO LA MADRILEÑA BLANCO-ROSADO-TINTO",
+    "nombre": "VINO LA MADRILEÑA BLANCO / ROSADO / TINTO",
     "categoria": "Espumantes",
     "presentaciones": [
       "0.75L."
@@ -413,7 +413,7 @@ export const products: Product[] = [
       "0.70L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/35 - bajo 0.png"
+    "imagenUrl": "/images/productos/35.webp"
   },
   {
     "id": 36,
@@ -792,7 +792,7 @@ export const products: Product[] = [
   },
   {
     "id": 70,
-    "nombre": "TAMANACO DORADO - BLANCO",
+    "nombre": "TAMANACO DORADO / BLANCO",
     "categoria": "Licores de Ron",
     "presentaciones": [
       "1L."
@@ -808,7 +808,7 @@ export const products: Product[] = [
       "1L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/71- tawala dorado.png"
+    "imagenUrl": "/images/productos/71.webp"
   },
   {
     "id": 72,
@@ -818,17 +818,17 @@ export const products: Product[] = [
       "1L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/74.webp"
+    "imagenUrl": "/images/productos/72.webp"
   },
   {
     "id": 73,
-    "nombre": "9° SODA TORONJA - GINGER - AGUAKINA",
+    "nombre": "9° SODA TORONJA / GINGER / AGUAKINA",
     "categoria": "Mezcladores",
     "presentaciones": [
       "Única"
     ],
     "cantidad_caja": 24,
-    "imagenUrl": "/images/productos/73 - 9 Soda Toronja - Ginger - Aguakina.png"
+    "imagenUrl": "/images/productos/73.webp"
   },
   {
     "id": 74,
@@ -842,17 +842,17 @@ export const products: Product[] = [
       1,
       12
     ],
-    "imagenUrl": "/images/productos/73.webp"
+    "imagenUrl": "/images/productos/74.webp"
   },
   {
     "id": 75,
-    "nombre": "JARABE DE FRESA-GOMA-FRAMBUESA",
+    "nombre": "JARABE DE FRESA / GOMA / FRAMBUESA",
     "categoria": "Mezcladores",
     "presentaciones": [
       "0.70L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/75 - Jarabe De Fresa-goma-frambues.png"
+    "imagenUrl": "/images/productos/75.webp"
   },
   {
     "id": 76,
@@ -862,7 +862,7 @@ export const products: Product[] = [
       "0.70L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/76 - Naiguata Coco  Coco Y Piña.png"
+    "imagenUrl": "/images/productos/76.webp"
   },
   {
     "id": 77,
@@ -1142,13 +1142,13 @@ export const products: Product[] = [
   },
   {
     "id": 104,
-    "nombre": "CAROREÑA TINTA-BLANCA - ROSADA",
+    "nombre": "CAROREÑA TINTA / BLANCA / ROSADA",
     "categoria": "Sangrías",
     "presentaciones": [
       "1.75L."
     ],
     "cantidad_caja": 6,
-    "imagenUrl": "/images/productos/104 - sangria Caroreña Tinta-blanca - Rosada.png"
+    "imagenUrl": "/images/productos/104.webp"
   },
   {
     "id": 105,
@@ -1162,18 +1162,18 @@ export const products: Product[] = [
   },
   {
     "id": 106,
-    "nombre": "CAROREÑA VERANO LATA TINTA- BLANCA",
+    "nombre": "CAROREÑA VERANO LATA TINTA / BLANCA",
     "categoria": "Sangrías",
     "presentaciones": [
       "250ML."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/106 - Caroreña Verano Lata Tinta- Blanca.png"
+    "imagenUrl": "/images/productos/106.webp"
   },
 
   {
     "id": 108,
-    "nombre": "LA DIOSA TINTA - DORADA 11°",
+    "nombre": "LA DIOSA TINTA / DORADA 11°",
     "categoria": "Sangrías",
     "presentaciones": [
       "1.75L."
@@ -1203,23 +1203,23 @@ export const products: Product[] = [
   },
   {
     "id": 111,
-    "nombre": "LA QUE MANDA TINTA - ROSADA - BLANCA",
+    "nombre": "LA QUE MANDA TINTA / ROSADA / BLANCA",
     "categoria": "Sangrías",
     "presentaciones": [
       "1.75L."
     ],
     "cantidad_caja": 6,
-    "imagenUrl": "/images/productos/111 - La Que Manda Tinta - Rosada - Blanca.png"
+    "imagenUrl": "/images/productos/111.webp"
   },
   {
     "id": 112,
-    "nombre": "LA TOXICA MANZANA - TINTA ROSADA",
+    "nombre": "LA TOXICA MANZANA / TINTA ROSADA",
     "categoria": "Sangrías",
     "presentaciones": [
       "1.75L."
     ],
     "cantidad_caja": 6,
-    "imagenUrl": "/images/productos/112 - La Toxica Manzana- Tinta Rosada.png"
+    "imagenUrl": "/images/productos/112.webp"
   },
   {
     "id": 113,
@@ -1243,13 +1243,13 @@ export const products: Product[] = [
   },
   {
     "id": 115,
-    "nombre": "MAL PORTADA TINTA BLANCA ROSADA",
+    "nombre": "MAL PORTADA TINTA / BLANCA / ROSADA",
     "categoria": "Sangrías",
     "presentaciones": [
       "1.75L."
     ],
     "cantidad_caja": 6,
-    "imagenUrl": "/images/productos/115 - Mal Portada Tinta Blanca Rosada.png"
+    "imagenUrl": "/images/productos/115.webp"
   },
   {
     "id": 116,
@@ -1357,7 +1357,7 @@ export const products: Product[] = [
   },
   {
     "id": 126,
-    "nombre": "VINO LA SAGRADA CENA TINTO - BLANCO",
+    "nombre": "VINO LA SAGRADA CENA TINTO / BLANCO",
     "categoria": "Vinos",
     "presentaciones": [
       "Única"
@@ -1407,7 +1407,7 @@ export const products: Product[] = [
   },
   {
     "id": 131,
-    "nombre": "VINO DILEMA C/S. - MALBEC - CHARDONNAY",
+    "nombre": "VINO DILEMA C/S. / MALBEC / CHARDONNAY",
     "categoria": "Vinos",
     "presentaciones": [
       "0.75L."
@@ -1437,7 +1437,7 @@ export const products: Product[] = [
   },
   {
     "id": 134,
-    "nombre": "BAJO 0: COCO - MANZANA - GUARANA",
+    "nombre": "BAJO 0: COCO / MANZANA / GUARANA",
     "categoria": "Vodkas y Otros",
     "presentaciones": [
       "0.70L."
@@ -1447,7 +1447,7 @@ export const products: Product[] = [
   },
   {
     "id": 135,
-    "nombre": "BAJO 0: FRUTAS SALVAJES - MARACUYA",
+    "nombre": "BAJO 0: FRUTAS SALVAJES / MARACUYA",
     "categoria": "Vodkas y Otros",
     "presentaciones": [
       "0.70L."
@@ -1467,7 +1467,7 @@ export const products: Product[] = [
   },
   {
     "id": 137,
-    "nombre": "GORDON'S: NATURAL-UVA-LIMON-CRANBERRY-PARCHI",
+    "nombre": "GORDON'S: NATURAL / UVA / LIMON / CRANBERRY / PARCHI",
     "categoria": "Vodkas y Otros",
     "presentaciones": [
       "Única"

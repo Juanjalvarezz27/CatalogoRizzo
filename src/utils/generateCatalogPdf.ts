@@ -47,18 +47,102 @@ async function toJpegBase64(url: string, targetRatio: number = 1): Promise<strin
             drawX = (MAX_W - drawW) / 2;
           }
 
-          // Padding interior del 8% para que la botella no toque los bordes blancos
-          const pad = MAX_W * 0.08; 
-          const scale = (drawW - pad*2) / drawW;
+          // Padding interior del 8% basado en la dimensión limitante
+          const pad = Math.min(MAX_W, MAX_H) * 0.08; 
+          
+          let scale = 1;
+          if (imgRatio > targetRatio) {
+            scale = (drawW - pad*2) / drawW;
+          } else {
+            scale = (drawH - pad*2) / drawH;
+          }
           
           const innerDrawW = drawW * scale;
           const innerDrawH = drawH * scale;
           const innerDrawX = drawX + (drawW - innerDrawW)/2;
           const innerDrawY = drawY + (drawH - innerDrawH)/2;
 
+          // Usar multiply para que el fondo blanco de la foto se vuelva transparente frente al canvas blanco
+          ctx.globalCompositeOperation = "multiply";
+          // Aumentar ligeramente brillo/contraste para forzar los grises claros/blancos sucios a blanco puro
+          ctx.filter = "contrast(1.05) brightness(1.02)";
+
           ctx.drawImage(img, innerDrawX, innerDrawY, innerDrawW, innerDrawH);
           
-          const data = canvas.toDataURL("image/jpeg", 0.88);
+          // Restaurar contexto por seguridad
+          ctx.globalCompositeOperation = "source-over";
+          ctx.filter = "none";
+          
+          const data = canvas.toDataURL("image/jpeg", 0.90);
+          canvas.width = 0;
+          canvas.height = 0;
+          URL.revokeObjectURL(objectUrl);
+          resolve(data);
+        } catch {
+          URL.revokeObjectURL(objectUrl);
+          resolve("");
+        }
+      };
+      img.onerror = () => {
+        URL.revokeObjectURL(objectUrl);
+        resolve("");
+      };
+      img.src = objectUrl;
+    });
+  } catch {
+    return "";
+  }
+}
+
+async function toCircularPngBase64(url: string): Promise<string> {
+  try {
+    const res = await fetch(url);
+    if (!res.ok) return "";
+    const blob = await res.blob();
+    const objectUrl = URL.createObjectURL(blob);
+
+    return new Promise((resolve) => {
+      const img = new Image();
+      img.onload = () => {
+        try {
+          const SIZE = 300;
+          const canvas = document.createElement("canvas");
+          canvas.width = SIZE;
+          canvas.height = SIZE;
+          const ctx = canvas.getContext("2d")!;
+          
+          // Crear recorte circular (clip)
+          ctx.beginPath();
+          ctx.arc(SIZE / 2, SIZE / 2, SIZE / 2, 0, Math.PI * 2);
+          ctx.closePath();
+          ctx.clip();
+          
+          // Llenar el fondo de blanco para asegurar que el logo no quede transparente si era un PNG sin fondo
+          ctx.fillStyle = "#ffffff";
+          ctx.fillRect(0, 0, SIZE, SIZE);
+
+          let imgW = img.naturalWidth;
+          let imgH = img.naturalHeight;
+          const imgRatio = imgW / imgH;
+          let drawW, drawH, drawX, drawY;
+
+          // object-fit: cover logic
+          if (imgRatio > 1) {
+            drawH = SIZE;
+            drawW = SIZE * imgRatio;
+            drawY = 0;
+            drawX = (SIZE - drawW) / 2;
+          } else {
+            drawW = SIZE;
+            drawH = SIZE / imgRatio;
+            drawX = 0;
+            drawY = (SIZE - drawH) / 2;
+          }
+          
+          ctx.drawImage(img, drawX, drawY, drawW, drawH);
+          
+          // PNG soporta esquinas transparentes
+          const data = canvas.toDataURL("image/png");
           canvas.width = 0;
           canvas.height = 0;
           URL.revokeObjectURL(objectUrl);
@@ -116,7 +200,7 @@ export async function generateCatalogPdf(
   const MARGIN_Y = 12;
   
   const COLS = 4;
-  const ROWS = 5;
+  const ROWS = 4;
   const ITEMS_PER_PAGE = COLS * ROWS;
   
   const GRID_GAP = 5;
@@ -127,13 +211,13 @@ export async function generateCatalogPdf(
   const FOOTER_HEIGHT = 8;
   
   const USABLE_HEIGHT = PAGE_HEIGHT - MARGIN_Y - HEADER_HEIGHT - FOOTER_HEIGHT - MARGIN_Y;
-  const CARD_HEIGHT = Math.min((USABLE_HEIGHT - (GRID_GAP * (ROWS - 1))) / ROWS, 48);
+  const CARD_HEIGHT = (USABLE_HEIGHT - (GRID_GAP * (ROWS - 1))) / ROWS;
 
-  const imgIslandHeight = 24;
+  const imgIslandHeight = CARD_HEIGHT * 0.53; // 53% de la altura de la tarjeta
   const islandRatio = (CARD_WIDTH - 4) / imgIslandHeight;
 
-  // Pre-cargar logo ajustado a ratio 1 (cuadrado/círculo)
-  const logoB64 = await toJpegBase64("/Logo.jpg", 1);
+  // Pre-cargar logo ajustado a círculo con esquinas transparentes
+  const logoB64 = await toCircularPngBase64("/Logo.jpg");
   const totalPages = Math.ceil(products.length / ITEMS_PER_PAGE);
 
   for (let i = 0; i < totalPages; i++) {
@@ -148,13 +232,11 @@ export async function generateCatalogPdf(
     let currentY = MARGIN_Y;
     
     if (logoB64) {
-      // Dibujar fondo blanco circular para el logo
+      // Dibujar fondo blanco circular sutil por si el logo tiene transparencia irregular
       doc.setFillColor(...hexToRgb("#ffffff"));
-      doc.circle(MARGIN_X + 8, currentY + 8, 8.5, "F");
-      // Como jsPDF no recorta circular fácil, la imagen se superpone sobre el círculo
-      // Aseguramos que la imagen del logo tenga fondo blanco transparente o recortado.
-      // toJpegBase64 ya le puso fondo blanco cuadrado, así que queda como cuadrado redondeado por el círculo visualmente si el logo es blanco.
-      doc.addImage(logoB64, "JPEG", MARGIN_X, currentY, 16, 16);
+      doc.circle(MARGIN_X + 8, currentY + 8, 8.2, "F");
+      // Añadir la imagen PNG transparente sobre el fondo
+      doc.addImage(logoB64, "PNG", MARGIN_X, currentY, 16, 16);
     }
     
     // Textos Header

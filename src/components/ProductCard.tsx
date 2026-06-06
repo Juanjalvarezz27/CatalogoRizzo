@@ -50,7 +50,7 @@ export default memo(function ProductCard({ product, index }: ProductCardProps) {
           <img
             src={product.imagenUrl}
             alt={product.nombre}
-            className="max-h-[85%] max-w-[85%] object-contain mix-blend-multiply"
+            className="max-h-[85%] max-w-[85%] object-contain mix-blend-multiply contrast-[1.05] brightness-[1.02]"
             loading="lazy"
             decoding="async"
           />
