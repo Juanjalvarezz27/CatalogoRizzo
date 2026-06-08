@@ -5,6 +5,7 @@ export interface Product {
   presentaciones: string[];
   imagenUrl: string;
   cantidad_caja: number | number[];
+  requiresBlend?: boolean;
 }
 
 export const categories = [
@@ -71,7 +72,7 @@ export const products: Product[] = [
       "1L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/4.webp"
+    "imagenUrl": "/images/productos/4 - Calicanto 30°.webp"
   },
   {
     "id": 5,
@@ -124,7 +125,7 @@ export const products: Product[] = [
       "1L"
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/8.webp"
+    "imagenUrl": "/images/productos/8 - El Record Blanco  Rojo.webp"
   },
   {
     "id": 9,
@@ -195,7 +196,7 @@ export const products: Product[] = [
       "1L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/14.webp"
+    "imagenUrl": "/images/productos/14 - Carteluo Azul.webp"
   },
   {
     "id": 15,
@@ -231,7 +232,7 @@ export const products: Product[] = [
       "1L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/17.webp"
+    "imagenUrl": "/images/productos/17 - Rumbero Natural  Azul.webp"
   },
   {
     "id": 18,
@@ -281,7 +282,7 @@ export const products: Product[] = [
       "0.70L."
     ],
     "cantidad_caja": 1,
-    "imagenUrl": "/images/productos/22.webp"
+    "imagenUrl": "/images/productos/22 - Crema de Ron Barrica.webp"
   },
   {
     "id": 23,
@@ -301,7 +302,7 @@ export const products: Product[] = [
       "0.75L."
     ],
     "cantidad_caja": 1,
-    "imagenUrl": "/images/productos/24.webp"
+    "imagenUrl": "/images/productos/24 - Crema de Amarula.webp"
   },
   {
     "id": 25,
@@ -331,7 +332,7 @@ export const products: Product[] = [
       "0.7L"
     ],
     "cantidad_caja": 6,
-    "imagenUrl": "/images/productos/27.webp"
+    "imagenUrl": "/images/productos/27 - Ponche Crema Natal.webp"
   },
   {
     "id": 28,
@@ -511,7 +512,7 @@ export const products: Product[] = [
       "Única"
     ],
     "cantidad_caja": 1,
-    "imagenUrl": "/images/productos/44.webp"
+    "imagenUrl": "/images/productos/44 - Baile de Angel.webp"
   },
   {
     "id": 45,
@@ -715,7 +716,7 @@ export const products: Product[] = [
       "1L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/63.webp"
+    "imagenUrl": "/images/productos/63 - Popeye.webp"
   },
   {
     "id": 64,
@@ -860,7 +861,7 @@ export const products: Product[] = [
       "0.70L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/76.webp"
+    "imagenUrl": "/images/productos/76 - Naiguata Coco  Coco Y Piña.webp"
   },
   {
     "id": 77,
@@ -1062,7 +1063,7 @@ export const products: Product[] = [
       "0.75L."
     ],
     "cantidad_caja": 6,
-    "imagenUrl": "/images/productos/96.webp"
+    "imagenUrl": "/images/productos/96 - Ron Calazan Especial Blanco.webp"
   },
   {
     "id": 97,
@@ -1321,7 +1322,7 @@ export const products: Product[] = [
       "Única"
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/122.webp"
+    "imagenUrl": "/images/productos/122 - Licor de Agave del Norte.webp"
   },
   {
     "id": 123,
@@ -1401,7 +1402,7 @@ export const products: Product[] = [
       "Única"
     ],
     "cantidad_caja": 6,
-    "imagenUrl": "/images/productos/130.webp"
+    "imagenUrl": "/images/productos/130 - Vino Nuestra Pasion.webp"
   },
   {
     "id": 131,
@@ -1431,7 +1432,7 @@ export const products: Product[] = [
       "Única"
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/133.webp"
+    "imagenUrl": "/images/productos/133 - Bajo O Natural.webp"
   },
   {
     "id": 134,
