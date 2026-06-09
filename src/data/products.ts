@@ -138,7 +138,6 @@ export const products: Product[] = [
     "cantidad_caja": [
       24,
       12,
-      48
     ],
     "imagenUrl": "/images/productos/9.webp"
   },
