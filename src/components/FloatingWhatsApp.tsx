@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 export default function FloatingWhatsApp() {
   const [isVisible, setIsVisible] = useState(false);
-  const phoneNumber = "584127510158";
+  const phoneNumber = "584166713911";
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
     "Hola, me interesa hacer un pedido al mayor 🍸"
   )}`;
