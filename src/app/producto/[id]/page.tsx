@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
-import Link from "next/link";
-import { ArrowLeft, Package, MessageCircle, Info } from "lucide-react";
+import { Package, MessageCircle, Info } from "lucide-react";
+import { BackButton } from "@/components/BackButton";
 import { products } from "@/data/products";
 
 interface PageProps {
@@ -45,13 +45,7 @@ export default async function ProductPage({ params }: PageProps) {
 
       {/* ── Navbar simplificado ── */}
       <header className="relative z-20 flex items-center p-4 sm:p-6 lg:px-8 max-w-7xl mx-auto w-full">
-        <Link
-          href="/"
-          className="group flex items-center gap-2 rounded-full bg-white/5 px-4 py-2 font-poppins text-sm font-medium text-white/80 ring-1 ring-white/10 transition-all hover:bg-white/10 hover:text-white shadow-lg backdrop-blur-md"
-        >
-          <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
-          Volver al Catálogo
-        </Link>
+        <BackButton />
       </header>
 
       {/* ── Contenido Principal ── */}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useDeferredValue, useRef } from "react";
+import { useState, useMemo, useDeferredValue, useRef, useEffect } from "react";
 import Header from "@/components/Header";
 import HeroBanner from "@/components/HeroBanner";
 import SearchBar from "@/components/SearchBar";
@@ -11,17 +11,28 @@ import { LayoutGrid, MapPin, Phone, Package, Mail } from "lucide-react";
 import Image from "next/image";
 
 
+// Variables globales a nivel de módulo para preservar el estado al navegar atrás (soft navigation)
+let savedCategory: Category = "Todos";
+let savedQuery = "";
+let savedPage = 1;
+
 export default function CatalogView() {
-  const [selectedCategory, setSelectedCategory] = useState<Category>("Todos");
-  const [searchQuery, setSearchQuery] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
+  const [selectedCategory, setSelectedCategory] = useState<Category>(savedCategory);
+  const [searchQuery, setSearchQuery] = useState(savedQuery);
+  const [currentPage, setCurrentPage] = useState(savedPage);
+
+  // Sincronizar estado local con variables globales
+  useEffect(() => {
+    savedCategory = selectedCategory;
+    savedQuery = searchQuery;
+    savedPage = currentPage;
+  }, [selectedCategory, searchQuery, currentPage]);
 
   const catalogTopRef = useRef<HTMLElement>(null);
 
   const scrollToCatalogTop = () => {
     if (catalogTopRef.current) {
-      const y = catalogTopRef.current.getBoundingClientRect().top + window.scrollY - 100;
-      window.scrollTo({ top: y, behavior: 'smooth' });
+      catalogTopRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
     } else {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -95,7 +106,7 @@ export default function CatalogView() {
         {/* ── Hero Banner ────────────────────────────── */}
         <HeroBanner />
 
-        <main ref={catalogTopRef} className="mx-auto w-full max-w-7xl flex-1 px-4 py-5 sm:px-6 sm:py-6">
+        <main ref={catalogTopRef} className="scroll-mt-[100px] mx-auto w-full max-w-7xl flex-1 px-4 py-5 sm:px-6 sm:py-6">
           {/* ── Controles superiores ──────────── */}
           <div className="mb-6">
 
