@@ -1,4 +1,5 @@
 import { memo } from "react";
+import Link from "next/link";
 import { type Product } from "@/data/products";
 import { ArrowBigDownDash, Package } from "lucide-react";
 
@@ -17,12 +18,13 @@ function toTitleCase(str: string) {
 
 export default memo(function ProductCard({ product, index }: ProductCardProps) {
   return (
-    <article
-      id={`product-${product.id}`}
-      // Añadimos h-full para que la tarjeta se estire uniformemente en el grid
-      className="animate-fade-in-up group relative flex flex-col h-full overflow-hidden rounded-[24px] sm:rounded-[32px] bg-[#2c2c2e] shadow-lg ring-1 ring-white/10 transition-transform duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_40px_-15px_rgba(212,175,55,0.25)]"
-      style={{ animationDelay: `${Math.min(index * 30, 400)}ms` }}
-    >
+    <Link href={`/producto/${product.id}`} className="block h-full">
+      <article
+        id={`product-${product.id}`}
+        // Añadimos h-full para que la tarjeta se estire uniformemente en el grid
+        className="animate-fade-in-up group relative flex flex-col h-full overflow-hidden rounded-[24px] sm:rounded-[32px] bg-[#2c2c2e] shadow-lg ring-1 ring-white/10 transition-transform duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_40px_-15px_rgba(212,175,55,0.25)]"
+        style={{ animationDelay: `${Math.min(index * 30, 400)}ms` }}
+      >
       {/* ── Imagen en Isla Flotante Blanca Pura (Fix para iPads Antiguos) ── */}
       <div className="relative mx-2 mt-2 sm:mx-3 sm:mt-3 shrink-0 overflow-hidden rounded-[20px] sm:rounded-[24px] bg-white shadow-sm isolation-isolate transform-gpu pb-[125%]">
         
@@ -86,6 +88,7 @@ export default memo(function ProductCard({ product, index }: ProductCardProps) {
           </div>
         </div>
       </div>
-    </article>
+      </article>
+    </Link>
   );
 });

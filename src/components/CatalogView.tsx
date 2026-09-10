@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useDeferredValue } from "react";
+import { useState, useMemo, useDeferredValue, useRef } from "react";
 import Header from "@/components/Header";
 import HeroBanner from "@/components/HeroBanner";
 import SearchBar from "@/components/SearchBar";
@@ -16,6 +16,16 @@ export default function CatalogView() {
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
 
+  const catalogTopRef = useRef<HTMLElement>(null);
+
+  const scrollToCatalogTop = () => {
+    if (catalogTopRef.current) {
+      const y = catalogTopRef.current.getBoundingClientRect().top + window.scrollY - 100;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
   const handleCategorySelect = (category: Category) => {
     setSelectedCategory(category);
     setCurrentPage(1); // Resetear a la primera página al filtrar
@@ -85,7 +95,7 @@ export default function CatalogView() {
         {/* ── Hero Banner ────────────────────────────── */}
         <HeroBanner />
 
-        <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-5 sm:px-6 sm:py-6">
+        <main ref={catalogTopRef} className="mx-auto w-full max-w-7xl flex-1 px-4 py-5 sm:px-6 sm:py-6">
           {/* ── Controles superiores ──────────── */}
           <div className="mb-6">
 
@@ -124,7 +134,7 @@ export default function CatalogView() {
               <button
                 onClick={() => {
                   setCurrentPage((p) => Math.max(1, p - 1));
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                  scrollToCatalogTop();
                 }}
                 disabled={currentPage === 1}
                 className="w-full sm:w-auto px-6 py-2.5 rounded-full bg-white/5 text-white/80 font-poppins text-sm font-medium hover:bg-white/10 disabled:opacity-40 disabled:cursor-not-allowed transition-all ring-1 ring-white/10"
@@ -138,7 +148,7 @@ export default function CatalogView() {
                     key={page}
                     onClick={() => {
                       setCurrentPage(page);
-                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                      scrollToCatalogTop();
                     }}
                     className={`h-10 w-10 rounded-full flex items-center justify-center font-poppins text-sm font-semibold transition-all ${
                       currentPage === page
@@ -154,7 +164,7 @@ export default function CatalogView() {
               <button
                 onClick={() => {
                   setCurrentPage((p) => Math.min(totalPages, p + 1));
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                  scrollToCatalogTop();
                 }}
                 disabled={currentPage === totalPages}
                 className="w-full sm:w-auto px-6 py-2.5 rounded-full bg-white/5 text-white/80 font-poppins text-sm font-medium hover:bg-white/10 disabled:opacity-40 disabled:cursor-not-allowed transition-all ring-1 ring-white/10"

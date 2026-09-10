@@ -301,7 +301,7 @@ export const products: Product[] = [
       "0.75L."
     ],
     "cantidad_caja": 1,
-    "imagenUrl": "/images/productos/24 - Crema de Amarula.webp"
+    "imagenUrl": "/images/productos/amarula.png"
   },
   {
     "id": 25,
@@ -428,15 +428,9 @@ export const products: Product[] = [
     "nombre": "OLD TOM",
     "categoria": "Ginebras",
     "presentaciones": [
-      "0.35L.",
-      "0.70L.",
       "1L."
     ],
-    "cantidad_caja": [
-      24,
-      12,
-      12
-    ],
+    "cantidad_caja": 12,
     "imagenUrl": "/images/productos/37.webp"
   },
   {
@@ -503,16 +497,7 @@ export const products: Product[] = [
     "cantidad_caja": 1,
     "imagenUrl": "/images/productos/43.webp"
   },
-  {
-    "id": 44,
-    "nombre": "BAILE DE ANGEL",
-    "categoria": "Licores Dulces",
-    "presentaciones": [
-      "Única"
-    ],
-    "cantidad_caja": 1,
-    "imagenUrl": "/images/productos/44 - Baile de Angel.webp"
-  },
+
   {
     "id": 45,
     "nombre": "CAVA",
@@ -585,7 +570,7 @@ export const products: Product[] = [
       "1.20L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/50.webp"
+    "imagenUrl": "/images/productos/Chaparon.png"
   },
   {
     "id": 51,
