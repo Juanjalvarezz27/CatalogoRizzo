@@ -29,14 +29,23 @@ export default function CatalogView() {
   }, [selectedCategory, searchQuery, currentPage]);
 
   const catalogTopRef = useRef<HTMLElement>(null);
+  // Flag para controlar si el cambio de página fue por paginación (no al volver atrás)
+  const isPaginatingRef = useRef(false);
 
-  const scrollToCatalogTop = () => {
-    if (catalogTopRef.current) {
-      catalogTopRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    } else {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  };
+  // Scroll post-render: se dispara después de que React pinta la nueva página en pantalla
+  useEffect(() => {
+    if (!isPaginatingRef.current) return;
+    isPaginatingRef.current = false;
+    // Pequeño timeout para asegurar que el DOM esté completamente estable en iOS Safari
+    const timer = setTimeout(() => {
+      if (catalogTopRef.current) {
+        catalogTopRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }, 50);
+    return () => clearTimeout(timer);
+  }, [currentPage]);
   const handleCategorySelect = (category: Category) => {
     setSelectedCategory(category);
     setCurrentPage(1); // Resetear a la primera página al filtrar
@@ -144,8 +153,8 @@ export default function CatalogView() {
             <div className="mt-12 mb-4 flex flex-col sm:flex-row justify-center items-center gap-4">
               <button
                 onClick={() => {
+                  isPaginatingRef.current = true;
                   setCurrentPage((p) => Math.max(1, p - 1));
-                  scrollToCatalogTop();
                 }}
                 disabled={currentPage === 1}
                 className="w-full sm:w-auto px-6 py-2.5 rounded-full bg-white/5 text-white/80 font-poppins text-sm font-medium hover:bg-white/10 disabled:opacity-40 disabled:cursor-not-allowed transition-all ring-1 ring-white/10"
@@ -158,8 +167,8 @@ export default function CatalogView() {
                   <button
                     key={page}
                     onClick={() => {
+                      isPaginatingRef.current = true;
                       setCurrentPage(page);
-                      scrollToCatalogTop();
                     }}
                     className={`h-10 w-10 rounded-full flex items-center justify-center font-poppins text-sm font-semibold transition-all ${
                       currentPage === page
@@ -174,8 +183,8 @@ export default function CatalogView() {
 
               <button
                 onClick={() => {
+                  isPaginatingRef.current = true;
                   setCurrentPage((p) => Math.min(totalPages, p + 1));
-                  scrollToCatalogTop();
                 }}
                 disabled={currentPage === totalPages}
                 className="w-full sm:w-auto px-6 py-2.5 rounded-full bg-white/5 text-white/80 font-poppins text-sm font-medium hover:bg-white/10 disabled:opacity-40 disabled:cursor-not-allowed transition-all ring-1 ring-white/10"
