@@ -30,7 +30,7 @@ export default function CategoryFilter({ selected, onSelect }: CategoryFilterPro
   }, []);
 
   return (
-    <div ref={dropdownRef} className="relative w-full sm:w-64" id="category-filter">
+    <div ref={dropdownRef} className="relative w-full sm:w-64 md:w-72" id="category-filter">
       {/* ── Botón del desplegable ──────────────────── */}
       <button
         id="category-dropdown-toggle"

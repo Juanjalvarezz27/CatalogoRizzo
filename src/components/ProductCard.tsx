@@ -59,7 +59,7 @@ export default memo(function ProductCard({ product, index }: ProductCardProps) {
       </div>
 
       {/* ── Info del Producto (Tipografía limpia iOS) ── */}
-      <div className="flex flex-1 flex-col p-3 sm:p-4 lg:p-5 pt-3 sm:pt-4">
+      <div className="flex flex-1 flex-col p-3 sm:p-3.5 md:p-4 lg:p-5 pt-3 sm:pt-4">
         <div className="mb-1.5 flex items-center gap-1.5">
           <span className="font-poppins text-[9px] sm:text-[10px] font-bold tracking-[0.2em] text-gold-300 uppercase line-clamp-1">
             {product.categoria}
@@ -67,7 +67,7 @@ export default memo(function ProductCard({ product, index }: ProductCardProps) {
         </div>
 
         {/* Removimos line-clamp-2 para que los nombres largos se lean enteros en móvil */}
-        <h3 className="mb-3 sm:mb-4 font-montserrat text-sm sm:text-[15px] lg:text-[16px] font-semibold leading-tight sm:leading-snug tracking-tight text-white/95">
+        <h3 className="mb-3 sm:mb-4 font-montserrat text-sm md:text-[15px] lg:text-[16px] font-semibold leading-tight sm:leading-snug tracking-tight text-white/95">
           {toTitleCase(product.nombre)}
         </h3>
 

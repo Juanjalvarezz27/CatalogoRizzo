@@ -13,6 +13,7 @@ export const categories = [
   "Aguardientes",
   "Anís",
   "Cocuy",
+  "Comestibles",
   "Cremas",
   "Energizantes",
   "Espumantes",
@@ -1373,10 +1374,10 @@ export const products: Product[] = [
     "nombre": "VINO TALAMANCA",
     "categoria": "Vinos",
     "presentaciones": [
-      "Única"
+      "0.75L."
     ],
     "cantidad_caja": 6,
-    "imagenUrl": "/images/productos/129.webp"
+    "imagenUrl": "/images/productos/talamanca.png"
   },
   {
     "id": 130,
@@ -1619,5 +1620,185 @@ export const products: Product[] = [
     ],
     "cantidad_caja": 2,
     "imagenUrl": "/images/productos/154.webp"
+  },
+  {
+    "id": 155,
+    "nombre": "LABRADOR",
+    "categoria": "Licores de Brandy",
+    "presentaciones": [
+      "1L.",
+      "0.70L.",
+      "0.35L."
+    ],
+    "cantidad_caja": 12,
+    "imagenUrl": "/images/productos/labrador.png"
+  },
+  {
+    "id": 156,
+    "nombre": "VINO ROMEO",
+    "categoria": "Vinos",
+    "presentaciones": [
+      "Garnacha",
+      "Monastrel",
+      "Tempranillo"
+    ],
+    "cantidad_caja": 12,
+    "imagenUrl": "/images/productos/romeo.png"
+  },
+  {
+    "id": 157,
+    "nombre": "VINO TINI SANGIOVESSE",
+    "categoria": "Vinos",
+    "presentaciones": [
+      "Chardonay"
+    ],
+    "cantidad_caja": 12,
+    "imagenUrl": "/images/productos/tini.png"
+  },
+  {
+    "id": 158,
+    "nombre": "COCONIS",
+    "categoria": "Licores Dulces",
+    "presentaciones": [
+      "0.70L."
+    ],
+    "cantidad_caja": 12,
+    "imagenUrl": "/images/productos/coconis.png"
+  },
+  {
+    "id": 159,
+    "nombre": "ESPUMANTE DUC DE PARIS",
+    "categoria": "Espumantes",
+    "presentaciones": [
+      "0.75L."
+    ],
+    "cantidad_caja": 12,
+    "imagenUrl": "/images/productos/paris.png"
+  },
+  {
+    "id": 160,
+    "nombre": "VINO LICENSIOSO",
+    "categoria": "Vinos",
+    "presentaciones": [
+      "0.75L."
+    ],
+    "cantidad_caja": 12,
+    "imagenUrl": "/images/productos/licensioso.png"
+  },
+  {
+    "id": 161,
+    "nombre": "TOSCANA",
+    "categoria": "Licores Dulces",
+    "presentaciones": [
+      "Triple Sec",
+      "Sambuca",
+      "Limóncello",
+      "Amaretto"
+    ],
+    "cantidad_caja": 12,
+    "imagenUrl": "/images/productos/toscana.png"
+  },
+  {
+    "id": 162,
+    "nombre": "COINTREAU",
+    "categoria": "Licores Dulces",
+    "presentaciones": [
+      "0.70L."
+    ],
+    "cantidad_caja": 12,
+    "imagenUrl": "/images/productos/cointreau.png"
+  },
+  {
+    "id": 163,
+    "nombre": "GARLIN",
+    "categoria": "Licores Dulces",
+    "presentaciones": [
+      "Licor de Café",
+      "Licor de Cacao"
+    ],
+    "cantidad_caja": 12,
+    "imagenUrl": "/images/productos/Garlin.png"
+  },
+  {
+    "id": 164,
+    "nombre": "CINZANO",
+    "categoria": "Vinos",
+    "presentaciones": [
+      "Bianco 1L.",
+      "Rossi 1L."
+    ],
+    "cantidad_caja": 12,
+    "imagenUrl": "/images/productos/Cinzano.png"
+  },
+  {
+    "id": 165,
+    "nombre": "CAMPARI",
+    "categoria": "Licores Dulces",
+    "presentaciones": [
+      "1L."
+    ],
+    "cantidad_caja": 12,
+    "imagenUrl": "/images/productos/Campari.png"
+  },
+  {
+    "id": 166,
+    "nombre": "APEROL",
+    "categoria": "Licores Dulces",
+    "presentaciones": [
+      "1L."
+    ],
+    "cantidad_caja": 12,
+    "imagenUrl": "/images/productos/Aperol.png"
+  },
+  {
+    "id": 167,
+    "nombre": "WHISKY MACALLAN 12 AÑOS TRIPLE CASK",
+    "categoria": "Whisky",
+    "presentaciones": [
+      "0.75L."
+    ],
+    "cantidad_caja": 1,
+    "imagenUrl": "/images/productos/MacAllan.png"
+  },
+  {
+    "id": 168,
+    "nombre": "WHISKY GOLD LABEL RESERVE",
+    "categoria": "Whisky",
+    "presentaciones": [
+      "0.70L."
+    ],
+    "cantidad_caja": 1,
+    "imagenUrl": "/images/productos/gold.png"
+  },
+  {
+    "id": 169,
+    "nombre": "RON TEPUY",
+    "categoria": "Rones",
+    "presentaciones": [
+      "Monumento (0.70L.)",
+      "Destino (0.70L.)"
+    ],
+    "cantidad_caja": 6,
+    "imagenUrl": "/images/productos/Tepuy.png"
+  },
+  {
+    "id": 170,
+    "nombre": "CHOCOLATE SUN",
+    "categoria": "Comestibles",
+    "presentaciones": [
+      "Varios"
+    ],
+    "cantidad_caja": 12,
+    "imagenUrl": "/images/productos/sun.png"
+  },
+  {
+    "id": 171,
+    "nombre": "ACEITE DE COCO KALDINI",
+    "categoria": "Comestibles",
+    "presentaciones": [
+      "0.50L."
+    ],
+    "cantidad_caja": 12,
+    "imagenUrl": "/images/productos/Kaldini.png"
   }
 ];

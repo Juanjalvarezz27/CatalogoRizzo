@@ -67,7 +67,7 @@ export default function Header() {
               className="flex items-center gap-2 rounded-xl px-3 py-2 sm:px-4 font-poppins text-sm font-medium text-white/80 transition-colors hover:text-white hover:bg-white/5"
             >
               <Home className="h-4 w-4" />
-              <span className="hidden sm:inline">Catálogo</span>
+              <span className="hidden md:inline">Catálogo</span>
             </Link>
 
             <Link
@@ -76,7 +76,7 @@ export default function Header() {
               className="flex items-center gap-2 rounded-xl bg-night-900 px-4 py-2 font-poppins text-sm font-semibold text-gold-400 ring-1 ring-gold-400/40 transition-all duration-300 hover:bg-gold-400/10 hover:ring-gold-400 hover:shadow-[0_0_15px_rgba(212,175,55,0.2)]"
             >
               <MessageCircle className="h-4 w-4" />
-              <span className="hidden sm:inline">Contacto</span>
+              <span className="hidden md:inline">Contacto</span>
             </Link>
           </div>
         </div>

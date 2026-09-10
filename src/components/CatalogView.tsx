@@ -115,12 +115,12 @@ export default function CatalogView() {
         {/* ── Hero Banner ────────────────────────────── */}
         <HeroBanner />
 
-        <main ref={catalogTopRef} className="scroll-mt-[100px] mx-auto w-full max-w-7xl flex-1 px-4 py-5 sm:px-6 sm:py-6">
+        <main ref={catalogTopRef} className="scroll-mt-[100px] mx-auto w-full max-w-7xl flex-1 px-3 py-4 sm:px-5 sm:py-5 md:px-6 md:py-6 lg:px-8">
           {/* ── Controles superiores ──────────── */}
           <div className="mb-6">
 
             {/* ── Barra de búsqueda + Filtro de categoría ── */}
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+            <div className="flex flex-col gap-3 md:flex-row md:items-center">
               <div className="flex-1">
                 <SearchBar query={searchQuery} onSearch={handleSearch} />
               </div>
@@ -150,14 +150,14 @@ export default function CatalogView() {
 
           {/* ── Controles de Paginación ──────────────────── */}
           {totalPages > 1 && (
-            <div className="mt-12 mb-4 flex flex-col sm:flex-row justify-center items-center gap-4">
+            <div className="mt-12 mb-4 flex flex-col md:flex-row justify-center items-center gap-3 md:gap-4">
               <button
                 onClick={() => {
                   isPaginatingRef.current = true;
                   setCurrentPage((p) => Math.max(1, p - 1));
                 }}
                 disabled={currentPage === 1}
-                className="w-full sm:w-auto px-6 py-2.5 rounded-full bg-white/5 text-white/80 font-poppins text-sm font-medium hover:bg-white/10 disabled:opacity-40 disabled:cursor-not-allowed transition-all ring-1 ring-white/10"
+                className="w-full md:w-auto px-6 py-3 md:py-2.5 rounded-full bg-white/5 text-white/80 font-poppins text-sm font-medium hover:bg-white/10 disabled:opacity-40 disabled:cursor-not-allowed transition-all ring-1 ring-white/10"
               >
                 Anterior
               </button>
@@ -187,7 +187,7 @@ export default function CatalogView() {
                   setCurrentPage((p) => Math.min(totalPages, p + 1));
                 }}
                 disabled={currentPage === totalPages}
-                className="w-full sm:w-auto px-6 py-2.5 rounded-full bg-white/5 text-white/80 font-poppins text-sm font-medium hover:bg-white/10 disabled:opacity-40 disabled:cursor-not-allowed transition-all ring-1 ring-white/10"
+                className="w-full md:w-auto px-6 py-3 md:py-2.5 rounded-full bg-white/5 text-white/80 font-poppins text-sm font-medium hover:bg-white/10 disabled:opacity-40 disabled:cursor-not-allowed transition-all ring-1 ring-white/10"
               >
                 Siguiente
               </button>
