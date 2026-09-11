@@ -548,16 +548,43 @@ export const products: Product[] = [
   },
   {
     "id": 161,
-    "nombre": "TOSCANA",
+    "nombre": "TOSCANA TRIPLE SEC",
     "categoria": "Licores Dulces",
     "presentaciones": [
-      "Triple Sec",
-      "Sambuca",
-      "Limóncello",
-      "Amaretto"
+      "0.70L."
     ],
     "cantidad_caja": 12,
     "imagenUrl": "/images/productos/toscana.png"
+  },
+  {
+    "id": 174,
+    "nombre": "TOSCANA SAMBUCA",
+    "categoria": "Licores Dulces",
+    "presentaciones": [
+      "0.70L."
+    ],
+    "cantidad_caja": 12,
+    "imagenUrl": "/images/productos/sambuca.png"
+  },
+  {
+    "id": 175,
+    "nombre": "TOSCANA LIMÓNCELLO",
+    "categoria": "Licores Dulces",
+    "presentaciones": [
+      "0.70L."
+    ],
+    "cantidad_caja": 12,
+    "imagenUrl": "/images/productos/limoncello.png"
+  },
+  {
+    "id": 176,
+    "nombre": "TOSCANA AMARETTO",
+    "categoria": "Licores Dulces",
+    "presentaciones": [
+      "0.70L."
+    ],
+    "cantidad_caja": 12,
+    "imagenUrl": "/images/productos/Amaretto.png"
   },
   {
     "id": 162,
@@ -1153,16 +1180,6 @@ export const products: Product[] = [
     ],
     "cantidad_caja": 6,
     "imagenUrl": "/images/productos/108.webp"
-  },
-  {
-    "id": 109,
-    "nombre": "LA DUQUESA",
-    "categoria": "Sangrías",
-    "presentaciones": [
-      "1.75L."
-    ],
-    "cantidad_caja": 6,
-    "imagenUrl": "/images/productos/109.webp"
   },
   {
     "id": 110,
