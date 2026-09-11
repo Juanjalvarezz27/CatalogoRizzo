@@ -21,9 +21,7 @@ export const categories = [
   "Licores Dulces",
   "Licores de Brandy",
   "Licores de Ron",
-  "Licores de Whisky",
   "Mezcladores",
-  "Rones",
   "Sangrías",
   "Tequilas y Licores de Agave",
   "Vinos",
@@ -134,13 +132,23 @@ export const products: Product[] = [
     "categoria": "Aguardientes",
     "presentaciones": [
       "0.35L.",
-      "1L.",
+      "1L."
     ],
     "cantidad_caja": [
       24,
-      12,
+      12
     ],
     "imagenUrl": "/images/productos/9.webp"
+  },
+  {
+    "id": 172,
+    "nombre": "PLATERA ESPECIAL",
+    "categoria": "Aguardientes",
+    "presentaciones": [
+      "0.70L."
+    ],
+    "cantidad_caja": 12,
+    "imagenUrl": "/images/productos/plateraa.png"
   },
   {
     "id": 10,
@@ -275,6 +283,26 @@ export const products: Product[] = [
     "imagenUrl": "/images/productos/21.webp"
   },
   {
+    "id": 170,
+    "nombre": "CHOCOLATE SUN",
+    "categoria": "Comestibles",
+    "presentaciones": [
+      "Varios"
+    ],
+    "cantidad_caja": 12,
+    "imagenUrl": "/images/productos/sun.png"
+  },
+  {
+    "id": 171,
+    "nombre": "ACEITE DE COCO KALDINI",
+    "categoria": "Comestibles",
+    "presentaciones": [
+      "0.50L."
+    ],
+    "cantidad_caja": 12,
+    "imagenUrl": "/images/productos/Kaldini.png"
+  },
+  {
     "id": 22,
     "nombre": "CREMA DE RON BARRICA",
     "categoria": "Cremas",
@@ -405,6 +433,16 @@ export const products: Product[] = [
     "imagenUrl": "/images/productos/34.webp"
   },
   {
+    "id": 159,
+    "nombre": "ESPUMANTE DUC DE PARIS",
+    "categoria": "Espumantes",
+    "presentaciones": [
+      "0.75L."
+    ],
+    "cantidad_caja": 12,
+    "imagenUrl": "/images/productos/paris.png"
+  },
+  {
     "id": 35,
     "nombre": "BAJO 0",
     "categoria": "Ginebras",
@@ -498,7 +536,70 @@ export const products: Product[] = [
     "cantidad_caja": 1,
     "imagenUrl": "/images/productos/43.webp"
   },
-
+  {
+    "id": 158,
+    "nombre": "COCONIS",
+    "categoria": "Licores Dulces",
+    "presentaciones": [
+      "0.70L."
+    ],
+    "cantidad_caja": 12,
+    "imagenUrl": "/images/productos/coconis.png"
+  },
+  {
+    "id": 161,
+    "nombre": "TOSCANA",
+    "categoria": "Licores Dulces",
+    "presentaciones": [
+      "Triple Sec",
+      "Sambuca",
+      "Limóncello",
+      "Amaretto"
+    ],
+    "cantidad_caja": 12,
+    "imagenUrl": "/images/productos/toscana.png"
+  },
+  {
+    "id": 162,
+    "nombre": "COINTREAU",
+    "categoria": "Licores Dulces",
+    "presentaciones": [
+      "0.70L."
+    ],
+    "cantidad_caja": 12,
+    "imagenUrl": "/images/productos/cointreau.png"
+  },
+  {
+    "id": 163,
+    "nombre": "GARLIN",
+    "categoria": "Licores Dulces",
+    "presentaciones": [
+      "Licor de Café",
+      "Licor de Cacao"
+    ],
+    "cantidad_caja": 12,
+    "imagenUrl": "/images/productos/Garlin.png"
+  },
+  {
+    "id": 165,
+    "nombre": "CAMPARI",
+    "categoria": "Licores Dulces",
+    "presentaciones": [
+      "1L."
+    ],
+    "cantidad_caja": 12,
+    "imagenUrl": "/images/productos/Campari.png"
+  },
+  {
+    "id": 166,
+    "nombre": "APEROL",
+    "categoria": "Licores Dulces",
+    "presentaciones": [
+      "1L."
+    ],
+    "cantidad_caja": 12,
+    "imagenUrl": "/images/productos/Aperol.png"
+  },
   {
     "id": 45,
     "nombre": "CAVA",
@@ -542,6 +643,18 @@ export const products: Product[] = [
       12
     ],
     "imagenUrl": "/images/productos/47.webp"
+  },
+  {
+    "id": 155,
+    "nombre": "LABRADOR",
+    "categoria": "Licores de Brandy",
+    "presentaciones": [
+      "1L.",
+      "0.70L.",
+      "0.35L."
+    ],
+    "cantidad_caja": 12,
+    "imagenUrl": "/images/productos/labrador.png"
   },
   {
     "id": 48,
@@ -677,7 +790,6 @@ export const products: Product[] = [
     "cantidad_caja": 12,
     "imagenUrl": "/images/productos/60.webp"
   },
-
   {
     "id": 62,
     "nombre": "PIKARON LICOR DE RON",
@@ -709,7 +821,7 @@ export const products: Product[] = [
     "categoria": "Licores de Ron",
     "presentaciones": [
       "0.35L.",
-      "1L.",
+      "1L."
     ],
     "cantidad_caja": [
       24,
@@ -805,6 +917,160 @@ export const products: Product[] = [
     "imagenUrl": "/images/productos/72.webp"
   },
   {
+    "id": 91,
+    "nombre": "RON BARRICA 40",
+    "categoria": "Licores de Ron",
+    "presentaciones": [
+      "0.70L."
+    ],
+    "cantidad_caja": 6,
+    "imagenUrl": "/images/productos/91.webp"
+  },
+  {
+    "id": 92,
+    "nombre": "RON BARRICA 80",
+    "categoria": "Licores de Ron",
+    "presentaciones": [
+      "0.70L."
+    ],
+    "cantidad_caja": 6,
+    "imagenUrl": "/images/productos/92.webp"
+  },
+  {
+    "id": 93,
+    "nombre": "RON CACIQUE",
+    "categoria": "Licores de Ron",
+    "presentaciones": [
+      "0.75L."
+    ],
+    "cantidad_caja": 12,
+    "imagenUrl": "/images/productos/93.webp"
+  },
+  {
+    "id": 94,
+    "nombre": "RON CACIQUE 500 AÑOS",
+    "categoria": "Licores de Ron",
+    "presentaciones": [
+      "0.75L."
+    ],
+    "cantidad_caja": 12,
+    "imagenUrl": "/images/productos/94.webp"
+  },
+  {
+    "id": 95,
+    "nombre": "RON CALAZAN ESPECIAL 2 AÑOS",
+    "categoria": "Licores de Ron",
+    "presentaciones": [
+      "0.70L."
+    ],
+    "cantidad_caja": 12,
+    "imagenUrl": "/images/productos/95.webp"
+  },
+  {
+    "id": 96,
+    "nombre": "RON CALAZAN ESPECIAL BLANCO",
+    "categoria": "Licores de Ron",
+    "presentaciones": [
+      "0.75L."
+    ],
+    "cantidad_caja": 6,
+    "imagenUrl": "/images/productos/96 - Ron Calazan Especial Blanco.webp"
+  },
+  {
+    "id": 97,
+    "nombre": "RON GRAN RESERVA",
+    "categoria": "Licores de Ron",
+    "presentaciones": [
+      "0.70L.",
+      "1L."
+    ],
+    "cantidad_caja": [
+      6,
+      9
+    ],
+    "imagenUrl": "/images/productos/97.webp"
+  },
+  {
+    "id": 98,
+    "nombre": "RON PAMPERO ESPECIAL",
+    "categoria": "Licores de Ron",
+    "presentaciones": [
+      "0.75L."
+    ],
+    "cantidad_caja": 12,
+    "imagenUrl": "/images/productos/98.webp"
+  },
+  {
+    "id": 99,
+    "nombre": "RON PAMPERO SELECCION 1938",
+    "categoria": "Licores de Ron",
+    "presentaciones": [
+      "0.75L."
+    ],
+    "cantidad_caja": 6,
+    "imagenUrl": "/images/productos/99.webp"
+  },
+  {
+    "id": 100,
+    "nombre": "RON ROBLE VIEJO MAESTRO",
+    "categoria": "Licores de Ron",
+    "presentaciones": [
+      "0.70L."
+    ],
+    "cantidad_caja": 1,
+    "imagenUrl": "/images/productos/100.webp"
+  },
+  {
+    "id": 101,
+    "nombre": "RON SANTA TERESA 1796 SOLERA",
+    "categoria": "Licores de Ron",
+    "presentaciones": [
+      "0.70L."
+    ],
+    "cantidad_caja": 6,
+    "imagenUrl": "/images/productos/101.webp"
+  },
+  {
+    "id": 102,
+    "nombre": "RON SANTA TERESA BLANCO",
+    "categoria": "Licores de Ron",
+    "presentaciones": [
+      "0.70L."
+    ],
+    "cantidad_caja": 6,
+    "imagenUrl": "/images/productos/102.webp"
+  },
+  {
+    "id": 103,
+    "nombre": "RON SANTA TERESA LINAJE",
+    "categoria": "Licores de Ron",
+    "presentaciones": [
+      "0.75L."
+    ],
+    "cantidad_caja": 6,
+    "imagenUrl": "/images/productos/103.webp"
+  },
+  {
+    "id": 169,
+    "nombre": "RON TEPUY MONUMENTO",
+    "categoria": "Licores de Ron",
+    "presentaciones": [
+      "0.70L."
+    ],
+    "cantidad_caja": 6,
+    "imagenUrl": "/images/productos/Tepuy.png"
+  },
+  {
+    "id": 173,
+    "nombre": "RON TEPUY DESTINO",
+    "categoria": "Licores de Ron",
+    "presentaciones": [
+      "0.70L."
+    ],
+    "cantidad_caja": 6,
+    "imagenUrl": "/images/productos/destino.png"
+  },
+  {
     "id": 73,
     "nombre": "9° SODA TORONJA / GINGER / AGUAKINA",
     "categoria": "Mezcladores",
@@ -849,282 +1115,6 @@ export const products: Product[] = [
     "imagenUrl": "/images/productos/76 - Naiguata Coco  Coco Y Piña.webp"
   },
   {
-    "id": 77,
-    "nombre": "COUNTRY CLUB LICOR",
-    "categoria": "Licores de Whisky",
-    "presentaciones": [
-      "0.70L."
-    ],
-    "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/77.webp"
-  },
-  {
-    "id": 78,
-    "nombre": "12 CABALLEROS",
-    "categoria": "Licores de Whisky",
-    "presentaciones": [
-      "0.70L.",
-      "1L."
-    ],
-    "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/78.webp"
-  },
-  {
-    "id": 79,
-    "nombre": "DUNBAR",
-    "categoria": "Licores de Whisky",
-    "presentaciones": [
-      "0.7L"
-    ],
-    "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/79.webp"
-  },
-  {
-    "id": 80,
-    "nombre": "ELITE",
-    "categoria": "Licores de Whisky",
-    "presentaciones": [
-      "0.70L."
-    ],
-    "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/80.webp"
-  },
-  {
-    "id": 81,
-    "nombre": "GOLD MEMBER",
-    "categoria": "Licores de Whisky",
-    "presentaciones": [
-      "0.70L."
-    ],
-    "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/81.webp"
-  },
-  {
-    "id": 82,
-    "nombre": "GRAN LORD",
-    "categoria": "Licores de Whisky",
-    "presentaciones": [
-      "1L."
-    ],
-    "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/82.webp"
-  },
-  {
-    "id": 83,
-    "nombre": "HIGHCLASS",
-    "categoria": "Licores de Whisky",
-    "presentaciones": [
-      "0.70L."
-    ],
-    "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/83.webp"
-  },
-  {
-    "id": 84,
-    "nombre": "HUNTER",
-    "categoria": "Licores de Whisky",
-    "presentaciones": [
-      "0.70L."
-    ],
-    "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/84.webp"
-  },
-  {
-    "id": 85,
-    "nombre": "JHON MASTER",
-    "categoria": "Licores de Whisky",
-    "presentaciones": [
-      "Única"
-    ],
-    "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/85.webp"
-  },
-  {
-    "id": 86,
-    "nombre": "MANAGERS",
-    "categoria": "Licores de Whisky",
-    "presentaciones": [
-      "0.70L.",
-      "1L."
-    ],
-    "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/86.webp"
-  },
-  {
-    "id": 87,
-    "nombre": "OLD 63",
-    "categoria": "Licores de Whisky",
-    "presentaciones": [
-      "Única"
-    ],
-    "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/87.webp"
-  },
-  {
-    "id": 88,
-    "nombre": "OLD LABEL",
-    "categoria": "Licores de Whisky",
-    "presentaciones": [
-      "0.70L."
-    ],
-    "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/88.webp"
-  },
-  {
-    "id": 89,
-    "nombre": "OLD TRAFFORD",
-    "categoria": "Licores de Whisky",
-    "presentaciones": [
-      "Única"
-    ],
-    "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/89.webp"
-  },
-  {
-    "id": 90,
-    "nombre": "ROYAL CLUB",
-    "categoria": "Licores de Whisky",
-    "presentaciones": [
-      "0.70L."
-    ],
-    "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/90.webp"
-  },
-  {
-    "id": 91,
-    "nombre": "RON BARRICA 40",
-    "categoria": "Rones",
-    "presentaciones": [
-      "0.70L."
-    ],
-    "cantidad_caja": 6,
-    "imagenUrl": "/images/productos/91.webp"
-  },
-  {
-    "id": 92,
-    "nombre": "RON BARRICA 80",
-    "categoria": "Rones",
-    "presentaciones": [
-      "0.70L."
-    ],
-    "cantidad_caja": 6,
-    "imagenUrl": "/images/productos/92.webp"
-  },
-  {
-    "id": 93,
-    "nombre": "RON CACIQUE",
-    "categoria": "Rones",
-    "presentaciones": [
-      "0.75L."
-    ],
-    "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/93.webp"
-  },
-  {
-    "id": 94,
-    "nombre": "RON CACIQUE 500 AÑOS",
-    "categoria": "Rones",
-    "presentaciones": [
-      "0.75L."
-    ],
-    "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/94.webp"
-  },
-  {
-    "id": 95,
-    "nombre": "RON CALAZAN ESPECIAL 2 AÑOS",
-    "categoria": "Rones",
-    "presentaciones": [
-      "0.70L."
-    ],
-    "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/95.webp"
-  },
-  {
-    "id": 96,
-    "nombre": "RON CALAZAN ESPECIAL BLANCO",
-    "categoria": "Rones",
-    "presentaciones": [
-      "0.75L."
-    ],
-    "cantidad_caja": 6,
-    "imagenUrl": "/images/productos/96 - Ron Calazan Especial Blanco.webp"
-  },
-  {
-    "id": 97,
-    "nombre": "RON GRAN RESERVA",
-    "categoria": "Rones",
-    "presentaciones": [
-      "0.70L.",
-      "1L."
-    ],
-    "cantidad_caja": [
-      6,
-      9
-    ],
-    "imagenUrl": "/images/productos/97.webp"
-  },
-  {
-    "id": 98,
-    "nombre": "RON PAMPERO ESPECIAL",
-    "categoria": "Rones",
-    "presentaciones": [
-      "0.75L."
-    ],
-    "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/98.webp"
-  },
-  {
-    "id": 99,
-    "nombre": "RON PAMPERO SELECCION 1938",
-    "categoria": "Rones",
-    "presentaciones": [
-      "0.75L."
-    ],
-    "cantidad_caja": 6,
-    "imagenUrl": "/images/productos/99.webp"
-  },
-  {
-    "id": 100,
-    "nombre": "RON ROBLE VIEJO MAESTRO",
-    "categoria": "Rones",
-    "presentaciones": [
-      "0.70L."
-    ],
-    "cantidad_caja": 1,
-    "imagenUrl": "/images/productos/100.webp"
-  },
-  {
-    "id": 101,
-    "nombre": "RON SANTA TERESA 1796 SOLERA",
-    "categoria": "Rones",
-    "presentaciones": [
-      "0.70L."
-    ],
-    "cantidad_caja": 6,
-    "imagenUrl": "/images/productos/101.webp"
-  },
-  {
-    "id": 102,
-    "nombre": "RON SANTA TERESA BLANCO",
-    "categoria": "Rones",
-    "presentaciones": [
-      "0.70L."
-    ],
-    "cantidad_caja": 6,
-    "imagenUrl": "/images/productos/102.webp"
-  },
-  {
-    "id": 103,
-    "nombre": "RON SANTA TERESA LINAJE",
-    "categoria": "Rones",
-    "presentaciones": [
-      "0.75L."
-    ],
-    "cantidad_caja": 6,
-    "imagenUrl": "/images/productos/103.webp"
-  },
-  {
     "id": 104,
     "nombre": "CAROREÑA TINTA / BLANCA / ROSADA",
     "categoria": "Sangrías",
@@ -1154,7 +1144,6 @@ export const products: Product[] = [
     "cantidad_caja": 12,
     "imagenUrl": "/images/productos/106.webp"
   },
-
   {
     "id": 108,
     "nombre": "LA DIOSA TINTA / DORADA 11°",
@@ -1400,6 +1389,49 @@ export const products: Product[] = [
     "imagenUrl": "/images/productos/131.webp"
   },
   {
+    "id": 156,
+    "nombre": "VINO ROMEO",
+    "categoria": "Vinos",
+    "presentaciones": [
+      "Garnacha",
+      "Monastrel",
+      "Tempranillo"
+    ],
+    "cantidad_caja": 12,
+    "imagenUrl": "/images/productos/romeo.png"
+  },
+  {
+    "id": 157,
+    "nombre": "VINO TINI SANGIOVESSE",
+    "categoria": "Vinos",
+    "presentaciones": [
+      "Chardonay"
+    ],
+    "cantidad_caja": 12,
+    "imagenUrl": "/images/productos/tini.png"
+  },
+  {
+    "id": 160,
+    "nombre": "VINO LICENSIOSO",
+    "categoria": "Vinos",
+    "presentaciones": [
+      "0.75L."
+    ],
+    "cantidad_caja": 12,
+    "imagenUrl": "/images/productos/licensioso.png"
+  },
+  {
+    "id": 164,
+    "nombre": "CINZANO",
+    "categoria": "Vinos",
+    "presentaciones": [
+      "Bianco 1L.",
+      "Rossi 1L."
+    ],
+    "cantidad_caja": 12,
+    "imagenUrl": "/images/productos/Cinzano.png"
+  },
+  {
     "id": 132,
     "nombre": "ABSOLUT",
     "categoria": "Vodkas y Otros",
@@ -1488,6 +1520,148 @@ export const products: Product[] = [
     ],
     "cantidad_caja": 12,
     "imagenUrl": "/images/productos/140.webp"
+  },
+  {
+    "id": 77,
+    "nombre": "COUNTRY CLUB LICOR",
+    "categoria": "Whisky",
+    "presentaciones": [
+      "0.70L."
+    ],
+    "cantidad_caja": 12,
+    "imagenUrl": "/images/productos/77.webp"
+  },
+  {
+    "id": 78,
+    "nombre": "12 CABALLEROS",
+    "categoria": "Whisky",
+    "presentaciones": [
+      "0.70L.",
+      "1L."
+    ],
+    "cantidad_caja": 12,
+    "imagenUrl": "/images/productos/78.webp"
+  },
+  {
+    "id": 79,
+    "nombre": "DUNBAR",
+    "categoria": "Whisky",
+    "presentaciones": [
+      "0.7L"
+    ],
+    "cantidad_caja": 12,
+    "imagenUrl": "/images/productos/79.webp"
+  },
+  {
+    "id": 80,
+    "nombre": "ELITE",
+    "categoria": "Whisky",
+    "presentaciones": [
+      "0.70L."
+    ],
+    "cantidad_caja": 12,
+    "imagenUrl": "/images/productos/80.webp"
+  },
+  {
+    "id": 81,
+    "nombre": "GOLD MEMBER",
+    "categoria": "Whisky",
+    "presentaciones": [
+      "0.70L."
+    ],
+    "cantidad_caja": 12,
+    "imagenUrl": "/images/productos/81.webp"
+  },
+  {
+    "id": 82,
+    "nombre": "GRAN LORD",
+    "categoria": "Whisky",
+    "presentaciones": [
+      "1L."
+    ],
+    "cantidad_caja": 12,
+    "imagenUrl": "/images/productos/82.webp"
+  },
+  {
+    "id": 83,
+    "nombre": "HIGHCLASS",
+    "categoria": "Whisky",
+    "presentaciones": [
+      "0.70L."
+    ],
+    "cantidad_caja": 12,
+    "imagenUrl": "/images/productos/83.webp"
+  },
+  {
+    "id": 84,
+    "nombre": "HUNTER",
+    "categoria": "Whisky",
+    "presentaciones": [
+      "0.70L."
+    ],
+    "cantidad_caja": 12,
+    "imagenUrl": "/images/productos/84.webp"
+  },
+  {
+    "id": 85,
+    "nombre": "JHON MASTER",
+    "categoria": "Whisky",
+    "presentaciones": [
+      "Única"
+    ],
+    "cantidad_caja": 12,
+    "imagenUrl": "/images/productos/85.webp"
+  },
+  {
+    "id": 86,
+    "nombre": "MANAGERS",
+    "categoria": "Whisky",
+    "presentaciones": [
+      "0.70L.",
+      "1L."
+    ],
+    "cantidad_caja": 12,
+    "imagenUrl": "/images/productos/86.webp"
+  },
+  {
+    "id": 87,
+    "nombre": "OLD 63",
+    "categoria": "Whisky",
+    "presentaciones": [
+      "Única"
+    ],
+    "cantidad_caja": 12,
+    "imagenUrl": "/images/productos/87.webp"
+  },
+  {
+    "id": 88,
+    "nombre": "OLD LABEL",
+    "categoria": "Whisky",
+    "presentaciones": [
+      "0.70L."
+    ],
+    "cantidad_caja": 12,
+    "imagenUrl": "/images/productos/88.webp"
+  },
+  {
+    "id": 89,
+    "nombre": "OLD TRAFFORD",
+    "categoria": "Whisky",
+    "presentaciones": [
+      "Única"
+    ],
+    "cantidad_caja": 12,
+    "imagenUrl": "/images/productos/89.webp"
+  },
+  {
+    "id": 90,
+    "nombre": "ROYAL CLUB",
+    "categoria": "Whisky",
+    "presentaciones": [
+      "0.70L."
+    ],
+    "cantidad_caja": 12,
+    "imagenUrl": "/images/productos/90.webp"
   },
   {
     "id": 141,
@@ -1622,135 +1796,6 @@ export const products: Product[] = [
     "imagenUrl": "/images/productos/154.webp"
   },
   {
-    "id": 155,
-    "nombre": "LABRADOR",
-    "categoria": "Licores de Brandy",
-    "presentaciones": [
-      "1L.",
-      "0.70L.",
-      "0.35L."
-    ],
-    "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/labrador.png"
-  },
-  {
-    "id": 156,
-    "nombre": "VINO ROMEO",
-    "categoria": "Vinos",
-    "presentaciones": [
-      "Garnacha",
-      "Monastrel",
-      "Tempranillo"
-    ],
-    "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/romeo.png"
-  },
-  {
-    "id": 157,
-    "nombre": "VINO TINI SANGIOVESSE",
-    "categoria": "Vinos",
-    "presentaciones": [
-      "Chardonay"
-    ],
-    "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/tini.png"
-  },
-  {
-    "id": 158,
-    "nombre": "COCONIS",
-    "categoria": "Licores Dulces",
-    "presentaciones": [
-      "0.70L."
-    ],
-    "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/coconis.png"
-  },
-  {
-    "id": 159,
-    "nombre": "ESPUMANTE DUC DE PARIS",
-    "categoria": "Espumantes",
-    "presentaciones": [
-      "0.75L."
-    ],
-    "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/paris.png"
-  },
-  {
-    "id": 160,
-    "nombre": "VINO LICENSIOSO",
-    "categoria": "Vinos",
-    "presentaciones": [
-      "0.75L."
-    ],
-    "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/licensioso.png"
-  },
-  {
-    "id": 161,
-    "nombre": "TOSCANA",
-    "categoria": "Licores Dulces",
-    "presentaciones": [
-      "Triple Sec",
-      "Sambuca",
-      "Limóncello",
-      "Amaretto"
-    ],
-    "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/toscana.png"
-  },
-  {
-    "id": 162,
-    "nombre": "COINTREAU",
-    "categoria": "Licores Dulces",
-    "presentaciones": [
-      "0.70L."
-    ],
-    "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/cointreau.png"
-  },
-  {
-    "id": 163,
-    "nombre": "GARLIN",
-    "categoria": "Licores Dulces",
-    "presentaciones": [
-      "Licor de Café",
-      "Licor de Cacao"
-    ],
-    "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/Garlin.png"
-  },
-  {
-    "id": 164,
-    "nombre": "CINZANO",
-    "categoria": "Vinos",
-    "presentaciones": [
-      "Bianco 1L.",
-      "Rossi 1L."
-    ],
-    "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/Cinzano.png"
-  },
-  {
-    "id": 165,
-    "nombre": "CAMPARI",
-    "categoria": "Licores Dulces",
-    "presentaciones": [
-      "1L."
-    ],
-    "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/Campari.png"
-  },
-  {
-    "id": 166,
-    "nombre": "APEROL",
-    "categoria": "Licores Dulces",
-    "presentaciones": [
-      "1L."
-    ],
-    "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/Aperol.png"
-  },
-  {
     "id": 167,
     "nombre": "WHISKY MACALLAN 12 AÑOS TRIPLE CASK",
     "categoria": "Whisky",
@@ -1769,36 +1814,5 @@ export const products: Product[] = [
     ],
     "cantidad_caja": 1,
     "imagenUrl": "/images/productos/gold.png"
-  },
-  {
-    "id": 169,
-    "nombre": "RON TEPUY",
-    "categoria": "Rones",
-    "presentaciones": [
-      "Monumento (0.70L.)",
-      "Destino (0.70L.)"
-    ],
-    "cantidad_caja": 6,
-    "imagenUrl": "/images/productos/Tepuy.png"
-  },
-  {
-    "id": 170,
-    "nombre": "CHOCOLATE SUN",
-    "categoria": "Comestibles",
-    "presentaciones": [
-      "Varios"
-    ],
-    "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/sun.png"
-  },
-  {
-    "id": 171,
-    "nombre": "ACEITE DE COCO KALDINI",
-    "categoria": "Comestibles",
-    "presentaciones": [
-      "0.50L."
-    ],
-    "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/Kaldini.png"
   }
 ];
