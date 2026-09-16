@@ -18,11 +18,10 @@ function toTitleCase(str: string) {
 
 export default memo(function ProductCard({ product, index }: ProductCardProps) {
   return (
-    <Link href={`/producto/${product.id}`} className="block h-full">
+    <Link href={`/producto/${product.id}`} className="block">
       <article
         id={`product-${product.id}`}
-        // Añadimos h-full para que la tarjeta se estire uniformemente en el grid
-        className="animate-fade-in-up group relative flex flex-col h-full overflow-hidden rounded-[24px] sm:rounded-[32px] bg-[#2c2c2e] shadow-lg ring-1 ring-white/10 transition-transform duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_40px_-15px_rgba(212,175,55,0.25)]"
+        className="animate-fade-in-up group relative flex flex-col overflow-hidden rounded-[24px] sm:rounded-[32px] bg-[#2c2c2e] shadow-lg ring-1 ring-white/10 transition-transform duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_40px_-15px_rgba(212,175,55,0.25)]"
         style={{ animationDelay: `${Math.min(index * 30, 400)}ms` }}
       >
       {/* ── Imagen en Isla Flotante Blanca Pura (Fix para iPads Antiguos) ── */}
@@ -59,7 +58,7 @@ export default memo(function ProductCard({ product, index }: ProductCardProps) {
       </div>
 
       {/* ── Info del Producto (Tipografía limpia iOS) ── */}
-      <div className="flex flex-1 flex-col p-3 sm:p-3.5 md:p-4 lg:p-5 pt-3 sm:pt-4">
+      <div className="flex flex-col p-3 sm:p-3.5 md:p-4 lg:p-5 pt-3 sm:pt-4">
         <div className="mb-1.5 flex items-center gap-1.5">
           <span className="font-poppins text-[9px] sm:text-[10px] font-bold tracking-[0.2em] text-gold-300 uppercase line-clamp-1">
             {product.categoria}

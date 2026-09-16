@@ -57,7 +57,7 @@ export const products: Product[] = [
     "nombre": "ANTIOQUEÑO PREMIUM",
     "categoria": "Aguardientes",
     "presentaciones": [
-      "Única"
+      "0.75L."
     ],
     "cantidad_caja": 6,
     "imagenUrl": "/images/productos/3.webp"
@@ -191,7 +191,7 @@ export const products: Product[] = [
     "nombre": "ANIS BANDERA",
     "categoria": "Anís",
     "presentaciones": [
-      "Única"
+      "1L."
     ],
     "cantidad_caja": 12,
     "imagenUrl": "/images/productos/13.webp"
@@ -778,7 +778,7 @@ export const products: Product[] = [
     "nombre": "EL RUMBERO",
     "categoria": "Licores de Ron",
     "presentaciones": [
-      "Única"
+      "1L."
     ],
     "cantidad_caja": 12,
     "imagenUrl": "/images/productos/55.webp"
