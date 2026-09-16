@@ -303,6 +303,22 @@ export const products: Product[] = [
     "imagenUrl": "/images/productos/Kaldini.png"
   },
   {
+    "id": 177,
+    "nombre": "AGUA BIENESTAR",
+    "categoria": "Comestibles",
+    "presentaciones": [
+      "350ml.",
+      "600ml.",
+      "1.5 Litros"
+    ],
+    "cantidad_caja": [
+      24,
+      12,
+      6
+    ],
+    "imagenUrl": "/images/productos/bienestar.png"
+  },
+  {
     "id": 22,
     "nombre": "CREMA DE RON BARRICA",
     "categoria": "Cremas",
