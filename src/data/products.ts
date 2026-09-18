@@ -1332,6 +1332,16 @@ export const products: Product[] = [
     "imagenUrl": "/images/productos/122 - Licor de Agave del Norte.webp"
   },
   {
+    "id": 178,
+    "nombre": "TEQUILA LOS CORRALES",
+    "categoria": "Tequilas y Licores de Agave",
+    "presentaciones": [
+      "930ml."
+    ],
+    "cantidad_caja": 12,
+    "imagenUrl": "/images/productos/corrales.png"
+  },
+  {
     "id": 123,
     "nombre": "VINO DULCE KOSHER CALIFORNIANO",
     "categoria": "Vinos",
@@ -1465,6 +1475,16 @@ export const products: Product[] = [
     "imagenUrl": "/images/productos/Cinzano.png"
   },
   {
+    "id": 179,
+    "nombre": "SERA",
+    "categoria": "Vinos",
+    "presentaciones": [
+      "Merlot"
+    ],
+    "cantidad_caja": 12,
+    "imagenUrl": "/images/productos/sera.png"
+  },
+  {
     "id": 132,
     "nombre": "ABSOLUT",
     "categoria": "Vodkas y Otros",
@@ -1553,6 +1573,16 @@ export const products: Product[] = [
     ],
     "cantidad_caja": 12,
     "imagenUrl": "/images/productos/140.webp"
+  },
+  {
+    "id": 180,
+    "nombre": "STOLICHNAYA",
+    "categoria": "Vodkas y Otros",
+    "presentaciones": [
+      "0.70L."
+    ],
+    "cantidad_caja": 1,
+    "imagenUrl": "/images/productos/Stolichnaya.png"
   },
   {
     "id": 77,
@@ -1847,5 +1877,15 @@ export const products: Product[] = [
     ],
     "cantidad_caja": 1,
     "imagenUrl": "/images/productos/gold.png"
+  },
+  {
+    "id": 181,
+    "nombre": "MACALLAN",
+    "categoria": "Whisky",
+    "presentaciones": [
+      "0.70L."
+    ],
+    "cantidad_caja": 1,
+    "imagenUrl": "/images/productos/themacallan.png"
   }
 ];
