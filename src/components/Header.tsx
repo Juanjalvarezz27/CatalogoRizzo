@@ -37,7 +37,7 @@ export default function Header() {
         isVisible ? "translate-y-0" : "-translate-y-full"
       }`}
     >
-      <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 sm:py-3">
+      <div className="mx-auto max-w-[1750px] px-4 py-4 sm:px-6 sm:py-3 lg:px-8 2xl:px-12">
         <div className="flex items-center justify-between gap-4">
           {/* ── Logo + nombre ─────────────────────────── */}
           <Link href="/" className="flex items-center gap-3">

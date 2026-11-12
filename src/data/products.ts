@@ -1,3 +1,10 @@
+export interface ProductVariant {
+  presentacion: string;
+  cantidad_caja: number;
+  precio_unidad?: number;
+  precio_caja?: number;
+}
+
 export interface Product {
   id: number;
   nombre: string;
@@ -5,6 +12,9 @@ export interface Product {
   presentaciones: string[];
   imagenUrl: string;
   cantidad_caja: number | number[];
+  precio_unidad?: number | number[];
+  precio_caja?: number | number[];
+  variantes?: ProductVariant[];
   requiresBlend?: boolean;
 }
 
@@ -40,7 +50,17 @@ export const products: Product[] = [
       "1L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/1.webp"
+    "imagenUrl": "/images/productos/1.webp",
+    "precio_unidad": 2.61,
+    "precio_caja": 31.32,
+    "variantes": [
+      {
+        "presentacion": "1L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 2.61,
+        "precio_caja": 31.32
+      }
+    ]
   },
   {
     "id": 2,
@@ -50,7 +70,17 @@ export const products: Product[] = [
       "0.75L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/2.webp"
+    "imagenUrl": "/images/productos/2.webp",
+    "precio_unidad": 4.9,
+    "precio_caja": 58.8,
+    "variantes": [
+      {
+        "presentacion": "0.75L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 4.9,
+        "precio_caja": 58.8
+      }
+    ]
   },
   {
     "id": 3,
@@ -60,7 +90,17 @@ export const products: Product[] = [
       "0.75L."
     ],
     "cantidad_caja": 6,
-    "imagenUrl": "/images/productos/3.webp"
+    "imagenUrl": "/images/productos/3.webp",
+    "precio_unidad": 9.98,
+    "precio_caja": 59.88,
+    "variantes": [
+      {
+        "presentacion": "0.75L.",
+        "cantidad_caja": 6,
+        "precio_unidad": 9.98,
+        "precio_caja": 59.88
+      }
+    ]
   },
   {
     "id": 4,
@@ -71,7 +111,29 @@ export const products: Product[] = [
       "1L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/4 - Calicanto 30°.webp"
+    "imagenUrl": "/images/productos/4 - Calicanto 30°.webp",
+    "precio_unidad": [
+      2.49,
+      3.85
+    ],
+    "precio_caja": [
+      29.88,
+      46.2
+    ],
+    "variantes": [
+      {
+        "presentacion": "0.70L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 2.49,
+        "precio_caja": 29.88
+      },
+      {
+        "presentacion": "1L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 3.85,
+        "precio_caja": 46.2
+      }
+    ]
   },
   {
     "id": 5,
@@ -87,7 +149,37 @@ export const products: Product[] = [
       12,
       12
     ],
-    "imagenUrl": "/images/productos/5.webp"
+    "imagenUrl": "/images/productos/5.webp",
+    "precio_unidad": [
+      1.26,
+      2.92,
+      2.52
+    ],
+    "precio_caja": [
+      30.24,
+      35.04,
+      30.24
+    ],
+    "variantes": [
+      {
+        "presentacion": "0.35L.",
+        "cantidad_caja": 24,
+        "precio_unidad": 1.26,
+        "precio_caja": 30.24
+      },
+      {
+        "presentacion": "1.20L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 2.92,
+        "precio_caja": 35.04
+      },
+      {
+        "presentacion": "1L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 2.52,
+        "precio_caja": 30.24
+      }
+    ]
   },
   {
     "id": 6,
@@ -97,7 +189,17 @@ export const products: Product[] = [
       "0.70L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/6.webp"
+    "imagenUrl": "/images/productos/6.webp",
+    "precio_unidad": 4.16,
+    "precio_caja": 49.92,
+    "variantes": [
+      {
+        "presentacion": "0.70L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 4.16,
+        "precio_caja": 49.92
+      }
+    ]
   },
   {
     "id": 7,
@@ -105,16 +207,35 @@ export const products: Product[] = [
     "categoria": "Aguardientes",
     "presentaciones": [
       "0.35L.",
-      "0.70L.",
       "1L."
     ],
     "cantidad_caja": [
-      40,
       24,
-      12,
       12
     ],
-    "imagenUrl": "/images/productos/7.webp"
+    "imagenUrl": "/images/productos/7.webp",
+    "precio_unidad": [
+      2.45,
+      4.55
+    ],
+    "precio_caja": [
+      58.8,
+      54.6
+    ],
+    "variantes": [
+      {
+        "presentacion": "0.35L.",
+        "cantidad_caja": 24,
+        "precio_unidad": 2.45,
+        "precio_caja": 58.8
+      },
+      {
+        "presentacion": "1L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 4.55,
+        "precio_caja": 54.6
+      }
+    ]
   },
   {
     "id": 8,
@@ -124,7 +245,17 @@ export const products: Product[] = [
       "1L"
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/8 - El Record Blanco  Rojo.webp"
+    "imagenUrl": "/images/productos/8 - El Record Blanco  Rojo.webp",
+    "precio_unidad": 2.52,
+    "precio_caja": 30.24,
+    "variantes": [
+      {
+        "presentacion": "1L",
+        "cantidad_caja": 12,
+        "precio_unidad": 2.52,
+        "precio_caja": 30.24
+      }
+    ]
   },
   {
     "id": 9,
@@ -138,7 +269,29 @@ export const products: Product[] = [
       24,
       12
     ],
-    "imagenUrl": "/images/productos/9.webp"
+    "imagenUrl": "/images/productos/9.webp",
+    "precio_unidad": [
+      2.72,
+      4.36
+    ],
+    "precio_caja": [
+      65.28,
+      52.32
+    ],
+    "variantes": [
+      {
+        "presentacion": "0.35L.",
+        "cantidad_caja": 24,
+        "precio_unidad": 2.72,
+        "precio_caja": 65.28
+      },
+      {
+        "presentacion": "1L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 4.36,
+        "precio_caja": 52.32
+      }
+    ]
   },
   {
     "id": 172,
@@ -148,7 +301,13 @@ export const products: Product[] = [
       "0.70L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/plateraa.png"
+    "imagenUrl": "/images/productos/plateraa.png",
+    "variantes": [
+      {
+        "presentacion": "0.70L.",
+        "cantidad_caja": 12
+      }
+    ]
   },
   {
     "id": 10,
@@ -164,7 +323,37 @@ export const products: Product[] = [
       12,
       12
     ],
-    "imagenUrl": "/images/productos/10.webp"
+    "imagenUrl": "/images/productos/10.webp",
+    "precio_unidad": [
+      1.9,
+      2.78,
+      3.95
+    ],
+    "precio_caja": [
+      45.6,
+      33.36,
+      47.4
+    ],
+    "variantes": [
+      {
+        "presentacion": "0.35L.",
+        "cantidad_caja": 24,
+        "precio_unidad": 1.9,
+        "precio_caja": 45.6
+      },
+      {
+        "presentacion": "0.70L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 2.78,
+        "precio_caja": 33.36
+      },
+      {
+        "presentacion": "1L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 3.95,
+        "precio_caja": 47.4
+      }
+    ]
   },
   {
     "id": 11,
@@ -174,7 +363,13 @@ export const products: Product[] = [
       "1L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/11.webp"
+    "imagenUrl": "/images/productos/11.webp",
+    "variantes": [
+      {
+        "presentacion": "1L.",
+        "cantidad_caja": 12
+      }
+    ]
   },
   {
     "id": 12,
@@ -184,7 +379,17 @@ export const products: Product[] = [
       "1L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/12.webp"
+    "imagenUrl": "/images/productos/12.webp",
+    "precio_unidad": 2.62,
+    "precio_caja": 31.44,
+    "variantes": [
+      {
+        "presentacion": "1L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 2.62,
+        "precio_caja": 31.44
+      }
+    ]
   },
   {
     "id": 13,
@@ -194,7 +399,17 @@ export const products: Product[] = [
       "1L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/13.webp"
+    "imagenUrl": "/images/productos/13.webp",
+    "precio_unidad": 5.16,
+    "precio_caja": 61.92,
+    "variantes": [
+      {
+        "presentacion": "1L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 5.16,
+        "precio_caja": 61.92
+      }
+    ]
   },
   {
     "id": 14,
@@ -204,7 +419,17 @@ export const products: Product[] = [
       "1L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/14 - Carteluo Azul.webp"
+    "imagenUrl": "/images/productos/14 - Carteluo Azul.webp",
+    "precio_unidad": 4.55,
+    "precio_caja": 54.6,
+    "variantes": [
+      {
+        "presentacion": "1L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 4.55,
+        "precio_caja": 54.6
+      }
+    ]
   },
   {
     "id": 15,
@@ -212,15 +437,35 @@ export const products: Product[] = [
     "categoria": "Anís",
     "presentaciones": [
       "0.35L.",
-      "0.70L.",
       "1L."
     ],
     "cantidad_caja": [
       24,
-      12,
       12
     ],
-    "imagenUrl": "/images/productos/15.webp"
+    "imagenUrl": "/images/productos/15.webp",
+    "precio_unidad": [
+      2.92,
+      5.83
+    ],
+    "precio_caja": [
+      70.08,
+      69.96
+    ],
+    "variantes": [
+      {
+        "presentacion": "0.35L.",
+        "cantidad_caja": 24,
+        "precio_unidad": 2.92,
+        "precio_caja": 70.08
+      },
+      {
+        "presentacion": "1L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 5.83,
+        "precio_caja": 69.96
+      }
+    ]
   },
   {
     "id": 16,
@@ -230,7 +475,17 @@ export const products: Product[] = [
       "1L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/16.webp"
+    "imagenUrl": "/images/productos/16.webp",
+    "precio_unidad": 4.22,
+    "precio_caja": 50.64,
+    "variantes": [
+      {
+        "presentacion": "1L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 4.22,
+        "precio_caja": 50.64
+      }
+    ]
   },
   {
     "id": 17,
@@ -240,7 +495,17 @@ export const products: Product[] = [
       "1L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/17 - Rumbero Natural  Azul.webp"
+    "imagenUrl": "/images/productos/17 - Rumbero Natural  Azul.webp",
+    "precio_unidad": 4.16,
+    "precio_caja": 49.92,
+    "variantes": [
+      {
+        "presentacion": "1L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 4.16,
+        "precio_caja": 49.92
+      }
+    ]
   },
   {
     "id": 18,
@@ -250,7 +515,17 @@ export const products: Product[] = [
       "1L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/18.webp"
+    "imagenUrl": "/images/productos/18.webp",
+    "precio_unidad": 3.91,
+    "precio_caja": 46.92,
+    "variantes": [
+      {
+        "presentacion": "1L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 3.91,
+        "precio_caja": 46.92
+      }
+    ]
   },
   {
     "id": 19,
@@ -260,7 +535,17 @@ export const products: Product[] = [
       "1L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/19.webp"
+    "imagenUrl": "/images/productos/19.webp",
+    "precio_unidad": 2.39,
+    "precio_caja": 28.68,
+    "variantes": [
+      {
+        "presentacion": "1L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 2.39,
+        "precio_caja": 28.68
+      }
+    ]
   },
   {
     "id": 20,
@@ -270,7 +555,17 @@ export const products: Product[] = [
       "1L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/20.webp"
+    "imagenUrl": "/images/productos/20.webp",
+    "precio_unidad": 2.39,
+    "precio_caja": 28.68,
+    "variantes": [
+      {
+        "presentacion": "1L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 2.39,
+        "precio_caja": 28.68
+      }
+    ]
   },
   {
     "id": 21,
@@ -280,7 +575,17 @@ export const products: Product[] = [
       "1L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/21.webp"
+    "imagenUrl": "/images/productos/21.webp",
+    "precio_unidad": 3.1,
+    "precio_caja": 37.2,
+    "variantes": [
+      {
+        "presentacion": "1L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 3.1,
+        "precio_caja": 37.2
+      }
+    ]
   },
   {
     "id": 170,
@@ -290,7 +595,17 @@ export const products: Product[] = [
       "Varios"
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/sun.png"
+    "imagenUrl": "/images/productos/sun.png",
+    "precio_unidad": 5.1,
+    "precio_caja": 30.6,
+    "variantes": [
+      {
+        "presentacion": "Varios",
+        "cantidad_caja": 6,
+        "precio_unidad": 5.1,
+        "precio_caja": 30.6
+      }
+    ]
   },
   {
     "id": 171,
@@ -300,23 +615,49 @@ export const products: Product[] = [
       "0.50L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/Kaldini.png"
+    "imagenUrl": "/images/productos/Kaldini.png",
+    "variantes": [
+      {
+        "presentacion": "0.50L.",
+        "cantidad_caja": 12
+      }
+    ]
   },
   {
     "id": 177,
     "nombre": "AGUA BIENESTAR",
     "categoria": "Comestibles",
     "presentaciones": [
-      "350ml.",
-      "600ml.",
-      "1.5 Litros"
+      "330ML",
+      "600ML"
     ],
     "cantidad_caja": [
-      24,
-      12,
-      6
+      16,
+      16
     ],
-    "imagenUrl": "/images/productos/bienestar.png"
+    "imagenUrl": "/images/productos/bienestar.png",
+    "precio_unidad": [
+      0.53,
+      0.68
+    ],
+    "precio_caja": [
+      8.48,
+      10.88
+    ],
+    "variantes": [
+      {
+        "presentacion": "330ML",
+        "cantidad_caja": 16,
+        "precio_unidad": 0.53,
+        "precio_caja": 8.48
+      },
+      {
+        "presentacion": "600ML",
+        "cantidad_caja": 16,
+        "precio_unidad": 0.68,
+        "precio_caja": 10.88
+      }
+    ]
   },
   {
     "id": 22,
@@ -326,7 +667,17 @@ export const products: Product[] = [
       "0.70L."
     ],
     "cantidad_caja": 1,
-    "imagenUrl": "/images/productos/22 - Crema de Ron Barrica.webp"
+    "imagenUrl": "/images/productos/22 - Crema de Ron Barrica.webp",
+    "precio_unidad": 13.9,
+    "precio_caja": 13.9,
+    "variantes": [
+      {
+        "presentacion": "0.70L.",
+        "cantidad_caja": 1,
+        "precio_unidad": 13.9,
+        "precio_caja": 13.9
+      }
+    ]
   },
   {
     "id": 23,
@@ -336,7 +687,17 @@ export const products: Product[] = [
       "0.75L."
     ],
     "cantidad_caja": 1,
-    "imagenUrl": "/images/productos/23.webp"
+    "imagenUrl": "/images/productos/23.webp",
+    "precio_unidad": 40.6,
+    "precio_caja": 40.6,
+    "variantes": [
+      {
+        "presentacion": "0.75L.",
+        "cantidad_caja": 1,
+        "precio_unidad": 40.6,
+        "precio_caja": 40.6
+      }
+    ]
   },
   {
     "id": 24,
@@ -346,7 +707,17 @@ export const products: Product[] = [
       "0.75L."
     ],
     "cantidad_caja": 1,
-    "imagenUrl": "/images/productos/amarula.png"
+    "imagenUrl": "/images/productos/amarula.png",
+    "precio_unidad": 26.5,
+    "precio_caja": 26.5,
+    "variantes": [
+      {
+        "presentacion": "0.75L.",
+        "cantidad_caja": 1,
+        "precio_unidad": 26.5,
+        "precio_caja": 26.5
+      }
+    ]
   },
   {
     "id": 25,
@@ -356,7 +727,17 @@ export const products: Product[] = [
       "0.75L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/25.webp"
+    "imagenUrl": "/images/productos/25.webp",
+    "precio_unidad": 15.8,
+    "precio_caja": 189.6,
+    "variantes": [
+      {
+        "presentacion": "0.75L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 15.8,
+        "precio_caja": 189.6
+      }
+    ]
   },
   {
     "id": 26,
@@ -366,7 +747,17 @@ export const products: Product[] = [
       "0.70L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/26.webp"
+    "imagenUrl": "/images/productos/26.webp",
+    "precio_unidad": 13.9,
+    "precio_caja": 166.8,
+    "variantes": [
+      {
+        "presentacion": "0.70L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 13.9,
+        "precio_caja": 166.8
+      }
+    ]
   },
   {
     "id": 27,
@@ -376,17 +767,17 @@ export const products: Product[] = [
       "0.7L"
     ],
     "cantidad_caja": 6,
-    "imagenUrl": "/images/productos/27 - Ponche Crema Natal.webp"
-  },
-  {
-    "id": 28,
-    "nombre": "PONCHE DON JOSE",
-    "categoria": "Cremas",
-    "presentaciones": [
-      "0.70L."
-    ],
-    "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/28.webp"
+    "imagenUrl": "/images/productos/27 - Ponche Crema Natal.webp",
+    "precio_unidad": 13.1,
+    "precio_caja": 78.6,
+    "variantes": [
+      {
+        "presentacion": "0.7L",
+        "cantidad_caja": 6,
+        "precio_unidad": 13.1,
+        "precio_caja": 78.6
+      }
+    ]
   },
   {
     "id": 29,
@@ -396,7 +787,17 @@ export const products: Product[] = [
       "500 ML."
     ],
     "cantidad_caja": 6,
-    "imagenUrl": "/images/productos/29.webp"
+    "imagenUrl": "/images/productos/29.webp",
+    "precio_unidad": 2.18,
+    "precio_caja": 13.08,
+    "variantes": [
+      {
+        "presentacion": "500 ML.",
+        "cantidad_caja": 6,
+        "precio_unidad": 2.18,
+        "precio_caja": 13.08
+      }
+    ]
   },
   {
     "id": 30,
@@ -406,7 +807,13 @@ export const products: Product[] = [
       "250ML"
     ],
     "cantidad_caja": 24,
-    "imagenUrl": "/images/productos/30.webp"
+    "imagenUrl": "/images/productos/30.webp",
+    "variantes": [
+      {
+        "presentacion": "250ML",
+        "cantidad_caja": 24
+      }
+    ]
   },
   {
     "id": 31,
@@ -416,7 +823,17 @@ export const products: Product[] = [
       "0.75L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/31.webp"
+    "imagenUrl": "/images/productos/31.webp",
+    "precio_unidad": 8.75,
+    "precio_caja": 105,
+    "variantes": [
+      {
+        "presentacion": "0.75L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 8.75,
+        "precio_caja": 105
+      }
+    ]
   },
   {
     "id": 32,
@@ -426,7 +843,17 @@ export const products: Product[] = [
       "0.75L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/32.webp"
+    "imagenUrl": "/images/productos/32.webp",
+    "precio_unidad": 8,
+    "precio_caja": 96,
+    "variantes": [
+      {
+        "presentacion": "0.75L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 8,
+        "precio_caja": 96
+      }
+    ]
   },
   {
     "id": 33,
@@ -436,7 +863,13 @@ export const products: Product[] = [
       "0.75L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/33.webp"
+    "imagenUrl": "/images/productos/33.webp",
+    "variantes": [
+      {
+        "presentacion": "0.75L.",
+        "cantidad_caja": 12
+      }
+    ]
   },
   {
     "id": 34,
@@ -446,17 +879,17 @@ export const products: Product[] = [
       "0.70L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/34.webp"
-  },
-  {
-    "id": 159,
-    "nombre": "ESPUMANTE DUC DE PARIS",
-    "categoria": "Espumantes",
-    "presentaciones": [
-      "0.75L."
-    ],
-    "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/paris.png"
+    "imagenUrl": "/images/productos/34.webp",
+    "precio_unidad": 6.62,
+    "precio_caja": 79.44,
+    "variantes": [
+      {
+        "presentacion": "0.70L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 6.62,
+        "precio_caja": 79.44
+      }
+    ]
   },
   {
     "id": 35,
@@ -466,7 +899,17 @@ export const products: Product[] = [
       "0.70L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/35.webp"
+    "imagenUrl": "/images/productos/35.webp",
+    "precio_unidad": 8.1,
+    "precio_caja": 97.2,
+    "variantes": [
+      {
+        "presentacion": "0.70L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 8.1,
+        "precio_caja": 97.2
+      }
+    ]
   },
   {
     "id": 36,
@@ -476,7 +919,17 @@ export const products: Product[] = [
       "0.70L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/36.webp"
+    "imagenUrl": "/images/productos/36.webp",
+    "precio_unidad": 10.98,
+    "precio_caja": 131.76,
+    "variantes": [
+      {
+        "presentacion": "0.70L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 10.98,
+        "precio_caja": 131.76
+      }
+    ]
   },
   {
     "id": 37,
@@ -486,7 +939,17 @@ export const products: Product[] = [
       "1L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/37.webp"
+    "imagenUrl": "/images/productos/37.webp",
+    "precio_unidad": 12.9,
+    "precio_caja": 154.8,
+    "variantes": [
+      {
+        "presentacion": "1L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 12.9,
+        "precio_caja": 154.8
+      }
+    ]
   },
   {
     "id": 38,
@@ -496,7 +959,17 @@ export const products: Product[] = [
       "0.75L."
     ],
     "cantidad_caja": 1,
-    "imagenUrl": "/images/productos/38.webp"
+    "imagenUrl": "/images/productos/38.webp",
+    "precio_unidad": 33.69,
+    "precio_caja": 33.69,
+    "variantes": [
+      {
+        "presentacion": "0.75L.",
+        "cantidad_caja": 1,
+        "precio_unidad": 33.69,
+        "precio_caja": 33.69
+      }
+    ]
   },
   {
     "id": 39,
@@ -506,7 +979,17 @@ export const products: Product[] = [
       "0.70L."
     ],
     "cantidad_caja": 1,
-    "imagenUrl": "/images/productos/39.webp"
+    "imagenUrl": "/images/productos/39.webp",
+    "precio_unidad": 9.9,
+    "precio_caja": 9.9,
+    "variantes": [
+      {
+        "presentacion": "0.70L.",
+        "cantidad_caja": 1,
+        "precio_unidad": 9.9,
+        "precio_caja": 9.9
+      }
+    ]
   },
   {
     "id": 40,
@@ -516,7 +999,17 @@ export const products: Product[] = [
       "0.75L."
     ],
     "cantidad_caja": 6,
-    "imagenUrl": "/images/productos/40.webp"
+    "imagenUrl": "/images/productos/40.webp",
+    "precio_unidad": 7.2,
+    "precio_caja": 43.2,
+    "variantes": [
+      {
+        "presentacion": "0.75L.",
+        "cantidad_caja": 6,
+        "precio_unidad": 7.2,
+        "precio_caja": 43.2
+      }
+    ]
   },
   {
     "id": 41,
@@ -530,7 +1023,29 @@ export const products: Product[] = [
       24,
       12
     ],
-    "imagenUrl": "/images/productos/41.webp"
+    "imagenUrl": "/images/productos/41.webp",
+    "precio_unidad": [
+      2.89,
+      5.8
+    ],
+    "precio_caja": [
+      69.36,
+      69.6
+    ],
+    "variantes": [
+      {
+        "presentacion": "0.35L.",
+        "cantidad_caja": 24,
+        "precio_unidad": 2.89,
+        "precio_caja": 69.36
+      },
+      {
+        "presentacion": "1L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 5.8,
+        "precio_caja": 69.6
+      }
+    ]
   },
   {
     "id": 42,
@@ -540,7 +1055,17 @@ export const products: Product[] = [
       "1L."
     ],
     "cantidad_caja": 1,
-    "imagenUrl": "/images/productos/42.webp"
+    "imagenUrl": "/images/productos/42.webp",
+    "precio_unidad": 43,
+    "precio_caja": 43,
+    "variantes": [
+      {
+        "presentacion": "1L.",
+        "cantidad_caja": 1,
+        "precio_unidad": 43,
+        "precio_caja": 43
+      }
+    ]
   },
   {
     "id": 43,
@@ -550,7 +1075,17 @@ export const products: Product[] = [
       "0.75L."
     ],
     "cantidad_caja": 1,
-    "imagenUrl": "/images/productos/43.webp"
+    "imagenUrl": "/images/productos/43.webp",
+    "precio_unidad": 18,
+    "precio_caja": 18,
+    "variantes": [
+      {
+        "presentacion": "0.75L.",
+        "cantidad_caja": 1,
+        "precio_unidad": 18,
+        "precio_caja": 18
+      }
+    ]
   },
   {
     "id": 158,
@@ -560,7 +1095,17 @@ export const products: Product[] = [
       "0.70L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/coconis.png"
+    "imagenUrl": "/images/productos/coconis.png",
+    "precio_unidad": 4.99,
+    "precio_caja": 29.94,
+    "variantes": [
+      {
+        "presentacion": "0.70L.",
+        "cantidad_caja": 6,
+        "precio_unidad": 4.99,
+        "precio_caja": 29.94
+      }
+    ]
   },
   {
     "id": 161,
@@ -570,7 +1115,17 @@ export const products: Product[] = [
       "0.70L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/toscana.png"
+    "imagenUrl": "/images/productos/toscana.png",
+    "precio_unidad": 9,
+    "precio_caja": 54,
+    "variantes": [
+      {
+        "presentacion": "0.70L.",
+        "cantidad_caja": 6,
+        "precio_unidad": 9,
+        "precio_caja": 54
+      }
+    ]
   },
   {
     "id": 174,
@@ -580,7 +1135,13 @@ export const products: Product[] = [
       "0.70L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/sambuca.png"
+    "imagenUrl": "/images/productos/sambuca.png",
+    "variantes": [
+      {
+        "presentacion": "0.70L.",
+        "cantidad_caja": 12
+      }
+    ]
   },
   {
     "id": 175,
@@ -590,7 +1151,13 @@ export const products: Product[] = [
       "0.70L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/limoncello.png"
+    "imagenUrl": "/images/productos/limoncello.png",
+    "variantes": [
+      {
+        "presentacion": "0.70L.",
+        "cantidad_caja": 12
+      }
+    ]
   },
   {
     "id": 176,
@@ -600,7 +1167,17 @@ export const products: Product[] = [
       "0.70L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/Amaretto.png"
+    "imagenUrl": "/images/productos/Amaretto.png",
+    "precio_unidad": 9.55,
+    "precio_caja": 57.3,
+    "variantes": [
+      {
+        "presentacion": "0.70L.",
+        "cantidad_caja": 6,
+        "precio_unidad": 9.55,
+        "precio_caja": 57.3
+      }
+    ]
   },
   {
     "id": 162,
@@ -610,7 +1187,13 @@ export const products: Product[] = [
       "0.70L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/cointreau.png"
+    "imagenUrl": "/images/productos/cointreau.png",
+    "variantes": [
+      {
+        "presentacion": "0.70L.",
+        "cantidad_caja": 12
+      }
+    ]
   },
   {
     "id": 163,
@@ -621,7 +1204,17 @@ export const products: Product[] = [
       "Licor de Cacao"
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/Garlin.png"
+    "imagenUrl": "/images/productos/Garlin.png",
+    "variantes": [
+      {
+        "presentacion": "Licor de Café",
+        "cantidad_caja": 12
+      },
+      {
+        "presentacion": "Licor de Cacao",
+        "cantidad_caja": 12
+      }
+    ]
   },
   {
     "id": 165,
@@ -631,7 +1224,13 @@ export const products: Product[] = [
       "1L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/Campari.png"
+    "imagenUrl": "/images/productos/Campari.png",
+    "variantes": [
+      {
+        "presentacion": "1L.",
+        "cantidad_caja": 12
+      }
+    ]
   },
   {
     "id": 166,
@@ -641,7 +1240,13 @@ export const products: Product[] = [
       "1L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/Aperol.png"
+    "imagenUrl": "/images/productos/Aperol.png",
+    "variantes": [
+      {
+        "presentacion": "1L.",
+        "cantidad_caja": 12
+      }
+    ]
   },
   {
     "id": 45,
@@ -655,7 +1260,29 @@ export const products: Product[] = [
       24,
       12
     ],
-    "imagenUrl": "/images/productos/45.webp"
+    "imagenUrl": "/images/productos/45.webp",
+    "precio_unidad": [
+      10.3,
+      16.43
+    ],
+    "precio_caja": [
+      247.2,
+      197.16
+    ],
+    "variantes": [
+      {
+        "presentacion": "0.35L.",
+        "cantidad_caja": 24,
+        "precio_unidad": 10.3,
+        "precio_caja": 247.2
+      },
+      {
+        "presentacion": "0.70L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 16.43,
+        "precio_caja": 197.16
+      }
+    ]
   },
   {
     "id": 46,
@@ -669,7 +1296,29 @@ export const products: Product[] = [
       24,
       12
     ],
-    "imagenUrl": "/images/productos/46.webp"
+    "imagenUrl": "/images/productos/46.webp",
+    "precio_unidad": [
+      2.68,
+      4.99
+    ],
+    "precio_caja": [
+      64.32,
+      59.88
+    ],
+    "variantes": [
+      {
+        "presentacion": "0.35L.",
+        "cantidad_caja": 24,
+        "precio_unidad": 2.68,
+        "precio_caja": 64.32
+      },
+      {
+        "presentacion": "0.70L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 4.99,
+        "precio_caja": 59.88
+      }
+    ]
   },
   {
     "id": 47,
@@ -685,7 +1334,37 @@ export const products: Product[] = [
       12,
       12
     ],
-    "imagenUrl": "/images/productos/47.webp"
+    "imagenUrl": "/images/productos/47.webp",
+    "precio_unidad": [
+      2.71,
+      4.2,
+      5.3
+    ],
+    "precio_caja": [
+      65.04,
+      50.4,
+      63.6
+    ],
+    "variantes": [
+      {
+        "presentacion": "0.35L.",
+        "cantidad_caja": 24,
+        "precio_unidad": 2.71,
+        "precio_caja": 65.04
+      },
+      {
+        "presentacion": "0.70L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 4.2,
+        "precio_caja": 50.4
+      },
+      {
+        "presentacion": "1L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 5.3,
+        "precio_caja": 63.6
+      }
+    ]
   },
   {
     "id": 155,
@@ -697,7 +1376,37 @@ export const products: Product[] = [
       "0.35L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/labrador.png"
+    "imagenUrl": "/images/productos/labrador.png",
+    "precio_unidad": [
+      5.25,
+      4.22,
+      2.62
+    ],
+    "precio_caja": [
+      63,
+      50.64,
+      62.88
+    ],
+    "variantes": [
+      {
+        "presentacion": "1L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 5.25,
+        "precio_caja": 63
+      },
+      {
+        "presentacion": "0.70L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 4.22,
+        "precio_caja": 50.64
+      },
+      {
+        "presentacion": "0.35L.",
+        "cantidad_caja": 24,
+        "precio_unidad": 2.62,
+        "precio_caja": 62.88
+      }
+    ]
   },
   {
     "id": 48,
@@ -707,7 +1416,17 @@ export const products: Product[] = [
       "1L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/48.webp"
+    "imagenUrl": "/images/productos/48.webp",
+    "precio_unidad": 2.61,
+    "precio_caja": 31.32,
+    "variantes": [
+      {
+        "presentacion": "1L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 2.61,
+        "precio_caja": 31.32
+      }
+    ]
   },
   {
     "id": 49,
@@ -717,7 +1436,17 @@ export const products: Product[] = [
       "1L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/49.webp"
+    "imagenUrl": "/images/productos/49.webp",
+    "precio_unidad": 5.49,
+    "precio_caja": 65.88,
+    "variantes": [
+      {
+        "presentacion": "1L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 5.49,
+        "precio_caja": 65.88
+      }
+    ]
   },
   {
     "id": 50,
@@ -727,7 +1456,17 @@ export const products: Product[] = [
       "1.20L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/Chaparon.png"
+    "imagenUrl": "/images/productos/Chaparon.png",
+    "precio_unidad": 2.93,
+    "precio_caja": 35.16,
+    "variantes": [
+      {
+        "presentacion": "1.20L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 2.93,
+        "precio_caja": 35.16
+      }
+    ]
   },
   {
     "id": 51,
@@ -741,7 +1480,29 @@ export const products: Product[] = [
       24,
       12
     ],
-    "imagenUrl": "/images/productos/51.webp"
+    "imagenUrl": "/images/productos/51.webp",
+    "precio_unidad": [
+      1.7,
+      4.5
+    ],
+    "precio_caja": [
+      40.8,
+      54
+    ],
+    "variantes": [
+      {
+        "presentacion": "0.35L.",
+        "cantidad_caja": 24,
+        "precio_unidad": 1.7,
+        "precio_caja": 40.8
+      },
+      {
+        "presentacion": "1L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 4.5,
+        "precio_caja": 54
+      }
+    ]
   },
   {
     "id": 52,
@@ -751,7 +1512,17 @@ export const products: Product[] = [
       "1L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/52.webp"
+    "imagenUrl": "/images/productos/52.webp",
+    "precio_unidad": 4.86,
+    "precio_caja": 58.32,
+    "variantes": [
+      {
+        "presentacion": "1L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 4.86,
+        "precio_caja": 58.32
+      }
+    ]
   },
   {
     "id": 53,
@@ -761,17 +1532,17 @@ export const products: Product[] = [
       "1LITRO"
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/53.webp"
-  },
-  {
-    "id": 54,
-    "nombre": "EL CANTOR",
-    "categoria": "Licores de Ron",
-    "presentaciones": [
-      "1.75L."
-    ],
-    "cantidad_caja": 6,
-    "imagenUrl": "/images/productos/54.webp"
+    "imagenUrl": "/images/productos/53.webp",
+    "precio_unidad": 2.69,
+    "precio_caja": 32.28,
+    "variantes": [
+      {
+        "presentacion": "1LITRO",
+        "cantidad_caja": 12,
+        "precio_unidad": 2.69,
+        "precio_caja": 32.28
+      }
+    ]
   },
   {
     "id": 55,
@@ -781,7 +1552,17 @@ export const products: Product[] = [
       "1L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/55.webp"
+    "imagenUrl": "/images/productos/55.webp",
+    "precio_unidad": 2.48,
+    "precio_caja": 29.76,
+    "variantes": [
+      {
+        "presentacion": "1L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 2.48,
+        "precio_caja": 29.76
+      }
+    ]
   },
   {
     "id": 56,
@@ -791,7 +1572,17 @@ export const products: Product[] = [
       "1L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/56.webp"
+    "imagenUrl": "/images/productos/56.webp",
+    "precio_unidad": 1.85,
+    "precio_caja": 22.2,
+    "variantes": [
+      {
+        "presentacion": "1L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 1.85,
+        "precio_caja": 22.2
+      }
+    ]
   },
   {
     "id": 57,
@@ -801,7 +1592,17 @@ export const products: Product[] = [
       "1L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/57.webp"
+    "imagenUrl": "/images/productos/57.webp",
+    "precio_unidad": 5.15,
+    "precio_caja": 61.8,
+    "variantes": [
+      {
+        "presentacion": "1L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 5.15,
+        "precio_caja": 61.8
+      }
+    ]
   },
   {
     "id": 58,
@@ -811,7 +1612,17 @@ export const products: Product[] = [
       "0.35L."
     ],
     "cantidad_caja": 24,
-    "imagenUrl": "/images/productos/58.webp"
+    "imagenUrl": "/images/productos/58.webp",
+    "precio_unidad": 1.9,
+    "precio_caja": 45.6,
+    "variantes": [
+      {
+        "presentacion": "0.35L.",
+        "cantidad_caja": 24,
+        "precio_unidad": 1.9,
+        "precio_caja": 45.6
+      }
+    ]
   },
   {
     "id": 59,
@@ -821,7 +1632,17 @@ export const products: Product[] = [
       "1L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/59.webp"
+    "imagenUrl": "/images/productos/59.webp",
+    "precio_unidad": 3.55,
+    "precio_caja": 42.6,
+    "variantes": [
+      {
+        "presentacion": "1L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 3.55,
+        "precio_caja": 42.6
+      }
+    ]
   },
   {
     "id": 60,
@@ -831,7 +1652,17 @@ export const products: Product[] = [
       "1L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/60.webp"
+    "imagenUrl": "/images/productos/60.webp",
+    "precio_unidad": 2.45,
+    "precio_caja": 29.4,
+    "variantes": [
+      {
+        "presentacion": "1L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 2.45,
+        "precio_caja": 29.4
+      }
+    ]
   },
   {
     "id": 62,
@@ -839,14 +1670,35 @@ export const products: Product[] = [
     "categoria": "Licores de Ron",
     "presentaciones": [
       "0.35L",
-      "1L.",
-      "1.75L."
+      "1L."
     ],
     "cantidad_caja": [
-      12,
-      6
+      24,
+      12
     ],
-    "imagenUrl": "/images/productos/62.webp"
+    "imagenUrl": "/images/productos/62.webp",
+    "precio_unidad": [
+      1.26,
+      2.47
+    ],
+    "precio_caja": [
+      30.24,
+      29.64
+    ],
+    "variantes": [
+      {
+        "presentacion": "0.35L",
+        "cantidad_caja": 24,
+        "precio_unidad": 1.26,
+        "precio_caja": 30.24
+      },
+      {
+        "presentacion": "1L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 2.47,
+        "precio_caja": 29.64
+      }
+    ]
   },
   {
     "id": 63,
@@ -856,22 +1708,37 @@ export const products: Product[] = [
       "1L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/63 - Popeye.webp"
+    "imagenUrl": "/images/productos/63 - Popeye.webp",
+    "precio_unidad": 2.35,
+    "precio_caja": 28.2,
+    "variantes": [
+      {
+        "presentacion": "1L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 2.35,
+        "precio_caja": 28.2
+      }
+    ]
   },
   {
     "id": 64,
     "nombre": "ROMANO",
     "categoria": "Licores de Ron",
     "presentaciones": [
-      "0.35L.",
       "1L."
     ],
-    "cantidad_caja": [
-      24,
-      12,
-      48
-    ],
-    "imagenUrl": "/images/productos/64.webp"
+    "cantidad_caja": 12,
+    "imagenUrl": "/images/productos/64.webp",
+    "precio_unidad": 1.96,
+    "precio_caja": 23.52,
+    "variantes": [
+      {
+        "presentacion": "1L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 1.96,
+        "precio_caja": 23.52
+      }
+    ]
   },
   {
     "id": 65,
@@ -881,7 +1748,17 @@ export const products: Product[] = [
       "1L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/65.webp"
+    "imagenUrl": "/images/productos/65.webp",
+    "precio_unidad": 2.69,
+    "precio_caja": 32.28,
+    "variantes": [
+      {
+        "presentacion": "1L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 2.69,
+        "precio_caja": 32.28
+      }
+    ]
   },
   {
     "id": 66,
@@ -897,7 +1774,37 @@ export const products: Product[] = [
       12,
       12
     ],
-    "imagenUrl": "/images/productos/66.webp"
+    "imagenUrl": "/images/productos/66.webp",
+    "precio_unidad": [
+      2.22,
+      3.73,
+      4.91
+    ],
+    "precio_caja": [
+      53.28,
+      44.76,
+      58.92
+    ],
+    "variantes": [
+      {
+        "presentacion": "0.35L.",
+        "cantidad_caja": 24,
+        "precio_unidad": 2.22,
+        "precio_caja": 53.28
+      },
+      {
+        "presentacion": "0.70L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 3.73,
+        "precio_caja": 44.76
+      },
+      {
+        "presentacion": "1L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 4.91,
+        "precio_caja": 58.92
+      }
+    ]
   },
   {
     "id": 67,
@@ -907,7 +1814,17 @@ export const products: Product[] = [
       "1L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/67.webp"
+    "imagenUrl": "/images/productos/67.webp",
+    "precio_unidad": 4.63,
+    "precio_caja": 55.56,
+    "variantes": [
+      {
+        "presentacion": "1L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 4.63,
+        "precio_caja": 55.56
+      }
+    ]
   },
   {
     "id": 68,
@@ -917,7 +1834,17 @@ export const products: Product[] = [
       "1L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/68.webp"
+    "imagenUrl": "/images/productos/68.webp",
+    "precio_unidad": 2.46,
+    "precio_caja": 29.52,
+    "variantes": [
+      {
+        "presentacion": "1L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 2.46,
+        "precio_caja": 29.52
+      }
+    ]
   },
   {
     "id": 69,
@@ -927,7 +1854,17 @@ export const products: Product[] = [
       "1L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/69.webp"
+    "imagenUrl": "/images/productos/69.webp",
+    "precio_unidad": 4.76,
+    "precio_caja": 57.12,
+    "variantes": [
+      {
+        "presentacion": "1L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 4.76,
+        "precio_caja": 57.12
+      }
+    ]
   },
   {
     "id": 70,
@@ -937,7 +1874,17 @@ export const products: Product[] = [
       "1L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/70.webp"
+    "imagenUrl": "/images/productos/70.webp",
+    "precio_unidad": 1.81,
+    "precio_caja": 43.44,
+    "variantes": [
+      {
+        "presentacion": "1L.",
+        "cantidad_caja": 24,
+        "precio_unidad": 1.81,
+        "precio_caja": 43.44
+      }
+    ]
   },
   {
     "id": 71,
@@ -947,17 +1894,17 @@ export const products: Product[] = [
       "1L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/71.webp"
-  },
-  {
-    "id": 72,
-    "nombre": "ZATIRO",
-    "categoria": "Licores de Ron",
-    "presentaciones": [
-      "1L."
-    ],
-    "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/72.webp"
+    "imagenUrl": "/images/productos/71.webp",
+    "precio_unidad": 3.25,
+    "precio_caja": 39,
+    "variantes": [
+      {
+        "presentacion": "1L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 3.25,
+        "precio_caja": 39
+      }
+    ]
   },
   {
     "id": 91,
@@ -967,7 +1914,17 @@ export const products: Product[] = [
       "0.70L."
     ],
     "cantidad_caja": 6,
-    "imagenUrl": "/images/productos/91.webp"
+    "imagenUrl": "/images/productos/91.webp",
+    "precio_unidad": 15.5,
+    "precio_caja": 93,
+    "variantes": [
+      {
+        "presentacion": "0.70L.",
+        "cantidad_caja": 6,
+        "precio_unidad": 15.5,
+        "precio_caja": 93
+      }
+    ]
   },
   {
     "id": 92,
@@ -977,7 +1934,17 @@ export const products: Product[] = [
       "0.70L."
     ],
     "cantidad_caja": 6,
-    "imagenUrl": "/images/productos/92.webp"
+    "imagenUrl": "/images/productos/92.webp",
+    "precio_unidad": 22.5,
+    "precio_caja": 135,
+    "variantes": [
+      {
+        "presentacion": "0.70L.",
+        "cantidad_caja": 6,
+        "precio_unidad": 22.5,
+        "precio_caja": 135
+      }
+    ]
   },
   {
     "id": 93,
@@ -987,7 +1954,17 @@ export const products: Product[] = [
       "0.75L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/93.webp"
+    "imagenUrl": "/images/productos/93.webp",
+    "precio_unidad": 7.99,
+    "precio_caja": 95.88,
+    "variantes": [
+      {
+        "presentacion": "0.75L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 7.99,
+        "precio_caja": 95.88
+      }
+    ]
   },
   {
     "id": 94,
@@ -997,7 +1974,17 @@ export const products: Product[] = [
       "0.75L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/94.webp"
+    "imagenUrl": "/images/productos/94.webp",
+    "precio_unidad": 10.6,
+    "precio_caja": 127.2,
+    "variantes": [
+      {
+        "presentacion": "0.75L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 10.6,
+        "precio_caja": 127.2
+      }
+    ]
   },
   {
     "id": 95,
@@ -1007,7 +1994,17 @@ export const products: Product[] = [
       "0.70L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/95.webp"
+    "imagenUrl": "/images/productos/95.webp",
+    "precio_unidad": 6.35,
+    "precio_caja": 76.2,
+    "variantes": [
+      {
+        "presentacion": "0.70L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 6.35,
+        "precio_caja": 76.2
+      }
+    ]
   },
   {
     "id": 96,
@@ -1017,7 +2014,17 @@ export const products: Product[] = [
       "0.75L."
     ],
     "cantidad_caja": 6,
-    "imagenUrl": "/images/productos/96 - Ron Calazan Especial Blanco.webp"
+    "imagenUrl": "/images/productos/96 - Ron Calazan Especial Blanco.webp",
+    "precio_unidad": 11.86,
+    "precio_caja": 71.16,
+    "variantes": [
+      {
+        "presentacion": "0.75L.",
+        "cantidad_caja": 6,
+        "precio_unidad": 11.86,
+        "precio_caja": 71.16
+      }
+    ]
   },
   {
     "id": 97,
@@ -1031,7 +2038,29 @@ export const products: Product[] = [
       6,
       9
     ],
-    "imagenUrl": "/images/productos/97.webp"
+    "imagenUrl": "/images/productos/97.webp",
+    "precio_unidad": [
+      9.95,
+      12.6
+    ],
+    "precio_caja": [
+      59.7,
+      113.4
+    ],
+    "variantes": [
+      {
+        "presentacion": "0.70L.",
+        "cantidad_caja": 6,
+        "precio_unidad": 9.95,
+        "precio_caja": 59.7
+      },
+      {
+        "presentacion": "1L.",
+        "cantidad_caja": 9,
+        "precio_unidad": 12.6,
+        "precio_caja": 113.4
+      }
+    ]
   },
   {
     "id": 98,
@@ -1041,7 +2070,17 @@ export const products: Product[] = [
       "0.75L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/98.webp"
+    "imagenUrl": "/images/productos/98.webp",
+    "precio_unidad": 10.16,
+    "precio_caja": 121.92,
+    "variantes": [
+      {
+        "presentacion": "0.75L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 10.16,
+        "precio_caja": 121.92
+      }
+    ]
   },
   {
     "id": 99,
@@ -1051,7 +2090,17 @@ export const products: Product[] = [
       "0.75L."
     ],
     "cantidad_caja": 6,
-    "imagenUrl": "/images/productos/99.webp"
+    "imagenUrl": "/images/productos/99.webp",
+    "precio_unidad": 15.3,
+    "precio_caja": 91.8,
+    "variantes": [
+      {
+        "presentacion": "0.75L.",
+        "cantidad_caja": 6,
+        "precio_unidad": 15.3,
+        "precio_caja": 91.8
+      }
+    ]
   },
   {
     "id": 100,
@@ -1061,7 +2110,13 @@ export const products: Product[] = [
       "0.70L."
     ],
     "cantidad_caja": 1,
-    "imagenUrl": "/images/productos/100.webp"
+    "imagenUrl": "/images/productos/100.webp",
+    "variantes": [
+      {
+        "presentacion": "0.70L.",
+        "cantidad_caja": 1
+      }
+    ]
   },
   {
     "id": 101,
@@ -1071,7 +2126,17 @@ export const products: Product[] = [
       "0.70L."
     ],
     "cantidad_caja": 6,
-    "imagenUrl": "/images/productos/101.webp"
+    "imagenUrl": "/images/productos/101.webp",
+    "precio_unidad": 29,
+    "precio_caja": 174,
+    "variantes": [
+      {
+        "presentacion": "0.70L.",
+        "cantidad_caja": 6,
+        "precio_unidad": 29,
+        "precio_caja": 174
+      }
+    ]
   },
   {
     "id": 102,
@@ -1081,7 +2146,17 @@ export const products: Product[] = [
       "0.70L."
     ],
     "cantidad_caja": 6,
-    "imagenUrl": "/images/productos/102.webp"
+    "imagenUrl": "/images/productos/102.webp",
+    "precio_unidad": 10.7,
+    "precio_caja": 64.2,
+    "variantes": [
+      {
+        "presentacion": "0.70L.",
+        "cantidad_caja": 6,
+        "precio_unidad": 10.7,
+        "precio_caja": 64.2
+      }
+    ]
   },
   {
     "id": 103,
@@ -1091,7 +2166,17 @@ export const products: Product[] = [
       "0.75L."
     ],
     "cantidad_caja": 6,
-    "imagenUrl": "/images/productos/103.webp"
+    "imagenUrl": "/images/productos/103.webp",
+    "precio_unidad": 17,
+    "precio_caja": 102,
+    "variantes": [
+      {
+        "presentacion": "0.75L.",
+        "cantidad_caja": 6,
+        "precio_unidad": 17,
+        "precio_caja": 102
+      }
+    ]
   },
   {
     "id": 169,
@@ -1101,7 +2186,13 @@ export const products: Product[] = [
       "0.70L."
     ],
     "cantidad_caja": 6,
-    "imagenUrl": "/images/productos/Tepuy.png"
+    "imagenUrl": "/images/productos/Tepuy.png",
+    "variantes": [
+      {
+        "presentacion": "0.70L.",
+        "cantidad_caja": 6
+      }
+    ]
   },
   {
     "id": 173,
@@ -1111,7 +2202,13 @@ export const products: Product[] = [
       "0.70L."
     ],
     "cantidad_caja": 6,
-    "imagenUrl": "/images/productos/destino.png"
+    "imagenUrl": "/images/productos/destino.png",
+    "variantes": [
+      {
+        "presentacion": "0.70L.",
+        "cantidad_caja": 6
+      }
+    ]
   },
   {
     "id": 73,
@@ -1121,7 +2218,17 @@ export const products: Product[] = [
       "Única"
     ],
     "cantidad_caja": 24,
-    "imagenUrl": "/images/productos/73.webp"
+    "imagenUrl": "/images/productos/73.webp",
+    "precio_unidad": 1.15,
+    "precio_caja": 27.6,
+    "variantes": [
+      {
+        "presentacion": "Única",
+        "cantidad_caja": 24,
+        "precio_unidad": 1.15,
+        "precio_caja": 27.6
+      }
+    ]
   },
   {
     "id": 74,
@@ -1135,7 +2242,29 @@ export const products: Product[] = [
       1,
       12
     ],
-    "imagenUrl": "/images/productos/74.webp"
+    "imagenUrl": "/images/productos/74.webp",
+    "precio_unidad": [
+      3.98,
+      9.8
+    ],
+    "precio_caja": [
+      3.98,
+      117.6
+    ],
+    "variantes": [
+      {
+        "presentacion": "350ML",
+        "cantidad_caja": 1,
+        "precio_unidad": 3.98,
+        "precio_caja": 3.98
+      },
+      {
+        "presentacion": "0.70L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 9.8,
+        "precio_caja": 117.6
+      }
+    ]
   },
   {
     "id": 75,
@@ -1145,7 +2274,17 @@ export const products: Product[] = [
       "0.70L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/75.webp"
+    "imagenUrl": "/images/productos/75.webp",
+    "precio_unidad": 9.8,
+    "precio_caja": 117.6,
+    "variantes": [
+      {
+        "presentacion": "0.70L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 9.8,
+        "precio_caja": 117.6
+      }
+    ]
   },
   {
     "id": 76,
@@ -1155,7 +2294,17 @@ export const products: Product[] = [
       "0.70L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/76 - Naiguata Coco  Coco Y Piña.webp"
+    "imagenUrl": "/images/productos/76 - Naiguata Coco  Coco Y Piña.webp",
+    "precio_unidad": 6,
+    "precio_caja": 72,
+    "variantes": [
+      {
+        "presentacion": "0.70L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 6,
+        "precio_caja": 72
+      }
+    ]
   },
   {
     "id": 104,
@@ -1165,7 +2314,17 @@ export const products: Product[] = [
       "1.75L."
     ],
     "cantidad_caja": 6,
-    "imagenUrl": "/images/productos/104.webp"
+    "imagenUrl": "/images/productos/104.webp",
+    "precio_unidad": 7.65,
+    "precio_caja": 45.9,
+    "variantes": [
+      {
+        "presentacion": "1.75L.",
+        "cantidad_caja": 6,
+        "precio_unidad": 7.65,
+        "precio_caja": 45.9
+      }
+    ]
   },
   {
     "id": 105,
@@ -1175,7 +2334,17 @@ export const products: Product[] = [
       "1.75L."
     ],
     "cantidad_caja": 6,
-    "imagenUrl": "/images/productos/105.webp"
+    "imagenUrl": "/images/productos/105.webp",
+    "precio_unidad": 4.78,
+    "precio_caja": 28.68,
+    "variantes": [
+      {
+        "presentacion": "1.75L.",
+        "cantidad_caja": 6,
+        "precio_unidad": 4.78,
+        "precio_caja": 28.68
+      }
+    ]
   },
   {
     "id": 106,
@@ -1185,7 +2354,17 @@ export const products: Product[] = [
       "250ML."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/106.webp"
+    "imagenUrl": "/images/productos/106.webp",
+    "precio_unidad": 1.55,
+    "precio_caja": 18.6,
+    "variantes": [
+      {
+        "presentacion": "250ML.",
+        "cantidad_caja": 12,
+        "precio_unidad": 1.55,
+        "precio_caja": 18.6
+      }
+    ]
   },
   {
     "id": 108,
@@ -1195,7 +2374,17 @@ export const products: Product[] = [
       "1.75L."
     ],
     "cantidad_caja": 6,
-    "imagenUrl": "/images/productos/108.webp"
+    "imagenUrl": "/images/productos/108.webp",
+    "precio_unidad": 4.9,
+    "precio_caja": 29.4,
+    "variantes": [
+      {
+        "presentacion": "1.75L.",
+        "cantidad_caja": 6,
+        "precio_unidad": 4.9,
+        "precio_caja": 29.4
+      }
+    ]
   },
   {
     "id": 110,
@@ -1205,7 +2394,17 @@ export const products: Product[] = [
       "1.75L."
     ],
     "cantidad_caja": 6,
-    "imagenUrl": "/images/productos/110.webp"
+    "imagenUrl": "/images/productos/110.webp",
+    "precio_unidad": 4.57,
+    "precio_caja": 27.42,
+    "variantes": [
+      {
+        "presentacion": "1.75L.",
+        "cantidad_caja": 6,
+        "precio_unidad": 4.57,
+        "precio_caja": 27.42
+      }
+    ]
   },
   {
     "id": 111,
@@ -1215,7 +2414,17 @@ export const products: Product[] = [
       "1.75L."
     ],
     "cantidad_caja": 6,
-    "imagenUrl": "/images/productos/111.webp"
+    "imagenUrl": "/images/productos/111.webp",
+    "precio_unidad": 5,
+    "precio_caja": 30,
+    "variantes": [
+      {
+        "presentacion": "1.75L.",
+        "cantidad_caja": 6,
+        "precio_unidad": 5,
+        "precio_caja": 30
+      }
+    ]
   },
   {
     "id": 112,
@@ -1225,7 +2434,17 @@ export const products: Product[] = [
       "1.75L."
     ],
     "cantidad_caja": 6,
-    "imagenUrl": "/images/productos/112.webp"
+    "imagenUrl": "/images/productos/112.webp",
+    "precio_unidad": 3.9,
+    "precio_caja": 23.4,
+    "variantes": [
+      {
+        "presentacion": "1.75L.",
+        "cantidad_caja": 6,
+        "precio_unidad": 3.9,
+        "precio_caja": 23.4
+      }
+    ]
   },
   {
     "id": 113,
@@ -1235,7 +2454,13 @@ export const products: Product[] = [
       "1L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/113.webp"
+    "imagenUrl": "/images/productos/113.webp",
+    "variantes": [
+      {
+        "presentacion": "1L.",
+        "cantidad_caja": 12
+      }
+    ]
   },
   {
     "id": 114,
@@ -1245,7 +2470,17 @@ export const products: Product[] = [
       "Única"
     ],
     "cantidad_caja": 6,
-    "imagenUrl": "/images/productos/114.webp"
+    "imagenUrl": "/images/productos/114.webp",
+    "precio_unidad": 4.16,
+    "precio_caja": 24.96,
+    "variantes": [
+      {
+        "presentacion": "Única",
+        "cantidad_caja": 6,
+        "precio_unidad": 4.16,
+        "precio_caja": 24.96
+      }
+    ]
   },
   {
     "id": 115,
@@ -1255,7 +2490,17 @@ export const products: Product[] = [
       "1.75L."
     ],
     "cantidad_caja": 6,
-    "imagenUrl": "/images/productos/115.webp"
+    "imagenUrl": "/images/productos/115.webp",
+    "precio_unidad": 4.83,
+    "precio_caja": 28.98,
+    "variantes": [
+      {
+        "presentacion": "1.75L.",
+        "cantidad_caja": 6,
+        "precio_unidad": 4.83,
+        "precio_caja": 28.98
+      }
+    ]
   },
   {
     "id": 116,
@@ -1269,7 +2514,29 @@ export const products: Product[] = [
       6,
       24
     ],
-    "imagenUrl": "/images/productos/116.webp"
+    "imagenUrl": "/images/productos/116.webp",
+    "precio_unidad": [
+      3.9,
+      3.9
+    ],
+    "precio_caja": [
+      93.6,
+      93.6
+    ],
+    "variantes": [
+      {
+        "presentacion": "1.75L.",
+        "cantidad_caja": 24,
+        "precio_unidad": 3.9,
+        "precio_caja": 93.6
+      },
+      {
+        "presentacion": "1.75L PROMO 4 CAJAS",
+        "cantidad_caja": 24,
+        "precio_unidad": 3.9,
+        "precio_caja": 93.6
+      }
+    ]
   },
   {
     "id": 117,
@@ -1279,7 +2546,17 @@ export const products: Product[] = [
       "0.75L PROMOCION"
     ],
     "cantidad_caja": 1,
-    "imagenUrl": "/images/productos/117.webp"
+    "imagenUrl": "/images/productos/117.webp",
+    "precio_unidad": 35,
+    "precio_caja": 35,
+    "variantes": [
+      {
+        "presentacion": "0.75L PROMOCION",
+        "cantidad_caja": 1,
+        "precio_unidad": 35,
+        "precio_caja": 35
+      }
+    ]
   },
   {
     "id": 118,
@@ -1289,7 +2566,17 @@ export const products: Product[] = [
       "Única"
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/118.webp"
+    "imagenUrl": "/images/productos/118.webp",
+    "precio_unidad": 6.1,
+    "precio_caja": 73.2,
+    "variantes": [
+      {
+        "presentacion": "Única",
+        "cantidad_caja": 12,
+        "precio_unidad": 6.1,
+        "precio_caja": 73.2
+      }
+    ]
   },
   {
     "id": 119,
@@ -1299,7 +2586,17 @@ export const products: Product[] = [
       "0.75L."
     ],
     "cantidad_caja": 1,
-    "imagenUrl": "/images/productos/119.webp"
+    "imagenUrl": "/images/productos/119.webp",
+    "precio_unidad": 64,
+    "precio_caja": 64,
+    "variantes": [
+      {
+        "presentacion": "0.75L.",
+        "cantidad_caja": 1,
+        "precio_unidad": 64,
+        "precio_caja": 64
+      }
+    ]
   },
   {
     "id": 120,
@@ -1309,7 +2606,17 @@ export const products: Product[] = [
       "Única"
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/120.webp"
+    "imagenUrl": "/images/productos/120.webp",
+    "precio_unidad": 6.15,
+    "precio_caja": 73.8,
+    "variantes": [
+      {
+        "presentacion": "Única",
+        "cantidad_caja": 12,
+        "precio_unidad": 6.15,
+        "precio_caja": 73.8
+      }
+    ]
   },
   {
     "id": 121,
@@ -1319,7 +2626,13 @@ export const products: Product[] = [
       "Única"
     ],
     "cantidad_caja": 1,
-    "imagenUrl": "/images/productos/121.webp"
+    "imagenUrl": "/images/productos/121.webp",
+    "variantes": [
+      {
+        "presentacion": "Única",
+        "cantidad_caja": 1
+      }
+    ]
   },
   {
     "id": 122,
@@ -1329,7 +2642,17 @@ export const products: Product[] = [
       "Única"
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/122 - Licor de Agave del Norte.webp"
+    "imagenUrl": "/images/productos/122 - Licor de Agave del Norte.webp",
+    "precio_unidad": 5.68,
+    "precio_caja": 68.16,
+    "variantes": [
+      {
+        "presentacion": "Única",
+        "cantidad_caja": 12,
+        "precio_unidad": 5.68,
+        "precio_caja": 68.16
+      }
+    ]
   },
   {
     "id": 178,
@@ -1339,7 +2662,17 @@ export const products: Product[] = [
       "930ml."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/corrales.png"
+    "imagenUrl": "/images/productos/corrales.png",
+    "precio_unidad": 14.9,
+    "precio_caja": 89.4,
+    "variantes": [
+      {
+        "presentacion": "930ml.",
+        "cantidad_caja": 6,
+        "precio_unidad": 14.9,
+        "precio_caja": 89.4
+      }
+    ]
   },
   {
     "id": 123,
@@ -1349,7 +2682,17 @@ export const products: Product[] = [
       "Única"
     ],
     "cantidad_caja": 1,
-    "imagenUrl": "/images/productos/123.webp"
+    "imagenUrl": "/images/productos/123.webp",
+    "precio_unidad": 19.99,
+    "precio_caja": 19.99,
+    "variantes": [
+      {
+        "presentacion": "Única",
+        "cantidad_caja": 1,
+        "precio_unidad": 19.99,
+        "precio_caja": 19.99
+      }
+    ]
   },
   {
     "id": 124,
@@ -1359,7 +2702,17 @@ export const products: Product[] = [
       "0.75L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/124.webp"
+    "imagenUrl": "/images/productos/124.webp",
+    "precio_unidad": 7.33,
+    "precio_caja": 87.96,
+    "variantes": [
+      {
+        "presentacion": "0.75L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 7.33,
+        "precio_caja": 87.96
+      }
+    ]
   },
   {
     "id": 125,
@@ -1369,7 +2722,17 @@ export const products: Product[] = [
       "0.75L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/125.webp"
+    "imagenUrl": "/images/productos/125.webp",
+    "precio_unidad": 15.5,
+    "precio_caja": 186,
+    "variantes": [
+      {
+        "presentacion": "0.75L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 15.5,
+        "precio_caja": 186
+      }
+    ]
   },
   {
     "id": 126,
@@ -1379,7 +2742,13 @@ export const products: Product[] = [
       "Única"
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/126.webp"
+    "imagenUrl": "/images/productos/126.webp",
+    "variantes": [
+      {
+        "presentacion": "Única",
+        "cantidad_caja": 12
+      }
+    ]
   },
   {
     "id": 127,
@@ -1389,7 +2758,17 @@ export const products: Product[] = [
       "0.70L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/127.webp"
+    "imagenUrl": "/images/productos/127.webp",
+    "precio_unidad": 6.55,
+    "precio_caja": 78.6,
+    "variantes": [
+      {
+        "presentacion": "0.70L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 6.55,
+        "precio_caja": 78.6
+      }
+    ]
   },
   {
     "id": 128,
@@ -1399,7 +2778,17 @@ export const products: Product[] = [
       "0.75L."
     ],
     "cantidad_caja": 6,
-    "imagenUrl": "/images/productos/128.webp"
+    "imagenUrl": "/images/productos/128.webp",
+    "precio_unidad": 6.99,
+    "precio_caja": 41.94,
+    "variantes": [
+      {
+        "presentacion": "0.75L.",
+        "cantidad_caja": 6,
+        "precio_unidad": 6.99,
+        "precio_caja": 41.94
+      }
+    ]
   },
   {
     "id": 129,
@@ -1409,7 +2798,17 @@ export const products: Product[] = [
       "0.75L."
     ],
     "cantidad_caja": 6,
-    "imagenUrl": "/images/productos/talamanca.png"
+    "imagenUrl": "/images/productos/talamanca.png",
+    "precio_unidad": 8.75,
+    "precio_caja": 52.5,
+    "variantes": [
+      {
+        "presentacion": "0.75L.",
+        "cantidad_caja": 6,
+        "precio_unidad": 8.75,
+        "precio_caja": 52.5
+      }
+    ]
   },
   {
     "id": 130,
@@ -1419,7 +2818,17 @@ export const products: Product[] = [
       "Única"
     ],
     "cantidad_caja": 6,
-    "imagenUrl": "/images/productos/130 - Vino Nuestra Pasion.webp"
+    "imagenUrl": "/images/productos/130 - Vino Nuestra Pasion.webp",
+    "precio_unidad": 6.65,
+    "precio_caja": 39.9,
+    "variantes": [
+      {
+        "presentacion": "Única",
+        "cantidad_caja": 6,
+        "precio_unidad": 6.65,
+        "precio_caja": 39.9
+      }
+    ]
   },
   {
     "id": 131,
@@ -1429,7 +2838,17 @@ export const products: Product[] = [
       "0.75L."
     ],
     "cantidad_caja": 6,
-    "imagenUrl": "/images/productos/131.webp"
+    "imagenUrl": "/images/productos/131.webp",
+    "precio_unidad": 7.35,
+    "precio_caja": 44.1,
+    "variantes": [
+      {
+        "presentacion": "0.75L.",
+        "cantidad_caja": 6,
+        "precio_unidad": 7.35,
+        "precio_caja": 44.1
+      }
+    ]
   },
   {
     "id": 156,
@@ -1441,7 +2860,21 @@ export const products: Product[] = [
       "Tempranillo"
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/romeo.png"
+    "imagenUrl": "/images/productos/romeo.png",
+    "variantes": [
+      {
+        "presentacion": "Garnacha",
+        "cantidad_caja": 12
+      },
+      {
+        "presentacion": "Monastrel",
+        "cantidad_caja": 12
+      },
+      {
+        "presentacion": "Tempranillo",
+        "cantidad_caja": 12
+      }
+    ]
   },
   {
     "id": 157,
@@ -1451,7 +2884,17 @@ export const products: Product[] = [
       "Chardonay"
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/tini.png"
+    "imagenUrl": "/images/productos/tini.png",
+    "precio_unidad": 8.7,
+    "precio_caja": 52.2,
+    "variantes": [
+      {
+        "presentacion": "Chardonay",
+        "cantidad_caja": 6,
+        "precio_unidad": 8.7,
+        "precio_caja": 52.2
+      }
+    ]
   },
   {
     "id": 160,
@@ -1461,7 +2904,17 @@ export const products: Product[] = [
       "0.75L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/licensioso.png"
+    "imagenUrl": "/images/productos/licensioso.png",
+    "precio_unidad": 10.83,
+    "precio_caja": 64.98,
+    "variantes": [
+      {
+        "presentacion": "0.75L.",
+        "cantidad_caja": 6,
+        "precio_unidad": 10.83,
+        "precio_caja": 64.98
+      }
+    ]
   },
   {
     "id": 164,
@@ -1472,7 +2925,17 @@ export const products: Product[] = [
       "Rossi 1L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/Cinzano.png"
+    "imagenUrl": "/images/productos/Cinzano.png",
+    "variantes": [
+      {
+        "presentacion": "Bianco 1L.",
+        "cantidad_caja": 12
+      },
+      {
+        "presentacion": "Rossi 1L.",
+        "cantidad_caja": 12
+      }
+    ]
   },
   {
     "id": 179,
@@ -1482,7 +2945,17 @@ export const products: Product[] = [
       "Merlot"
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/sera.png"
+    "imagenUrl": "/images/productos/sera.png",
+    "precio_unidad": 10,
+    "precio_caja": 60,
+    "variantes": [
+      {
+        "presentacion": "Merlot",
+        "cantidad_caja": 6,
+        "precio_unidad": 10,
+        "precio_caja": 60
+      }
+    ]
   },
   {
     "id": 132,
@@ -1492,7 +2965,17 @@ export const products: Product[] = [
       "0.75L."
     ],
     "cantidad_caja": 1,
-    "imagenUrl": "/images/productos/132.webp"
+    "imagenUrl": "/images/productos/132.webp",
+    "precio_unidad": 19.25,
+    "precio_caja": 19.25,
+    "variantes": [
+      {
+        "presentacion": "0.75L.",
+        "cantidad_caja": 1,
+        "precio_unidad": 19.25,
+        "precio_caja": 19.25
+      }
+    ]
   },
   {
     "id": 133,
@@ -1502,7 +2985,17 @@ export const products: Product[] = [
       "Única"
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/133 - Bajo O Natural.webp"
+    "imagenUrl": "/images/productos/133 - Bajo O Natural.webp",
+    "precio_unidad": 7.45,
+    "precio_caja": 89.4,
+    "variantes": [
+      {
+        "presentacion": "Única",
+        "cantidad_caja": 12,
+        "precio_unidad": 7.45,
+        "precio_caja": 89.4
+      }
+    ]
   },
   {
     "id": 134,
@@ -1512,7 +3005,17 @@ export const products: Product[] = [
       "0.70L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/134.webp"
+    "imagenUrl": "/images/productos/134.webp",
+    "precio_unidad": 6.07,
+    "precio_caja": 72.84,
+    "variantes": [
+      {
+        "presentacion": "0.70L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 6.07,
+        "precio_caja": 72.84
+      }
+    ]
   },
   {
     "id": 135,
@@ -1522,7 +3025,17 @@ export const products: Product[] = [
       "0.70L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/135.webp"
+    "imagenUrl": "/images/productos/135.webp",
+    "precio_unidad": 6.07,
+    "precio_caja": 72.84,
+    "variantes": [
+      {
+        "presentacion": "0.70L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 6.07,
+        "precio_caja": 72.84
+      }
+    ]
   },
   {
     "id": 136,
@@ -1532,7 +3045,17 @@ export const products: Product[] = [
       "0.75L."
     ],
     "cantidad_caja": 1,
-    "imagenUrl": "/images/productos/136.webp"
+    "imagenUrl": "/images/productos/136.webp",
+    "precio_unidad": 17.5,
+    "precio_caja": 17.5,
+    "variantes": [
+      {
+        "presentacion": "0.75L.",
+        "cantidad_caja": 1,
+        "precio_unidad": 17.5,
+        "precio_caja": 17.5
+      }
+    ]
   },
   {
     "id": 137,
@@ -1542,7 +3065,17 @@ export const products: Product[] = [
       "Única"
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/137.webp"
+    "imagenUrl": "/images/productos/137.webp",
+    "precio_unidad": 10.45,
+    "precio_caja": 125.4,
+    "variantes": [
+      {
+        "presentacion": "Única",
+        "cantidad_caja": 12,
+        "precio_unidad": 10.45,
+        "precio_caja": 125.4
+      }
+    ]
   },
   {
     "id": 138,
@@ -1552,7 +3085,17 @@ export const products: Product[] = [
       "0.70L."
     ],
     "cantidad_caja": 1,
-    "imagenUrl": "/images/productos/138.webp"
+    "imagenUrl": "/images/productos/138.webp",
+    "precio_unidad": 5.5,
+    "precio_caja": 5.5,
+    "variantes": [
+      {
+        "presentacion": "0.70L.",
+        "cantidad_caja": 1,
+        "precio_unidad": 5.5,
+        "precio_caja": 5.5
+      }
+    ]
   },
   {
     "id": 139,
@@ -1562,7 +3105,17 @@ export const products: Product[] = [
       "0.70L."
     ],
     "cantidad_caja": 6,
-    "imagenUrl": "/images/productos/139.webp"
+    "imagenUrl": "/images/productos/139.webp",
+    "precio_unidad": 7.25,
+    "precio_caja": 43.5,
+    "variantes": [
+      {
+        "presentacion": "0.70L.",
+        "cantidad_caja": 6,
+        "precio_unidad": 7.25,
+        "precio_caja": 43.5
+      }
+    ]
   },
   {
     "id": 140,
@@ -1572,17 +3125,37 @@ export const products: Product[] = [
       "0.70L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/140.webp"
+    "imagenUrl": "/images/productos/140.webp",
+    "precio_unidad": 4,
+    "precio_caja": 48,
+    "variantes": [
+      {
+        "presentacion": "0.70L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 4,
+        "precio_caja": 48
+      }
+    ]
   },
   {
     "id": 180,
     "nombre": "STOLICHNAYA",
     "categoria": "Vodkas y Otros",
     "presentaciones": [
-      "0.70L."
+      "0.75L."
     ],
-    "cantidad_caja": 1,
-    "imagenUrl": "/images/productos/Stolichnaya.png"
+    "cantidad_caja": 6,
+    "imagenUrl": "/images/productos/Stolichnaya.png",
+    "precio_unidad": 25.5,
+    "precio_caja": 153,
+    "variantes": [
+      {
+        "presentacion": "0.75L.",
+        "cantidad_caja": 6,
+        "precio_unidad": 25.5,
+        "precio_caja": 153
+      }
+    ]
   },
   {
     "id": 77,
@@ -1592,7 +3165,17 @@ export const products: Product[] = [
       "0.70L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/77.webp"
+    "imagenUrl": "/images/productos/77.webp",
+    "precio_unidad": 6.13,
+    "precio_caja": 73.56,
+    "variantes": [
+      {
+        "presentacion": "0.70L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 6.13,
+        "precio_caja": 73.56
+      }
+    ]
   },
   {
     "id": 78,
@@ -1603,7 +3186,29 @@ export const products: Product[] = [
       "1L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/78.webp"
+    "imagenUrl": "/images/productos/78.webp",
+    "precio_unidad": [
+      4.23,
+      5.31
+    ],
+    "precio_caja": [
+      50.76,
+      63.72
+    ],
+    "variantes": [
+      {
+        "presentacion": "0.70L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 4.23,
+        "precio_caja": 50.76
+      },
+      {
+        "presentacion": "1L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 5.31,
+        "precio_caja": 63.72
+      }
+    ]
   },
   {
     "id": 79,
@@ -1613,7 +3218,17 @@ export const products: Product[] = [
       "0.7L"
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/79.webp"
+    "imagenUrl": "/images/productos/79.webp",
+    "precio_unidad": 10.4,
+    "precio_caja": 124.8,
+    "variantes": [
+      {
+        "presentacion": "0.7L",
+        "cantidad_caja": 12,
+        "precio_unidad": 10.4,
+        "precio_caja": 124.8
+      }
+    ]
   },
   {
     "id": 80,
@@ -1623,7 +3238,17 @@ export const products: Product[] = [
       "0.70L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/80.webp"
+    "imagenUrl": "/images/productos/80.webp",
+    "precio_unidad": 3.99,
+    "precio_caja": 47.88,
+    "variantes": [
+      {
+        "presentacion": "0.70L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 3.99,
+        "precio_caja": 47.88
+      }
+    ]
   },
   {
     "id": 81,
@@ -1633,7 +3258,17 @@ export const products: Product[] = [
       "0.70L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/81.webp"
+    "imagenUrl": "/images/productos/81.webp",
+    "precio_unidad": 7.09,
+    "precio_caja": 85.08,
+    "variantes": [
+      {
+        "presentacion": "0.70L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 7.09,
+        "precio_caja": 85.08
+      }
+    ]
   },
   {
     "id": 82,
@@ -1643,7 +3278,17 @@ export const products: Product[] = [
       "1L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/82.webp"
+    "imagenUrl": "/images/productos/82.webp",
+    "precio_unidad": 5.25,
+    "precio_caja": 63,
+    "variantes": [
+      {
+        "presentacion": "1L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 5.25,
+        "precio_caja": 63
+      }
+    ]
   },
   {
     "id": 83,
@@ -1653,7 +3298,17 @@ export const products: Product[] = [
       "0.70L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/83.webp"
+    "imagenUrl": "/images/productos/83.webp",
+    "precio_unidad": 5.6,
+    "precio_caja": 67.2,
+    "variantes": [
+      {
+        "presentacion": "0.70L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 5.6,
+        "precio_caja": 67.2
+      }
+    ]
   },
   {
     "id": 84,
@@ -1663,7 +3318,17 @@ export const products: Product[] = [
       "0.70L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/84.webp"
+    "imagenUrl": "/images/productos/84.webp",
+    "precio_unidad": 4.16,
+    "precio_caja": 49.92,
+    "variantes": [
+      {
+        "presentacion": "0.70L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 4.16,
+        "precio_caja": 49.92
+      }
+    ]
   },
   {
     "id": 85,
@@ -1673,7 +3338,17 @@ export const products: Product[] = [
       "Única"
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/85.webp"
+    "imagenUrl": "/images/productos/85.webp",
+    "precio_unidad": 4.22,
+    "precio_caja": 50.64,
+    "variantes": [
+      {
+        "presentacion": "Única",
+        "cantidad_caja": 12,
+        "precio_unidad": 4.22,
+        "precio_caja": 50.64
+      }
+    ]
   },
   {
     "id": 86,
@@ -1684,7 +3359,29 @@ export const products: Product[] = [
       "1L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/86.webp"
+    "imagenUrl": "/images/productos/86.webp",
+    "precio_unidad": [
+      5.76,
+      7.1
+    ],
+    "precio_caja": [
+      69.12,
+      85.2
+    ],
+    "variantes": [
+      {
+        "presentacion": "0.70L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 5.76,
+        "precio_caja": 69.12
+      },
+      {
+        "presentacion": "1L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 7.1,
+        "precio_caja": 85.2
+      }
+    ]
   },
   {
     "id": 87,
@@ -1694,7 +3391,17 @@ export const products: Product[] = [
       "Única"
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/87.webp"
+    "imagenUrl": "/images/productos/87.webp",
+    "precio_unidad": 8.95,
+    "precio_caja": 107.4,
+    "variantes": [
+      {
+        "presentacion": "Única",
+        "cantidad_caja": 12,
+        "precio_unidad": 8.95,
+        "precio_caja": 107.4
+      }
+    ]
   },
   {
     "id": 88,
@@ -1704,7 +3411,17 @@ export const products: Product[] = [
       "0.70L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/88.webp"
+    "imagenUrl": "/images/productos/88.webp",
+    "precio_unidad": 5.6,
+    "precio_caja": 67.2,
+    "variantes": [
+      {
+        "presentacion": "0.70L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 5.6,
+        "precio_caja": 67.2
+      }
+    ]
   },
   {
     "id": 89,
@@ -1714,7 +3431,17 @@ export const products: Product[] = [
       "Única"
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/89.webp"
+    "imagenUrl": "/images/productos/89.webp",
+    "precio_unidad": 4.82,
+    "precio_caja": 57.84,
+    "variantes": [
+      {
+        "presentacion": "Única",
+        "cantidad_caja": 12,
+        "precio_unidad": 4.82,
+        "precio_caja": 57.84
+      }
+    ]
   },
   {
     "id": 90,
@@ -1724,7 +3451,17 @@ export const products: Product[] = [
       "0.70L."
     ],
     "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/90.webp"
+    "imagenUrl": "/images/productos/90.webp",
+    "precio_unidad": 5.9,
+    "precio_caja": 70.8,
+    "variantes": [
+      {
+        "presentacion": "0.70L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 5.9,
+        "precio_caja": 70.8
+      }
+    ]
   },
   {
     "id": 141,
@@ -1734,7 +3471,17 @@ export const products: Product[] = [
       "0.75L."
     ],
     "cantidad_caja": 1,
-    "imagenUrl": "/images/productos/141.webp"
+    "imagenUrl": "/images/productos/141.webp",
+    "precio_unidad": 35.8,
+    "precio_caja": 35.8,
+    "variantes": [
+      {
+        "presentacion": "0.75L.",
+        "cantidad_caja": 1,
+        "precio_unidad": 35.8,
+        "precio_caja": 35.8
+      }
+    ]
   },
   {
     "id": 142,
@@ -1745,7 +3492,29 @@ export const products: Product[] = [
       "1L."
     ],
     "cantidad_caja": 1,
-    "imagenUrl": "/images/productos/142.webp"
+    "imagenUrl": "/images/productos/142.webp",
+    "precio_unidad": [
+      14.6,
+      17.59
+    ],
+    "precio_caja": [
+      14.6,
+      17.59
+    ],
+    "variantes": [
+      {
+        "presentacion": "0.75L.",
+        "cantidad_caja": 1,
+        "precio_unidad": 14.6,
+        "precio_caja": 14.6
+      },
+      {
+        "presentacion": "1L.",
+        "cantidad_caja": 1,
+        "precio_unidad": 17.59,
+        "precio_caja": 17.59
+      }
+    ]
   },
   {
     "id": 143,
@@ -1755,7 +3524,17 @@ export const products: Product[] = [
       "0.75L."
     ],
     "cantidad_caja": 1,
-    "imagenUrl": "/images/productos/143.webp"
+    "imagenUrl": "/images/productos/143.webp",
+    "precio_unidad": 36.99,
+    "precio_caja": 36.99,
+    "variantes": [
+      {
+        "presentacion": "0.75L.",
+        "cantidad_caja": 1,
+        "precio_unidad": 36.99,
+        "precio_caja": 36.99
+      }
+    ]
   },
   {
     "id": 144,
@@ -1765,7 +3544,17 @@ export const products: Product[] = [
       "0.75L."
     ],
     "cantidad_caja": 1,
-    "imagenUrl": "/images/productos/144.webp"
+    "imagenUrl": "/images/productos/144.webp",
+    "precio_unidad": 116,
+    "precio_caja": 116,
+    "variantes": [
+      {
+        "presentacion": "0.75L.",
+        "cantidad_caja": 1,
+        "precio_unidad": 116,
+        "precio_caja": 116
+      }
+    ]
   },
   {
     "id": 145,
@@ -1775,7 +3564,17 @@ export const products: Product[] = [
       "1L."
     ],
     "cantidad_caja": 1,
-    "imagenUrl": "/images/productos/145.webp"
+    "imagenUrl": "/images/productos/145.webp",
+    "precio_unidad": 19.95,
+    "precio_caja": 19.95,
+    "variantes": [
+      {
+        "presentacion": "1L.",
+        "cantidad_caja": 1,
+        "precio_unidad": 19.95,
+        "precio_caja": 19.95
+      }
+    ]
   },
   {
     "id": 146,
@@ -1785,7 +3584,17 @@ export const products: Product[] = [
       "0.75L."
     ],
     "cantidad_caja": 1,
-    "imagenUrl": "/images/productos/146.webp"
+    "imagenUrl": "/images/productos/146.webp",
+    "precio_unidad": 40,
+    "precio_caja": 40,
+    "variantes": [
+      {
+        "presentacion": "0.75L.",
+        "cantidad_caja": 1,
+        "precio_unidad": 40,
+        "precio_caja": 40
+      }
+    ]
   },
   {
     "id": 147,
@@ -1795,7 +3604,17 @@ export const products: Product[] = [
       "0.75L."
     ],
     "cantidad_caja": 1,
-    "imagenUrl": "/images/productos/147.webp"
+    "imagenUrl": "/images/productos/147.webp",
+    "precio_unidad": 35.25,
+    "precio_caja": 35.25,
+    "variantes": [
+      {
+        "presentacion": "0.75L.",
+        "cantidad_caja": 1,
+        "precio_unidad": 35.25,
+        "precio_caja": 35.25
+      }
+    ]
   },
   {
     "id": 148,
@@ -1805,7 +3624,17 @@ export const products: Product[] = [
       "0.70L."
     ],
     "cantidad_caja": 2,
-    "imagenUrl": "/images/productos/148.webp"
+    "imagenUrl": "/images/productos/148.webp",
+    "precio_unidad": 16,
+    "precio_caja": 32,
+    "variantes": [
+      {
+        "presentacion": "0.70L.",
+        "cantidad_caja": 2,
+        "precio_unidad": 16,
+        "precio_caja": 32
+      }
+    ]
   },
   {
     "id": 149,
@@ -1816,7 +3645,29 @@ export const products: Product[] = [
       "12 AÑOS"
     ],
     "cantidad_caja": 1,
-    "imagenUrl": "/images/productos/149.webp"
+    "imagenUrl": "/images/productos/149.webp",
+    "precio_unidad": [
+      18.75,
+      31.75
+    ],
+    "precio_caja": [
+      18.75,
+      31.75
+    ],
+    "variantes": [
+      {
+        "presentacion": "8 AÑOS",
+        "cantidad_caja": 1,
+        "precio_unidad": 18.75,
+        "precio_caja": 18.75
+      },
+      {
+        "presentacion": "12 AÑOS",
+        "cantidad_caja": 1,
+        "precio_unidad": 31.75,
+        "precio_caja": 31.75
+      }
+    ]
   },
   {
     "id": 150,
@@ -1826,7 +3677,17 @@ export const products: Product[] = [
       "0.75L."
     ],
     "cantidad_caja": 1,
-    "imagenUrl": "/images/productos/150.webp"
+    "imagenUrl": "/images/productos/150.webp",
+    "precio_unidad": 31.85,
+    "precio_caja": 31.85,
+    "variantes": [
+      {
+        "presentacion": "0.75L.",
+        "cantidad_caja": 1,
+        "precio_unidad": 31.85,
+        "precio_caja": 31.85
+      }
+    ]
   },
   {
     "id": 151,
@@ -1836,7 +3697,17 @@ export const products: Product[] = [
       "0.75L."
     ],
     "cantidad_caja": 1,
-    "imagenUrl": "/images/productos/151.webp"
+    "imagenUrl": "/images/productos/151.webp",
+    "precio_unidad": 26.3,
+    "precio_caja": 26.3,
+    "variantes": [
+      {
+        "presentacion": "0.75L.",
+        "cantidad_caja": 1,
+        "precio_unidad": 26.3,
+        "precio_caja": 26.3
+      }
+    ]
   },
   {
     "id": 153,
@@ -1846,7 +3717,17 @@ export const products: Product[] = [
       "0.75L."
     ],
     "cantidad_caja": 1,
-    "imagenUrl": "/images/productos/153.webp"
+    "imagenUrl": "/images/productos/153.webp",
+    "precio_unidad": 18.7,
+    "precio_caja": 18.7,
+    "variantes": [
+      {
+        "presentacion": "0.75L.",
+        "cantidad_caja": 1,
+        "precio_unidad": 18.7,
+        "precio_caja": 18.7
+      }
+    ]
   },
   {
     "id": 154,
@@ -1856,7 +3737,13 @@ export const products: Product[] = [
       "0.75L."
     ],
     "cantidad_caja": 2,
-    "imagenUrl": "/images/productos/154.webp"
+    "imagenUrl": "/images/productos/154.webp",
+    "variantes": [
+      {
+        "presentacion": "0.75L.",
+        "cantidad_caja": 2
+      }
+    ]
   },
   {
     "id": 167,
@@ -1866,7 +3753,17 @@ export const products: Product[] = [
       "0.75L."
     ],
     "cantidad_caja": 1,
-    "imagenUrl": "/images/productos/MacAllan.png"
+    "imagenUrl": "/images/productos/MacAllan.png",
+    "precio_unidad": 199,
+    "precio_caja": 199,
+    "variantes": [
+      {
+        "presentacion": "0.75L.",
+        "cantidad_caja": 1,
+        "precio_unidad": 199,
+        "precio_caja": 199
+      }
+    ]
   },
   {
     "id": 168,
@@ -1876,7 +3773,13 @@ export const products: Product[] = [
       "0.70L."
     ],
     "cantidad_caja": 1,
-    "imagenUrl": "/images/productos/gold.png"
+    "imagenUrl": "/images/productos/gold.png",
+    "variantes": [
+      {
+        "presentacion": "0.70L.",
+        "cantidad_caja": 1
+      }
+    ]
   },
   {
     "id": 181,
@@ -1886,6 +3789,16 @@ export const products: Product[] = [
       "0.70L."
     ],
     "cantidad_caja": 1,
-    "imagenUrl": "/images/productos/themacallan.png"
+    "imagenUrl": "/images/productos/themacallan.png",
+    "precio_unidad": 220,
+    "precio_caja": 220,
+    "variantes": [
+      {
+        "presentacion": "0.70L.",
+        "cantidad_caja": 1,
+        "precio_unidad": 220,
+        "precio_caja": 220
+      }
+    ]
   }
 ];

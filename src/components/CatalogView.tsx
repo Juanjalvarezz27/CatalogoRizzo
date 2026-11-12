@@ -115,7 +115,7 @@ export default function CatalogView() {
         {/* ── Hero Banner ────────────────────────────── */}
         <HeroBanner />
 
-        <main ref={catalogTopRef} className="scroll-mt-[100px] mx-auto w-full max-w-7xl flex-1 px-3 py-4 sm:px-5 sm:py-5 md:px-6 md:py-6 lg:px-8">
+        <main ref={catalogTopRef} className="scroll-mt-[100px] mx-auto w-full max-w-[1750px] flex-1 px-3 py-4 sm:px-5 sm:py-5 md:px-6 md:py-6 lg:px-8 2xl:px-12">
           {/* ── Controles superiores ──────────── */}
           <div className="mb-6">
 
@@ -200,7 +200,7 @@ export default function CatalogView() {
           id="footer"
           className="mt-auto border-t border-white/5 bg-night-950 py-12"
         >
-          <div className="mx-auto max-w-7xl px-4 sm:px-6">
+          <div className="mx-auto max-w-[1750px] px-4 sm:px-6 lg:px-8 2xl:px-12">
             <div className="flex flex-col items-center justify-between gap-8 md:flex-row md:items-start">
               
               {/* Logo y Descripción */}

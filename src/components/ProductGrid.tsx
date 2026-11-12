@@ -59,7 +59,7 @@ export default function ProductGrid({ products }: ProductGridProps) {
           </div>
           
           <section
-            className="grid grid-cols-2 gap-2.5 sm:gap-3 md:grid-cols-3 md:gap-4 lg:grid-cols-4 lg:gap-5 xl:grid-cols-5 xl:gap-6 2xl:grid-cols-6 items-start"
+            className="grid grid-cols-2 gap-3 sm:gap-3.5 md:grid-cols-3 md:gap-4 lg:grid-cols-4 lg:gap-4.5 xl:grid-cols-5 xl:gap-5 2xl:grid-cols-6 2xl:gap-5 items-stretch"
           >
             {prods.map((product, i) => (
               <ProductCard key={product.id} product={product} index={i} />

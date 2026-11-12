@@ -88,10 +88,10 @@ export default function HeroBanner() {
       />
 
       {/* ── Contenido ─────────────────────────────────── */}
-      <div className="relative z-10 mx-auto max-w-6xl px-4 pt-4 pb-6 sm:px-6 md:pt-8 md:pb-8 sm:pt-12 sm:pb-8">
-        <div className="flex flex-col-reverse items-center text-center md:flex-row md:text-left md:justify-center gap-6 md:gap-12 lg:gap-24">
+      <div className="relative z-10 mx-auto max-w-6xl lg:max-w-[1750px] px-4 pt-4 pb-6 sm:px-6 md:pt-8 md:pb-8 sm:pt-12 sm:pb-8 lg:px-8 2xl:px-12">
+        <div className="flex flex-col-reverse items-center text-center md:flex-row md:text-left md:justify-between gap-6 md:gap-10 lg:gap-16">
           {/* ── Lado izquierdo: Textos ─────── */}
-          <div className="flex flex-col items-center md:items-start max-w-lg mt-2 md:mt-0">
+          <div className="flex flex-col items-center md:items-start max-w-lg lg:max-w-2xl mt-2 md:mt-0">
             {/* Badge */}
             <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-gold-400/10 px-3.5 py-1.5 ring-1 ring-gold-400/20">
               <Sparkles className="h-3.5 w-3.5 text-gold-400" />
@@ -101,12 +101,12 @@ export default function HeroBanner() {
             </div>
 
             {/* Título principal */}
-            <h2 className="font-montserrat text-3xl font-extrabold leading-tight tracking-tight text-white md:text-4xl lg:text-5xl">
+            <h2 className="font-montserrat text-3xl font-extrabold leading-tight tracking-tight text-white md:text-4xl lg:text-5xl xl:text-6xl">
               Explora nuestro{" "}
               <span className="text-gradient-gold">catálogo</span>
             </h2>
 
-            <p className="mt-4 font-poppins text-sm sm:text-base leading-relaxed text-white/90 drop-shadow-md">
+            <p className="mt-4 font-poppins text-sm sm:text-base lg:text-lg leading-relaxed text-white/90 drop-shadow-md">
               Filtra por categoría, busca por nombre y descubre nuestra selección premium de licores al mayor.
             </p>
 
@@ -143,10 +143,10 @@ export default function HeroBanner() {
               <Image
                 src="/Logo.jpg"
                 alt="Licorería Rizzo Logo"
-                width={224}
-                height={224}
+                width={280}
+                height={280}
                 priority
-                className="relative h-32 w-32 md:h-44 md:w-44 lg:h-56 lg:w-56 rounded-full object-cover ring-2 ring-gold-400/50 shadow-2xl shadow-gold-500/20"
+                className="relative h-32 w-32 md:h-44 md:w-44 lg:h-60 lg:w-60 xl:h-72 xl:w-72 rounded-full object-cover ring-2 ring-gold-400/50 shadow-2xl shadow-gold-500/20"
               />
             </div>
           </div>
