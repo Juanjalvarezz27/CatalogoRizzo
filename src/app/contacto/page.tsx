@@ -14,7 +14,7 @@ export default function ContactPage() {
   const phoneNumber = "584166713911";
   const displayPhone = "0416-6713911";
   const emailAddress = "licoreriarizzo@gmail.com";
-  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent("Hola, me interesa hacer un pedido al mayor 🍸")}`;
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent("Hola, me interesa hacer un pedido al mayor.")}`;
   const instagramUrl = "https://instagram.com/licoreriarizzo";
   return (
     <div className="relative flex min-h-screen flex-col overflow-hidden">

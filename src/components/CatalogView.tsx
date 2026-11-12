@@ -254,8 +254,8 @@ export default function CatalogView() {
             {/* Copyright */}
             <div className="flex flex-col items-center justify-between gap-4 font-poppins text-xs text-white/40 md:flex-row">
               <p>© {new Date().getFullYear()} Licorería Rizzo. Todos los derechos reservados.</p>
-              <p className="text-center md:text-right text-gold-400/60 font-medium">
-                Los precios y disponibilidad se manejan directamente por WhatsApp.
+              <p className="text-center md:text-right text-gold-400/80 font-medium">
+                Precios referenciales al mayor en USD. Pagos en Bs. calculados a tasa oficial BCV del día.
               </p>
             </div>
           </div>

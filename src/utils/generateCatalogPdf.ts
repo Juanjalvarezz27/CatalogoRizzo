@@ -230,7 +230,7 @@ export async function generateCatalogPdf(
   const USABLE_HEIGHT = PAGE_HEIGHT - MARGIN_Y - HEADER_HEIGHT - FOOTER_HEIGHT - MARGIN_Y;
   const CARD_HEIGHT = (USABLE_HEIGHT - (GRID_GAP * (ROWS - 1))) / ROWS;
 
-  const imgIslandHeight = CARD_HEIGHT * 0.53;
+  const imgIslandHeight = 25;
   const islandRatio = (CARD_WIDTH - 4) / imgIslandHeight;
 
   // Pre-cargar recursos
@@ -283,20 +283,25 @@ export async function generateCatalogPdf(
     
     doc.setTextColor(...hexToRgb("#ffffff"));
     doc.setFont(fontBold, "bold");
-    doc.setFontSize(22);
-    doc.text("LICORERÍA RIZZO", MARGIN_X + 22, currentY + 7);
+    doc.setFontSize(20);
+    doc.text("LICORERÍA RIZZO", MARGIN_X + 22, currentY + 6.5);
     
     doc.setTextColor(...hexToRgb("#d4af37"));
     doc.setFont(fontBold, "bold");
-    doc.setFontSize(9);
-    doc.text("CATÁLOGO DE PRODUCTOS", MARGIN_X + 23, currentY + 12);
-    
-    doc.setTextColor(...hexToRgb("#999999"));
+    doc.setFontSize(8.5);
+    doc.text("CATÁLOGO MAYORISTA — PRECIOS B2B", MARGIN_X + 22.5, currentY + 11.5);
+
+    doc.setTextColor(...hexToRgb("#888888"));
     doc.setFont(fontReg, "normal");
-    doc.setFontSize(8);
+    doc.setFontSize(6);
+    doc.text("* Precios referenciales sujetos a cambio sin previo aviso. Tasa BCV del día.", MARGIN_X + 22.5, currentY + 15.5);
+    
+    doc.setTextColor(...hexToRgb("#cccccc"));
+    doc.setFont(fontReg, "normal");
+    doc.setFontSize(7.5);
     doc.text("IG: @licoreriarizzo", PAGE_WIDTH - MARGIN_X, currentY + 4, { align: "right" });
-    doc.text("Tel: 0416-6713911", PAGE_WIDTH - MARGIN_X, currentY + 9, { align: "right" });
-    doc.text("Email: licoreriarizzo@gmail.com", PAGE_WIDTH - MARGIN_X, currentY + 14, { align: "right" });
+    doc.text("Tel: 0416-6713911", PAGE_WIDTH - MARGIN_X, currentY + 8.5, { align: "right" });
+    doc.text("Email: licoreriarizzo@gmail.com", PAGE_WIDTH - MARGIN_X, currentY + 13, { align: "right" });
     
     doc.setDrawColor(...hexToRgb("#d4af37"));
     doc.setLineWidth(0.3);
@@ -305,10 +310,12 @@ export async function generateCatalogPdf(
     currentY += HEADER_HEIGHT;
     currentCol = 0;
     
-    doc.setTextColor(...hexToRgb("#666666"));
+    // Pie de página con numeración y nota legal
+    doc.setTextColor(...hexToRgb("#777777"));
     doc.setFont(fontReg, "normal");
-    doc.setFontSize(7);
-    doc.text(`Página ${pageCount} de ${TOTAL_PAGES_EXP}`, PAGE_WIDTH / 2, PAGE_HEIGHT - (MARGIN_Y / 2), { align: "center" });
+    doc.setFontSize(6.5);
+    doc.text("Licorería Rizzo — Distribución de licores al mayor", MARGIN_X, PAGE_HEIGHT - (MARGIN_Y / 2));
+    doc.text(`Página ${pageCount} de ${TOTAL_PAGES_EXP}`, PAGE_WIDTH - MARGIN_X, PAGE_HEIGHT - (MARGIN_Y / 2), { align: "right" });
   }
 
   // Primera página
@@ -387,31 +394,100 @@ export async function generateCatalogPdf(
         doc.text("Sin imagen", x + CARD_WIDTH/2, y + pad + imgIslandHeight/2, { align: "center" });
       }
       
-      let textY = y + pad + imgIslandHeight + 4.5;
-      
+      // Categoría
+      const catY = y + pad + imgIslandHeight + 3.2;
       doc.setTextColor(...hexToRgb("#d4af37"));
       doc.setFont(fontBold, "bold");
-      doc.setFontSize(6);
-      doc.text(p.categoria.toUpperCase(), x + pad + 1, textY);
-      textY += 4;
+      doc.setFontSize(5.5);
+      doc.text(p.categoria.toUpperCase(), x + pad + 1, catY);
       
+      // Nombre del producto
+      const nameY = catY + 3.2;
       doc.setTextColor(...hexToRgb("#ffffff"));
       doc.setFont(fontBold, "bold");
-      doc.setFontSize(8.5);
-      const nameLines = doc.splitTextToSize(toTitleCase(p.nombre), CARD_WIDTH - (pad*2) - 2);
-      doc.text(nameLines.slice(0, 2), x + pad + 1, textY);
+      doc.setFontSize(7.5);
+      const nameLines = doc.splitTextToSize(toTitleCase(p.nombre), CARD_WIDTH - (pad * 2) - 2);
+      doc.text(nameLines.slice(0, 2), x + pad + 1, nameY);
       
-      const bottomAreaY = y + CARD_HEIGHT - 6;
-      doc.setDrawColor(...hexToRgb("#8a7122"));
-      doc.setLineWidth(0.15);
-      doc.line(x + pad + 1, bottomAreaY - 2.5, x + CARD_WIDTH - pad - 1, bottomAreaY - 2.5);
-      
-      doc.setTextColor(...hexToRgb("#d4af37"));
-      doc.setFont(fontBold, "bold");
-      doc.setFontSize(6.5);
-      const presentacionesText = p.presentaciones.join("  |  ");
-      const presLines = doc.splitTextToSize(presentacionesText, CARD_WIDTH - (pad*2) - 2);
-      doc.text(presLines.slice(0,1), x + pad + 1, bottomAreaY + 1);
+      // Presentaciones y empaque
+      const presY = nameY + (nameLines.length > 1 ? 5.8 : 3.8);
+      doc.setTextColor(...hexToRgb("#aaaaaa"));
+      doc.setFont(fontReg, "normal");
+      doc.setFontSize(5.5);
+      const empaqueSuffix = p.cantidad_caja ? ` · Caja x${Array.isArray(p.cantidad_caja) ? p.cantidad_caja.join('/') : p.cantidad_caja}` : "";
+      const presentacionesText = p.presentaciones.join(" · ") + empaqueSuffix;
+      const presLines = doc.splitTextToSize(presentacionesText, CARD_WIDTH - (pad * 2) - 2);
+      doc.text(presLines.slice(0, 1), x + pad + 1, presY);
+
+      // Precios mayoristas por variante o base
+      const pricedVariants = p.variantes?.filter(
+        (v) => v.precio_caja !== undefined && v.precio_unidad !== undefined
+      ) ?? [];
+
+      const hasPrice = pricedVariants.length > 0;
+      const isMultiVariant = pricedVariants.length > 1;
+
+      const displayBoxPrice = hasPrice
+        ? Math.min(...pricedVariants.map((v) => v.precio_caja!))
+        : 0;
+
+      const displayUnitPrice = hasPrice
+        ? Math.min(...pricedVariants.map((v) => v.precio_unidad!))
+        : 0;
+
+      // Caja de precios inferior
+      const priceBoxY = y + CARD_HEIGHT - 11.5;
+      const priceBoxH = 9.5;
+      const priceBoxW = CARD_WIDTH - (pad * 2);
+      const priceBoxX = x + pad;
+
+      doc.setFillColor(...hexToRgb("#1a1a1c"));
+      doc.setDrawColor(...hexToRgb("#38383c"));
+      doc.setLineWidth(0.2);
+      doc.roundedRect(priceBoxX, priceBoxY, priceBoxW, priceBoxH, 1.5, 1.5, "FD");
+
+      if (hasPrice) {
+        // Precio caja B2B
+        const col1X = priceBoxX + 1.8;
+        doc.setFont(fontBold, "bold");
+        doc.setFontSize(4.2);
+        doc.setTextColor(...hexToRgb("#d4af37"));
+        doc.text(isMultiVariant ? "CAJA DESDE" : "PRECIO CAJA", col1X, priceBoxY + 3.1);
+
+        doc.setFont(fontBold, "bold");
+        doc.setFontSize(7.2);
+        doc.setTextColor(...hexToRgb("#d4af37"));
+        doc.text(`$${displayBoxPrice.toFixed(2)}`, col1X, priceBoxY + 7.5);
+
+        // Separador vertical
+        const dividerX = priceBoxX + 20;
+        doc.setDrawColor(...hexToRgb("#44444a"));
+        doc.setLineWidth(0.18);
+        doc.line(dividerX, priceBoxY + 1.8, dividerX, priceBoxY + priceBoxH - 1.8);
+
+        // Precio unitario
+        const col2X = dividerX + 1.8;
+        doc.setFont(fontBold, "bold");
+        doc.setFontSize(4.2);
+        doc.setTextColor(...hexToRgb("#999999"));
+        doc.text(isMultiVariant ? "UNID. DESDE" : "POR UNIDAD", col2X, priceBoxY + 3.1);
+
+        doc.setFont(fontBold, "bold");
+        doc.setFontSize(6.8);
+        doc.setTextColor(...hexToRgb("#ffffff"));
+        doc.text(`$${displayUnitPrice.toFixed(2)}`, col2X, priceBoxY + 7.5);
+      } else {
+        // Estado sin precio
+        doc.setFont(fontBold, "bold");
+        doc.setFontSize(5.5);
+        doc.setTextColor(...hexToRgb("#d4af37"));
+        doc.text("PRECIO BAJO CONSULTA", priceBoxX + (priceBoxW / 2), priceBoxY + 4.1, { align: "center" });
+
+        doc.setFont(fontReg, "normal");
+        doc.setFontSize(4.5);
+        doc.setTextColor(...hexToRgb("#aaaaaa"));
+        doc.text("Disponibilidad vía WhatsApp", priceBoxX + (priceBoxW / 2), priceBoxY + 7.6, { align: "center" });
+      }
 
       currentCol++;
       processedCount++;

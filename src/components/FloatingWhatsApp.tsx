@@ -6,7 +6,7 @@ export default function FloatingWhatsApp() {
   const [isVisible, setIsVisible] = useState(false);
   const phoneNumber = "584166713911";
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
-    "Hola, me interesa hacer un pedido al mayor 🍸"
+    "Hola, me interesa hacer un pedido al mayor."
   )}`;
 
   // Un pequeño retraso para que aparezca después de que cargue la interfaz, llamando un poco más la atención

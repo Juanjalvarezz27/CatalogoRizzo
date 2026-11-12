@@ -63,7 +63,7 @@ export default function HeroBanner() {
     
     const a = document.createElement("a");
     a.href = url;
-    a.download = "Catalogo_Premium_Rizzo.pdf";
+    a.download = "Catalogo_Mayorista_Rizzo.pdf";
     a.style.display = "none";
     document.body.appendChild(a);
     a.click();
