@@ -212,15 +212,35 @@
   }
 
   /* Modo seguro para WebKit/iOS (Safari, Chrome iOS, etc.).
-     En iOS el backdrop-filter sobre paneles grandes que acompañan al scroll
-     sigue produciendo repintados erróneos (bloques lechosos que se desbordan)
-     incluso con la capa aislada, así que lo desactivamos y usamos un fondo
-     casi opaco: visualmente es casi idéntico sobre el fondo oscuro. */
+     En iOS el backdrop-filter sigue produciendo repintados erróneos (bloques
+     lechosos que se desbordan) incluso con la capa aislada, así que lo
+     desactivamos por completo en pantallas táctiles y usamos un fondo casi
+     opaco: visualmente es casi idéntico sobre el fondo oscuro. */
   @supports (-webkit-touch-callout: none) {
     .glass-panel,
+    .glass-night,
+    [class*="backdrop-blur"] {
+      -webkit-backdrop-filter: none !important;
+      backdrop-filter: none !important;
+    }
+
+    .glass-panel {
+      background-color: rgba(22, 22, 25, 0.94);
+    }
+
     .glass-night {
-      -webkit-backdrop-filter: none;
-      backdrop-filter: none;
+      background-color: rgba(10, 10, 11, 0.95);
+    }
+  }
+
+  /* Misma red de seguridad para cualquier dispositivo táctil (iOS/Android),
+     sin depender de propiedades propietarias de WebKit. */
+  @media (hover: none) and (pointer: coarse) {
+    .glass-panel,
+    .glass-night,
+    [class*="backdrop-blur"] {
+      -webkit-backdrop-filter: none !important;
+      backdrop-filter: none !important;
     }
 
     .glass-panel {
