@@ -136,8 +136,14 @@
 }
 
 @layer utilities {
+  /* fill-mode: backwards (en lugar de both) hace que, al terminar la
+     animación, el `transform` se libere. Con `both` el translateY(0) queda
+     aplicado para siempre y convierte al contenedor en "backdrop root":
+     en iOS/Safari eso hace que cualquier backdrop-filter descendiente
+     muestree un área mayor que la tarjeta y se vea como un parche lechoso
+     que se mueve al hacer scroll. */
   .animate-fade-in-up {
-    animation: fade-in-up 0.5s ease-out both;
+    animation: fade-in-up 0.5s ease-out backwards;
   }
 
   .animate-float-glow {
@@ -175,7 +181,33 @@
   /* Glassmorphism oscuro */
   .glass-night {
     background: rgba(10, 10, 11, 0.88);
-    backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
+    backdrop-filter: blur(20px) saturate(180%);
+    isolation: isolate;
+  }
+
+  /* Glassmorphism contenido y estable en iOS/Safari.
+     - `isolation: isolate` evita que los blend modes / filtros de los hijos
+       se mezclen con lo que hay detrás de la tarjeta.
+     - `transform: translateZ(0)` promueve la tarjeta a su propia capa de
+       composición. Safari recorta entonces el backdrop-filter a los límites
+       de ESA capa, en vez de muestrear un snapshot sin recortar.
+     - `overflow: hidden` + el radio del propio elemento terminan de contener
+       el desenfoque dentro de la tarjeta. */
+  .glass-panel {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    -webkit-backdrop-filter: saturate(160%) blur(18px);
+    backdrop-filter: saturate(160%) blur(18px);
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+
+  /* Fallback opaco si el navegador no soporta backdrop-filter */
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .glass-panel {
+      background-color: rgba(24, 24, 27, 0.94);
+    }
   }
 }

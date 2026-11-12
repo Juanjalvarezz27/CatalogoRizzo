@@ -47,7 +47,7 @@ export default memo(function ProductCard({ product, index }: ProductCardProps) {
       >
         <div>
           {/* ── Imagen en Isla Flotante Blanca Pura (Aspecto Compacto 1:1) ── */}
-          <div className="relative mx-2 mt-2 sm:mx-2.5 sm:mt-2.5 shrink-0 overflow-hidden rounded-[18px] sm:rounded-[22px] bg-white shadow-sm isolation-isolate transform-gpu pb-[100%]">
+          <div className="relative mx-2 mt-2 sm:mx-2.5 sm:mt-2.5 shrink-0 overflow-hidden rounded-[18px] sm:rounded-[22px] bg-white shadow-sm isolate transform-gpu pb-[100%]">
             <div className="absolute right-2.5 top-2.5 sm:right-3 sm:top-3 z-20 text-gold-500/80">
               <ArrowBigDownDash className="h-4 w-4 sm:h-4.5 sm:w-4.5" strokeWidth={2} />
             </div>
@@ -108,7 +108,7 @@ export default memo(function ProductCard({ product, index }: ProductCardProps) {
 
         {/* ── Bloque de Precios B2B Compacto y Ajustado ── */}
         <div className="p-2 sm:p-2.5 md:p-3 pt-1">
-          <div className="rounded-xl sm:rounded-2xl bg-[#1c1c1e]/90 p-2 sm:p-2.5 ring-1 ring-white/10 backdrop-blur-sm transition-all group-hover:bg-[#242428] group-hover:ring-gold-500/30 shadow-inner">
+          <div className="rounded-xl sm:rounded-2xl bg-[#1c1c1e]/95 p-2 sm:p-2.5 ring-1 ring-white/10 transition-all group-hover:bg-[#242428] group-hover:ring-gold-500/30 shadow-inner">
             {hasPrice ? (
               <div className="flex items-center justify-between gap-1.5 sm:gap-2">
                 {/* Precio Caja (Destacado B2B) */}

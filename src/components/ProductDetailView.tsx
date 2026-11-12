@@ -48,8 +48,11 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
   return (
     <div className="flex flex-col gap-8 lg:grid lg:grid-cols-2 lg:gap-16 lg:items-start">
       {/* ── Columna Izquierda: Imagen del Producto ── */}
-      <div className="animate-fade-in-up flex justify-center sticky top-24">
-        <div className="relative w-full max-w-[340px] sm:max-w-[420px] lg:max-w-none lg:w-full aspect-square overflow-hidden rounded-[28px] sm:rounded-[36px] bg-white shadow-2xl shadow-gold-900/20 ring-1 ring-white/10">
+      {/* El `sticky` va en el contenedor y la animación en el hijo: animar un
+          elemento sticky con transform provoca repintados erráticos del
+          backdrop-filter en iOS. */}
+      <div className="flex justify-center sticky top-24">
+        <div className="animate-fade-in-up relative w-full max-w-[340px] sm:max-w-[420px] lg:max-w-none lg:w-full aspect-square overflow-hidden rounded-[28px] sm:rounded-[36px] bg-white shadow-2xl shadow-gold-900/20 ring-1 ring-white/10 isolate">
           <div className="absolute inset-0 flex items-center justify-center p-6 sm:p-10">
             <img
               src={product.imagenUrl}
@@ -62,8 +65,11 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
             />
           </div>
 
-          {/* Badge flotante en la imagen con la cantidad de la variante actual */}
-          <div className="absolute bottom-4 right-4 z-20 flex items-center gap-1.5 rounded-full bg-[#1c1c1e]/90 px-3 py-1.5 shadow-lg ring-1 ring-white/15 backdrop-blur-md">
+          {/* Badge flotante en la imagen con la cantidad de la variante actual.
+              Sin backdrop-blur: al 90% de opacidad el desenfoque no aporta y,
+              dentro de un contenedor sticky/animado, era el origen del parche
+              difuminado que se movía sobre la imagen en Safari. */}
+          <div className="absolute bottom-4 right-4 z-20 flex items-center gap-1.5 rounded-full bg-[#1c1c1e]/95 px-3 py-1.5 shadow-lg ring-1 ring-white/15">
             <Package className="h-3.5 w-3.5 text-gold-400" />
             <span className="font-poppins text-xs font-bold text-white">
               x {activeVariant.cantidad_caja} unid. por caja
@@ -119,7 +125,7 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
         </div>
 
         {/* ── Vitrina de Precios B2B Destacada ── */}
-        <div className="mb-6 w-full rounded-2xl bg-gradient-to-b from-white/[0.07] to-white/[0.03] p-4 sm:p-5 ring-1 ring-white/10 backdrop-blur-md shadow-xl">
+        <div className="glass-panel mb-6 w-full rounded-2xl bg-gradient-to-b from-white/[0.07] to-white/[0.03] p-4 sm:p-5 ring-1 ring-white/10 shadow-xl">
           {hasPrice ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {/* Tarjeta de Precio por Caja */}
@@ -168,7 +174,7 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
         </div>
 
         {/* ── Especificaciones de Empaque ── */}
-        <div className="mb-8 w-full rounded-2xl bg-white/5 p-4 ring-1 ring-white/10 backdrop-blur-sm">
+        <div className="glass-panel mb-8 w-full rounded-2xl bg-white/5 p-4 ring-1 ring-white/10">
           <div className="flex items-start gap-3.5">
             <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-night-900 ring-1 ring-gold-500/30">
               <Package className="h-5 w-5 text-gold-400" />
