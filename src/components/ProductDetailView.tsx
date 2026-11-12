@@ -48,10 +48,10 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
   return (
     <div className="flex flex-col gap-8 lg:grid lg:grid-cols-2 lg:gap-16 lg:items-start">
       {/* ── Columna Izquierda: Imagen del Producto ── */}
-      {/* El `sticky` va en el contenedor y la animación en el hijo: animar un
-          elemento sticky con transform provoca repintados erráticos del
-          backdrop-filter en iOS. */}
-      <div className="flex justify-center sticky top-24">
+      {/* Sin `sticky`: en móvil la imagen se quedaba fija y el texto pasaba
+          por encima al hacer scroll. Ahora todo fluye con el documento:
+          baja y sube normal. La animación vive en el hijo, no en la columna. */}
+      <div className="flex justify-center">
         <div className="animate-fade-in-up relative w-full max-w-[340px] sm:max-w-[420px] lg:max-w-none lg:w-full aspect-square overflow-hidden rounded-[28px] sm:rounded-[36px] bg-white shadow-2xl shadow-gold-900/20 ring-1 ring-white/10 isolate">
           <div className="absolute inset-0 flex items-center justify-center p-6 sm:p-10">
             <img

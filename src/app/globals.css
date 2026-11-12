@@ -210,4 +210,25 @@
       background-color: rgba(24, 24, 27, 0.94);
     }
   }
+
+  /* Modo seguro para WebKit/iOS (Safari, Chrome iOS, etc.).
+     En iOS el backdrop-filter sobre paneles grandes que acompañan al scroll
+     sigue produciendo repintados erróneos (bloques lechosos que se desbordan)
+     incluso con la capa aislada, así que lo desactivamos y usamos un fondo
+     casi opaco: visualmente es casi idéntico sobre el fondo oscuro. */
+  @supports (-webkit-touch-callout: none) {
+    .glass-panel,
+    .glass-night {
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+    }
+
+    .glass-panel {
+      background-color: rgba(22, 22, 25, 0.94);
+    }
+
+    .glass-night {
+      background-color: rgba(10, 10, 11, 0.95);
+    }
+  }
 }
