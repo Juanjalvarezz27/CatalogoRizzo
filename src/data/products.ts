@@ -594,7 +594,7 @@ export const products: Product[] = [
     "presentaciones": [
       "Varios"
     ],
-    "cantidad_caja": 12,
+    "cantidad_caja": 6,
     "imagenUrl": "/images/productos/sun.png",
     "precio_unidad": 5.1,
     "precio_caja": 30.6,
@@ -1106,7 +1106,7 @@ export const products: Product[] = [
     "presentaciones": [
       "0.70L."
     ],
-    "cantidad_caja": 12,
+    "cantidad_caja": 6,
     "imagenUrl": "/images/productos/coconis.png",
     "precio_unidad": 4.99,
     "precio_caja": 29.94,
@@ -1126,7 +1126,7 @@ export const products: Product[] = [
     "presentaciones": [
       "0.70L."
     ],
-    "cantidad_caja": 12,
+    "cantidad_caja": 6,
     "imagenUrl": "/images/productos/toscana.png",
     "precio_unidad": 9,
     "precio_caja": 54,
@@ -1186,7 +1186,7 @@ export const products: Product[] = [
     "presentaciones": [
       "0.70L."
     ],
-    "cantidad_caja": 12,
+    "cantidad_caja": 6,
     "imagenUrl": "/images/productos/Amaretto.png",
     "precio_unidad": 9.55,
     "precio_caja": 57.3,
@@ -1927,7 +1927,7 @@ export const products: Product[] = [
     "presentaciones": [
       "1L."
     ],
-    "cantidad_caja": 12,
+    "cantidad_caja": 24,
     "imagenUrl": "/images/productos/70.webp",
     "precio_unidad": 1.81,
     "precio_caja": 43.44,
@@ -2727,7 +2727,7 @@ export const products: Product[] = [
     "presentaciones": [
       "930ml."
     ],
-    "cantidad_caja": 12,
+    "cantidad_caja": 6,
     "imagenUrl": "/images/productos/corrales.png",
     "precio_unidad": 14.9,
     "precio_caja": 89.4,
@@ -2921,7 +2921,7 @@ export const products: Product[] = [
     "presentaciones": [
       "Chardonay"
     ],
-    "cantidad_caja": 12,
+    "cantidad_caja": 6,
     "imagenUrl": "/images/productos/tini.png",
     "precio_unidad": 8.7,
     "precio_caja": 52.2,
@@ -2941,7 +2941,7 @@ export const products: Product[] = [
     "presentaciones": [
       "0.75L."
     ],
-    "cantidad_caja": 12,
+    "cantidad_caja": 6,
     "imagenUrl": "/images/productos/licensioso.png",
     "precio_unidad": 10.83,
     "precio_caja": 64.98,
@@ -2988,7 +2988,7 @@ export const products: Product[] = [
     "presentaciones": [
       "Merlot"
     ],
-    "cantidad_caja": 12,
+    "cantidad_caja": 6,
     "imagenUrl": "/images/productos/sera.png",
     "precio_unidad": 10,
     "precio_caja": 60,
