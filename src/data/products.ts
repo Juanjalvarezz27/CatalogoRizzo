@@ -619,9 +619,13 @@ export const products: Product[] = [
     "variantes": [
       {
         "presentacion": "0.50L.",
-        "cantidad_caja": 12
+        "cantidad_caja": 12,
+        "precio_unidad": 10.5,
+        "precio_caja": 126
       }
-    ]
+    ],
+    "precio_unidad": 10.5,
+    "precio_caja": 126
   },
   {
     "id": 177,
@@ -811,9 +815,13 @@ export const products: Product[] = [
     "variantes": [
       {
         "presentacion": "250ML",
-        "cantidad_caja": 24
+        "cantidad_caja": 24,
+        "precio_unidad": 4.7,
+        "precio_caja": 112.8
       }
-    ]
+    ],
+    "precio_unidad": 4.7,
+    "precio_caja": 112.8
   },
   {
     "id": 31,
@@ -867,9 +875,13 @@ export const products: Product[] = [
     "variantes": [
       {
         "presentacion": "0.75L.",
-        "cantidad_caja": 12
+        "cantidad_caja": 12,
+        "precio_unidad": 4.25,
+        "precio_caja": 51
       }
-    ]
+    ],
+    "precio_unidad": 4.25,
+    "precio_caja": 51
   },
   {
     "id": 34,
@@ -1139,9 +1151,13 @@ export const products: Product[] = [
     "variantes": [
       {
         "presentacion": "0.70L.",
-        "cantidad_caja": 12
+        "cantidad_caja": 12,
+        "precio_unidad": 9.65,
+        "precio_caja": 115.8
       }
-    ]
+    ],
+    "precio_unidad": 9.65,
+    "precio_caja": 115.8
   },
   {
     "id": 175,
@@ -1155,9 +1171,13 @@ export const products: Product[] = [
     "variantes": [
       {
         "presentacion": "0.70L.",
-        "cantidad_caja": 12
+        "cantidad_caja": 12,
+        "precio_unidad": 9.6,
+        "precio_caja": 115.2
       }
-    ]
+    ],
+    "precio_unidad": 9.6,
+    "precio_caja": 115.2
   },
   {
     "id": 176,
@@ -1191,13 +1211,17 @@ export const products: Product[] = [
     "variantes": [
       {
         "presentacion": "0.70L.",
-        "cantidad_caja": 12
+        "cantidad_caja": 12,
+        "precio_unidad": 34,
+        "precio_caja": 408
       }
-    ]
+    ],
+    "precio_unidad": 34,
+    "precio_caja": 408
   },
   {
     "id": 163,
-    "nombre": "GARLIN",
+    "nombre": "CARLIN",
     "categoria": "Licores Dulces",
     "presentaciones": [
       "Licor de Café",
@@ -1208,12 +1232,24 @@ export const products: Product[] = [
     "variantes": [
       {
         "presentacion": "Licor de Café",
-        "cantidad_caja": 12
+        "cantidad_caja": 12,
+        "precio_unidad": 4.55,
+        "precio_caja": 54.6
       },
       {
         "presentacion": "Licor de Cacao",
-        "cantidad_caja": 12
+        "cantidad_caja": 12,
+        "precio_unidad": 6.55,
+        "precio_caja": 78.6
       }
+    ],
+    "precio_unidad": [
+      4.55,
+      6.55
+    ],
+    "precio_caja": [
+      54.6,
+      78.6
     ]
   },
   {
@@ -1228,9 +1264,13 @@ export const products: Product[] = [
     "variantes": [
       {
         "presentacion": "1L.",
-        "cantidad_caja": 12
+        "cantidad_caja": 12,
+        "precio_unidad": 31,
+        "precio_caja": 372
       }
-    ]
+    ],
+    "precio_unidad": 31,
+    "precio_caja": 372
   },
   {
     "id": 166,
@@ -1244,9 +1284,13 @@ export const products: Product[] = [
     "variantes": [
       {
         "presentacion": "1L.",
-        "cantidad_caja": 12
+        "cantidad_caja": 12,
+        "precio_unidad": 39.99,
+        "precio_caja": 479.88
       }
-    ]
+    ],
+    "precio_unidad": 39.99,
+    "precio_caja": 479.88
   },
   {
     "id": 45,
@@ -1670,20 +1714,24 @@ export const products: Product[] = [
     "categoria": "Licores de Ron",
     "presentaciones": [
       "0.35L",
-      "1L."
+      "1L.",
+      "1.75L."
     ],
     "cantidad_caja": [
       24,
-      12
+      12,
+      6
     ],
     "imagenUrl": "/images/productos/62.webp",
     "precio_unidad": [
       1.26,
-      2.47
+      2.47,
+      4.25
     ],
     "precio_caja": [
       30.24,
-      29.64
+      29.64,
+      25.5
     ],
     "variantes": [
       {
@@ -1697,6 +1745,12 @@ export const products: Product[] = [
         "cantidad_caja": 12,
         "precio_unidad": 2.47,
         "precio_caja": 29.64
+      },
+      {
+        "presentacion": "1.75L.",
+        "cantidad_caja": 6,
+        "precio_unidad": 4.25,
+        "precio_caja": 25.5
       }
     ]
   },
@@ -2067,13 +2121,29 @@ export const products: Product[] = [
     "nombre": "RON PAMPERO ESPECIAL",
     "categoria": "Licores de Ron",
     "presentaciones": [
+      "0.70L.",
       "0.75L."
     ],
-    "cantidad_caja": 12,
+    "cantidad_caja": [
+      12,
+      12
+    ],
     "imagenUrl": "/images/productos/98.webp",
-    "precio_unidad": 10.16,
-    "precio_caja": 121.92,
+    "precio_unidad": [
+      7.99,
+      10.16
+    ],
+    "precio_caja": [
+      95.88,
+      121.92
+    ],
     "variantes": [
+      {
+        "presentacion": "0.70L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 7.99,
+        "precio_caja": 95.88
+      },
       {
         "presentacion": "0.75L.",
         "cantidad_caja": 12,
@@ -2099,22 +2169,6 @@ export const products: Product[] = [
         "cantidad_caja": 6,
         "precio_unidad": 15.3,
         "precio_caja": 91.8
-      }
-    ]
-  },
-  {
-    "id": 100,
-    "nombre": "RON ROBLE VIEJO MAESTRO",
-    "categoria": "Licores de Ron",
-    "presentaciones": [
-      "0.70L."
-    ],
-    "cantidad_caja": 1,
-    "imagenUrl": "/images/productos/100.webp",
-    "variantes": [
-      {
-        "presentacion": "0.70L.",
-        "cantidad_caja": 1
       }
     ]
   },
@@ -2190,9 +2244,13 @@ export const products: Product[] = [
     "variantes": [
       {
         "presentacion": "0.70L.",
-        "cantidad_caja": 6
+        "cantidad_caja": 6,
+        "precio_unidad": 28.9,
+        "precio_caja": 173.4
       }
-    ]
+    ],
+    "precio_unidad": 28.9,
+    "precio_caja": 173.4
   },
   {
     "id": 173,
@@ -2206,9 +2264,13 @@ export const products: Product[] = [
     "variantes": [
       {
         "presentacion": "0.70L.",
-        "cantidad_caja": 6
+        "cantidad_caja": 6,
+        "precio_unidad": 20.5,
+        "precio_caja": 123
       }
-    ]
+    ],
+    "precio_unidad": 20.5,
+    "precio_caja": 123
   },
   {
     "id": 73,
@@ -2458,9 +2520,13 @@ export const products: Product[] = [
     "variantes": [
       {
         "presentacion": "1L.",
-        "cantidad_caja": 12
+        "cantidad_caja": 12,
+        "precio_unidad": 2.72,
+        "precio_caja": 32.64
       }
-    ]
+    ],
+    "precio_unidad": 2.72,
+    "precio_caja": 32.64
   },
   {
     "id": 114,
@@ -2735,42 +2801,6 @@ export const products: Product[] = [
     ]
   },
   {
-    "id": 126,
-    "nombre": "VINO LA SAGRADA CENA TINTO / BLANCO",
-    "categoria": "Vinos",
-    "presentaciones": [
-      "Única"
-    ],
-    "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/126.webp",
-    "variantes": [
-      {
-        "presentacion": "Única",
-        "cantidad_caja": 12
-      }
-    ]
-  },
-  {
-    "id": 127,
-    "nombre": "VINO LA SAGRADA FAMILIA TINTO BLANCO",
-    "categoria": "Vinos",
-    "presentaciones": [
-      "0.70L."
-    ],
-    "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/127.webp",
-    "precio_unidad": 6.55,
-    "precio_caja": 78.6,
-    "variantes": [
-      {
-        "presentacion": "0.70L.",
-        "cantidad_caja": 12,
-        "precio_unidad": 6.55,
-        "precio_caja": 78.6
-      }
-    ]
-  },
-  {
     "id": 128,
     "nombre": "VINO LA VINOTINTO ESPAÑOL",
     "categoria": "Vinos",
@@ -2864,17 +2894,25 @@ export const products: Product[] = [
     "variantes": [
       {
         "presentacion": "Garnacha",
-        "cantidad_caja": 12
+        "cantidad_caja": 12,
+        "precio_unidad": 14.2,
+        "precio_caja": 170.4
       },
       {
         "presentacion": "Monastrel",
-        "cantidad_caja": 12
+        "cantidad_caja": 12,
+        "precio_unidad": 14.2,
+        "precio_caja": 170.4
       },
       {
         "presentacion": "Tempranillo",
-        "cantidad_caja": 12
+        "cantidad_caja": 12,
+        "precio_unidad": 14.2,
+        "precio_caja": 170.4
       }
-    ]
+    ],
+    "precio_unidad": 14.2,
+    "precio_caja": 170.4
   },
   {
     "id": 157,
@@ -2929,13 +2967,19 @@ export const products: Product[] = [
     "variantes": [
       {
         "presentacion": "Bianco 1L.",
-        "cantidad_caja": 12
+        "cantidad_caja": 12,
+        "precio_unidad": 26.5,
+        "precio_caja": 318
       },
       {
         "presentacion": "Rossi 1L.",
-        "cantidad_caja": 12
+        "cantidad_caja": 12,
+        "precio_unidad": 26.5,
+        "precio_caja": 318
       }
-    ]
+    ],
+    "precio_unidad": 26.5,
+    "precio_caja": 318
   },
   {
     "id": 179,
@@ -3146,14 +3190,14 @@ export const products: Product[] = [
     ],
     "cantidad_caja": 6,
     "imagenUrl": "/images/productos/Stolichnaya.png",
-    "precio_unidad": 25.5,
-    "precio_caja": 153,
+    "precio_unidad": 25.8,
+    "precio_caja": 154.8,
     "variantes": [
       {
         "presentacion": "0.75L.",
         "cantidad_caja": 6,
-        "precio_unidad": 25.5,
-        "precio_caja": 153
+        "precio_unidad": 25.8,
+        "precio_caja": 154.8
       }
     ]
   },
@@ -3741,9 +3785,13 @@ export const products: Product[] = [
     "variantes": [
       {
         "presentacion": "0.75L.",
-        "cantidad_caja": 2
+        "cantidad_caja": 2,
+        "precio_unidad": 19.5,
+        "precio_caja": 39
       }
-    ]
+    ],
+    "precio_unidad": 19.5,
+    "precio_caja": 39
   },
   {
     "id": 167,
@@ -3777,9 +3825,13 @@ export const products: Product[] = [
     "variantes": [
       {
         "presentacion": "0.70L.",
-        "cantidad_caja": 1
+        "cantidad_caja": 1,
+        "precio_unidad": 78,
+        "precio_caja": 78
       }
-    ]
+    ],
+    "precio_unidad": 78,
+    "precio_caja": 78
   },
   {
     "id": 181,
