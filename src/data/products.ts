@@ -302,10 +302,14 @@ export const products: Product[] = [
     ],
     "cantidad_caja": 12,
     "imagenUrl": "/images/productos/plateraa.png",
+    "precio_unidad": 7.99,
+    "precio_caja": 95.88,
     "variantes": [
       {
         "presentacion": "0.70L.",
-        "cantidad_caja": 12
+        "cantidad_caja": 12,
+        "precio_unidad": 7.99,
+        "precio_caja": 95.88
       }
     ]
   },
@@ -352,22 +356,6 @@ export const products: Product[] = [
         "cantidad_caja": 12,
         "precio_unidad": 3.95,
         "precio_caja": 47.4
-      }
-    ]
-  },
-  {
-    "id": 11,
-    "nombre": "SAN TROPEZ 40°",
-    "categoria": "Aguardientes",
-    "presentaciones": [
-      "1L."
-    ],
-    "cantidad_caja": 12,
-    "imagenUrl": "/images/productos/11.webp",
-    "variantes": [
-      {
-        "presentacion": "1L.",
-        "cantidad_caja": 12
       }
     ]
   },
@@ -2689,14 +2677,31 @@ export const products: Product[] = [
     "nombre": "TEQUILA KAH",
     "categoria": "Tequilas y Licores de Agave",
     "presentaciones": [
-      "Única"
+      "Blanco",
+      "Reposado"
     ],
     "cantidad_caja": 1,
     "imagenUrl": "/images/productos/121.webp",
+    "precio_unidad": [
+      76,
+      93
+    ],
+    "precio_caja": [
+      76,
+      93
+    ],
     "variantes": [
       {
-        "presentacion": "Única",
-        "cantidad_caja": 1
+        "presentacion": "Blanco",
+        "cantidad_caja": 1,
+        "precio_unidad": 76,
+        "precio_caja": 76
+      },
+      {
+        "presentacion": "Reposado",
+        "cantidad_caja": 1,
+        "precio_unidad": 93,
+        "precio_caja": 93
       }
     ]
   },
