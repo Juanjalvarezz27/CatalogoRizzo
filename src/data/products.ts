@@ -576,6 +576,26 @@ export const products: Product[] = [
     ]
   },
   {
+    "id": 182,
+    "nombre": "COCUY TAMUNANGUE MACERADO",
+    "categoria": "Cocuy",
+    "presentaciones": [
+      "1L."
+    ],
+    "cantidad_caja": 12,
+    "imagenUrl": "/images/productos/182.webp",
+    "precio_unidad": 3,
+    "precio_caja": 36,
+    "variantes": [
+      {
+        "presentacion": "1L.",
+        "cantidad_caja": 12,
+        "precio_unidad": 3,
+        "precio_caja": 36
+      }
+    ]
+  },
+  {
     "id": 170,
     "nombre": "CHOCOLATE SUN",
     "categoria": "Comestibles",
