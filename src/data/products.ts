@@ -434,11 +434,11 @@ export const products: Product[] = [
     "imagenUrl": "/images/productos/15.webp",
     "precio_unidad": [
       2.92,
-      5.83
+      6.33
     ],
     "precio_caja": [
       70.08,
-      69.96
+      75.96
     ],
     "variantes": [
       {
@@ -450,8 +450,8 @@ export const products: Product[] = [
       {
         "presentacion": "1L.",
         "cantidad_caja": 12,
-        "precio_unidad": 5.83,
-        "precio_caja": 69.96
+        "precio_unidad": 6.33,
+        "precio_caja": 75.96
       }
     ]
   },
