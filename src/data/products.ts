@@ -3,6 +3,7 @@ export interface ProductVariant {
   cantidad_caja: number;
   precio_unidad?: number;
   precio_caja?: number;
+  hidden?: boolean;
 }
 
 export interface Product {
@@ -16,6 +17,7 @@ export interface Product {
   precio_caja?: number | number[];
   variantes?: ProductVariant[];
   requiresBlend?: boolean;
+  hidden?: boolean;
 }
 
 export const categories = [
@@ -41,9 +43,10 @@ export const categories = [
 
 export type Category = (typeof categories)[number];
 
-export const products: Product[] = [
+export const allProducts: Product[] = [
   {
     "id": 1,
+    "hidden": true,
     "nombre": "029 BLANCO",
     "categoria": "Aguardientes",
     "presentaciones": [
@@ -239,7 +242,8 @@ export const products: Product[] = [
   },
   {
     "id": 8,
-    "nombre": "EL RECORD BLANCO / ROJO",
+    // Original: "EL RECORD BLANCO / ROJO"
+    "nombre": "EL RECORD BLANCO",
     "categoria": "Aguardientes",
     "presentaciones": [
       "1L"
@@ -401,6 +405,7 @@ export const products: Product[] = [
   },
   {
     "id": 14,
+    "hidden": true,
     "nombre": "CARTELUO AZUL",
     "categoria": "Anís",
     "presentaciones": [
@@ -457,7 +462,8 @@ export const products: Product[] = [
   },
   {
     "id": 16,
-    "nombre": "ELECTRICO BLUE / YELLOW",
+    // Original: "ELECTRICO BLUE / YELLOW"
+    "nombre": "ELECTRICO YELLOW",
     "categoria": "Anís",
     "presentaciones": [
       "1L."
@@ -913,6 +919,7 @@ export const products: Product[] = [
   },
   {
     "id": 35,
+    "hidden": true,
     "nombre": "BAJO 0",
     "categoria": "Ginebras",
     "presentaciones": [
@@ -1055,6 +1062,7 @@ export const products: Product[] = [
     "variantes": [
       {
         "presentacion": "0.35L.",
+        "hidden": true,
         "cantidad_caja": 24,
         "precio_unidad": 2.89,
         "precio_caja": 69.36
@@ -1658,6 +1666,7 @@ export const products: Product[] = [
   },
   {
     "id": 58,
+    "hidden": true,
     "nombre": "MACONDO",
     "categoria": "Licores de Ron",
     "presentaciones": [
@@ -1698,6 +1707,7 @@ export const products: Product[] = [
   },
   {
     "id": 60,
+    "hidden": true,
     "nombre": "PANA RON",
     "categoria": "Licores de Ron",
     "presentaciones": [
@@ -2538,6 +2548,7 @@ export const products: Product[] = [
   },
   {
     "id": 114,
+    "hidden": true,
     "nombre": "MADRILEÑA",
     "categoria": "Sangrías",
     "presentaciones": [
@@ -2674,6 +2685,7 @@ export const products: Product[] = [
   },
   {
     "id": 120,
+    "hidden": true,
     "nombre": "TEQUILA CUATE",
     "categoria": "Tequilas y Licores de Agave",
     "presentaciones": [
@@ -2867,6 +2879,7 @@ export const products: Product[] = [
   },
   {
     "id": 130,
+    "hidden": true,
     "nombre": "VINO NUESTRA PASION",
     "categoria": "Vinos",
     "presentaciones": [
@@ -3048,6 +3061,7 @@ export const products: Product[] = [
   },
   {
     "id": 133,
+    "hidden": true,
     "nombre": "BAJO O NATURAL",
     "categoria": "Vodkas y Otros",
     "presentaciones": [
@@ -3148,6 +3162,7 @@ export const products: Product[] = [
   },
   {
     "id": 138,
+    "hidden": true,
     "nombre": "RELATIVE",
     "categoria": "Vodkas y Otros",
     "presentaciones": [
@@ -3248,6 +3263,7 @@ export const products: Product[] = [
   },
   {
     "id": 78,
+    "hidden": true,
     "nombre": "12 CABALLEROS",
     "categoria": "Whisky",
     "presentaciones": [
@@ -3281,6 +3297,7 @@ export const products: Product[] = [
   },
   {
     "id": 79,
+    "hidden": true,
     "nombre": "DUNBAR",
     "categoria": "Whisky",
     "presentaciones": [
@@ -3879,3 +3896,26 @@ export const products: Product[] = [
     ]
   }
 ];
+
+// Filtra productos y variantes ocultos manteniendo sus datos intactos para reactivarlos luego.
+export const products: Product[] = allProducts
+  .filter((p) => !p.hidden)
+  .map((p) => {
+    if (!p.variantes?.some((v) => v.hidden)) return p;
+    const visibleVariantes = p.variantes.filter((v) => !v.hidden);
+    const isSingle = visibleVariantes.length === 1;
+    return {
+      ...p,
+      presentaciones: visibleVariantes.map((v) => v.presentacion),
+      cantidad_caja: isSingle
+        ? visibleVariantes[0].cantidad_caja
+        : visibleVariantes.map((v) => v.cantidad_caja),
+      precio_unidad: isSingle
+        ? visibleVariantes[0].precio_unidad
+        : visibleVariantes.map((v) => v.precio_unidad ?? 0),
+      precio_caja: isSingle
+        ? visibleVariantes[0].precio_caja
+        : visibleVariantes.map((v) => v.precio_caja ?? 0),
+      variantes: visibleVariantes,
+    };
+  });
