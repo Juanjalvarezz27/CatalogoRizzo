@@ -152,12 +152,12 @@ export const products: Product[] = [
     "imagenUrl": "/images/productos/5.webp",
     "precio_unidad": [
       1.26,
-      2.92,
+      2.94,
       2.52
     ],
     "precio_caja": [
       30.24,
-      35.04,
+      35.28,
       30.24
     ],
     "variantes": [
@@ -170,8 +170,8 @@ export const products: Product[] = [
       {
         "presentacion": "1.20L.",
         "cantidad_caja": 12,
-        "precio_unidad": 2.92,
-        "precio_caja": 35.04
+        "precio_unidad": 2.94,
+        "precio_caja": 35.28
       },
       {
         "presentacion": "1L.",
@@ -216,11 +216,11 @@ export const products: Product[] = [
     "imagenUrl": "/images/productos/7.webp",
     "precio_unidad": [
       2.45,
-      4.55
+      4.52
     ],
     "precio_caja": [
       58.8,
-      54.6
+      54.24
     ],
     "variantes": [
       {
@@ -232,8 +232,8 @@ export const products: Product[] = [
       {
         "presentacion": "1L.",
         "cantidad_caja": 12,
-        "precio_unidad": 4.55,
-        "precio_caja": 54.6
+        "precio_unidad": 4.52,
+        "precio_caja": 54.24
       }
     ]
   },
@@ -433,19 +433,19 @@ export const products: Product[] = [
     ],
     "imagenUrl": "/images/productos/15.webp",
     "precio_unidad": [
-      2.92,
+      3.15,
       6.33
     ],
     "precio_caja": [
-      70.08,
+      75.6,
       75.96
     ],
     "variantes": [
       {
         "presentacion": "0.35L.",
         "cantidad_caja": 24,
-        "precio_unidad": 2.92,
-        "precio_caja": 70.08
+        "precio_unidad": 3.15,
+        "precio_caja": 75.6
       },
       {
         "presentacion": "1L.",
@@ -680,14 +680,14 @@ export const products: Product[] = [
     ],
     "cantidad_caja": 1,
     "imagenUrl": "/images/productos/22 - Crema de Ron Barrica.webp",
-    "precio_unidad": 13.9,
-    "precio_caja": 13.9,
+    "precio_unidad": 14.3,
+    "precio_caja": 14.3,
     "variantes": [
       {
         "presentacion": "0.70L.",
         "cantidad_caja": 1,
-        "precio_unidad": 13.9,
-        "precio_caja": 13.9
+        "precio_unidad": 14.3,
+        "precio_caja": 14.3
       }
     ]
   },
@@ -700,14 +700,14 @@ export const products: Product[] = [
     ],
     "cantidad_caja": 1,
     "imagenUrl": "/images/productos/23.webp",
-    "precio_unidad": 40.6,
-    "precio_caja": 40.6,
+    "precio_unidad": 34.75,
+    "precio_caja": 34.75,
     "variantes": [
       {
         "presentacion": "0.75L.",
         "cantidad_caja": 1,
-        "precio_unidad": 40.6,
-        "precio_caja": 40.6
+        "precio_unidad": 34.75,
+        "precio_caja": 34.75
       }
     ]
   },
@@ -740,14 +740,14 @@ export const products: Product[] = [
     ],
     "cantidad_caja": 12,
     "imagenUrl": "/images/productos/25.webp",
-    "precio_unidad": 15.8,
-    "precio_caja": 189.6,
+    "precio_unidad": 15.5,
+    "precio_caja": 186,
     "variantes": [
       {
         "presentacion": "0.75L.",
         "cantidad_caja": 12,
-        "precio_unidad": 15.8,
-        "precio_caja": 189.6
+        "precio_unidad": 15.5,
+        "precio_caja": 186
       }
     ]
   },
@@ -760,14 +760,14 @@ export const products: Product[] = [
     ],
     "cantidad_caja": 12,
     "imagenUrl": "/images/productos/26.webp",
-    "precio_unidad": 13.9,
-    "precio_caja": 166.8,
+    "precio_unidad": 9.99,
+    "precio_caja": 119.88,
     "variantes": [
       {
         "presentacion": "0.70L.",
         "cantidad_caja": 12,
-        "precio_unidad": 13.9,
-        "precio_caja": 166.8
+        "precio_unidad": 9.99,
+        "precio_caja": 119.88
       }
     ]
   },
@@ -780,14 +780,14 @@ export const products: Product[] = [
     ],
     "cantidad_caja": 6,
     "imagenUrl": "/images/productos/27 - Ponche Crema Natal.webp",
-    "precio_unidad": 13.1,
-    "precio_caja": 78.6,
+    "precio_unidad": 13.25,
+    "precio_caja": 79.5,
     "variantes": [
       {
         "presentacion": "0.7L",
         "cantidad_caja": 6,
-        "precio_unidad": 13.1,
-        "precio_caja": 78.6
+        "precio_unidad": 13.25,
+        "precio_caja": 79.5
       }
     ]
   },
@@ -840,14 +840,14 @@ export const products: Product[] = [
     ],
     "cantidad_caja": 12,
     "imagenUrl": "/images/productos/31.webp",
-    "precio_unidad": 8.75,
-    "precio_caja": 105,
+    "precio_unidad": 8.8,
+    "precio_caja": 105.6,
     "variantes": [
       {
         "presentacion": "0.75L.",
         "cantidad_caja": 12,
-        "precio_unidad": 8.75,
-        "precio_caja": 105
+        "precio_unidad": 8.8,
+        "precio_caja": 105.6
       }
     ]
   },
@@ -1076,14 +1076,14 @@ export const products: Product[] = [
     ],
     "cantidad_caja": 1,
     "imagenUrl": "/images/productos/42.webp",
-    "precio_unidad": 43,
-    "precio_caja": 43,
+    "precio_unidad": 48,
+    "precio_caja": 48,
     "variantes": [
       {
         "presentacion": "1L.",
         "cantidad_caja": 1,
-        "precio_unidad": 43,
-        "precio_caja": 43
+        "precio_unidad": 48,
+        "precio_caja": 48
       }
     ]
   },
@@ -1092,18 +1092,18 @@ export const products: Product[] = [
     "nombre": "KAHLUA",
     "categoria": "Licores Dulces",
     "presentaciones": [
-      "0.75L."
+      "1L."
     ],
     "cantidad_caja": 1,
     "imagenUrl": "/images/productos/43.webp",
-    "precio_unidad": 18,
-    "precio_caja": 18,
+    "precio_unidad": 38,
+    "precio_caja": 38,
     "variantes": [
       {
-        "presentacion": "0.75L.",
+        "presentacion": "1L.",
         "cantidad_caja": 1,
-        "precio_unidad": 18,
-        "precio_caja": 18
+        "precio_unidad": 38,
+        "precio_caja": 38
       }
     ]
   },
@@ -1136,14 +1136,14 @@ export const products: Product[] = [
     ],
     "cantidad_caja": 6,
     "imagenUrl": "/images/productos/toscana.png",
-    "precio_unidad": 9,
-    "precio_caja": 54,
+    "precio_unidad": 9.6,
+    "precio_caja": 57.6,
     "variantes": [
       {
         "presentacion": "0.70L.",
         "cantidad_caja": 6,
-        "precio_unidad": 9,
-        "precio_caja": 54
+        "precio_unidad": 9.6,
+        "precio_caja": 57.6
       }
     ]
   },
@@ -1534,19 +1534,19 @@ export const products: Product[] = [
     ],
     "imagenUrl": "/images/productos/51.webp",
     "precio_unidad": [
-      1.7,
+      2.1,
       4.5
     ],
     "precio_caja": [
-      40.8,
+      50.4,
       54
     ],
     "variantes": [
       {
         "presentacion": "0.35L.",
         "cantidad_caja": 24,
-        "precio_unidad": 1.7,
-        "precio_caja": 40.8
+        "precio_unidad": 2.1,
+        "precio_caja": 50.4
       },
       {
         "presentacion": "1L.",
@@ -1838,12 +1838,12 @@ export const products: Product[] = [
     ],
     "imagenUrl": "/images/productos/66.webp",
     "precio_unidad": [
-      2.22,
+      2.45,
       3.73,
       4.91
     ],
     "precio_caja": [
-      53.28,
+      58.8,
       44.76,
       58.92
     ],
@@ -1851,8 +1851,8 @@ export const products: Product[] = [
       {
         "presentacion": "0.35L.",
         "cantidad_caja": 24,
-        "precio_unidad": 2.22,
-        "precio_caja": 53.28
+        "precio_unidad": 2.45,
+        "precio_caja": 58.8
       },
       {
         "presentacion": "0.70L.",
@@ -1935,16 +1935,16 @@ export const products: Product[] = [
     "presentaciones": [
       "1L."
     ],
-    "cantidad_caja": 24,
+    "cantidad_caja": 12,
     "imagenUrl": "/images/productos/70.webp",
-    "precio_unidad": 1.81,
-    "precio_caja": 43.44,
+    "precio_unidad": 3.55,
+    "precio_caja": 42.6,
     "variantes": [
       {
         "presentacion": "1L.",
-        "cantidad_caja": 24,
-        "precio_unidad": 1.81,
-        "precio_caja": 43.44
+        "cantidad_caja": 12,
+        "precio_unidad": 3.55,
+        "precio_caja": 42.6
       }
     ]
   },
@@ -1957,14 +1957,14 @@ export const products: Product[] = [
     ],
     "cantidad_caja": 12,
     "imagenUrl": "/images/productos/71.webp",
-    "precio_unidad": 3.25,
-    "precio_caja": 39,
+    "precio_unidad": 3,
+    "precio_caja": 36,
     "variantes": [
       {
         "presentacion": "1L.",
         "cantidad_caja": 12,
-        "precio_unidad": 3.25,
-        "precio_caja": 39
+        "precio_unidad": 3,
+        "precio_caja": 36
       }
     ]
   },
@@ -1977,14 +1977,14 @@ export const products: Product[] = [
     ],
     "cantidad_caja": 6,
     "imagenUrl": "/images/productos/91.webp",
-    "precio_unidad": 15.5,
-    "precio_caja": 93,
+    "precio_unidad": 12.86,
+    "precio_caja": 77.16,
     "variantes": [
       {
         "presentacion": "0.70L.",
         "cantidad_caja": 6,
-        "precio_unidad": 15.5,
-        "precio_caja": 93
+        "precio_unidad": 12.86,
+        "precio_caja": 77.16
       }
     ]
   },
@@ -2037,14 +2037,14 @@ export const products: Product[] = [
     ],
     "cantidad_caja": 12,
     "imagenUrl": "/images/productos/94.webp",
-    "precio_unidad": 10.6,
-    "precio_caja": 127.2,
+    "precio_unidad": 11.99,
+    "precio_caja": 143.88,
     "variantes": [
       {
         "presentacion": "0.75L.",
         "cantidad_caja": 12,
-        "precio_unidad": 10.6,
-        "precio_caja": 127.2
+        "precio_unidad": 11.99,
+        "precio_caja": 143.88
       }
     ]
   },
@@ -2102,25 +2102,25 @@ export const products: Product[] = [
     ],
     "imagenUrl": "/images/productos/97.webp",
     "precio_unidad": [
-      9.95,
-      12.6
+      9.9,
+      13.6
     ],
     "precio_caja": [
-      59.7,
-      113.4
+      59.4,
+      122.4
     ],
     "variantes": [
       {
         "presentacion": "0.70L.",
         "cantidad_caja": 6,
-        "precio_unidad": 9.95,
-        "precio_caja": 59.7
+        "precio_unidad": 9.9,
+        "precio_caja": 59.4
       },
       {
         "presentacion": "1L.",
         "cantidad_caja": 9,
-        "precio_unidad": 12.6,
-        "precio_caja": 113.4
+        "precio_unidad": 13.6,
+        "precio_caja": 122.4
       }
     ]
   },
@@ -2169,14 +2169,14 @@ export const products: Product[] = [
     ],
     "cantidad_caja": 6,
     "imagenUrl": "/images/productos/99.webp",
-    "precio_unidad": 15.3,
-    "precio_caja": 91.8,
+    "precio_unidad": 17.15,
+    "precio_caja": 102.9,
     "variantes": [
       {
         "presentacion": "0.75L.",
         "cantidad_caja": 6,
-        "precio_unidad": 15.3,
-        "precio_caja": 91.8
+        "precio_unidad": 17.15,
+        "precio_caja": 102.9
       }
     ]
   },
@@ -2365,14 +2365,14 @@ export const products: Product[] = [
     ],
     "cantidad_caja": 12,
     "imagenUrl": "/images/productos/76 - Naiguata Coco  Coco Y Piña.webp",
-    "precio_unidad": 6,
-    "precio_caja": 72,
+    "precio_unidad": 6.1,
+    "precio_caja": 73.2,
     "variantes": [
       {
         "presentacion": "0.70L.",
         "cantidad_caja": 12,
-        "precio_unidad": 6,
-        "precio_caja": 72
+        "precio_unidad": 6.1,
+        "precio_caja": 73.2
       }
     ]
   },
@@ -2465,14 +2465,14 @@ export const products: Product[] = [
     ],
     "cantidad_caja": 6,
     "imagenUrl": "/images/productos/110.webp",
-    "precio_unidad": 4.57,
-    "precio_caja": 27.42,
+    "precio_unidad": 4.5,
+    "precio_caja": 27,
     "variantes": [
       {
         "presentacion": "1.75L.",
         "cantidad_caja": 6,
-        "precio_unidad": 4.57,
-        "precio_caja": 27.42
+        "precio_unidad": 4.5,
+        "precio_caja": 27
       }
     ]
   },
@@ -2565,14 +2565,14 @@ export const products: Product[] = [
     ],
     "cantidad_caja": 6,
     "imagenUrl": "/images/productos/115.webp",
-    "precio_unidad": 4.83,
-    "precio_caja": 28.98,
+    "precio_unidad": 4.8,
+    "precio_caja": 28.8,
     "variantes": [
       {
         "presentacion": "1.75L.",
         "cantidad_caja": 6,
-        "precio_unidad": 4.83,
-        "precio_caja": 28.98
+        "precio_unidad": 4.8,
+        "precio_caja": 28.8
       }
     ]
   },
@@ -2590,19 +2590,19 @@ export const products: Product[] = [
     ],
     "imagenUrl": "/images/productos/116.webp",
     "precio_unidad": [
-      3.9,
+      4,
       3.9
     ],
     "precio_caja": [
-      93.6,
+      24,
       93.6
     ],
     "variantes": [
       {
         "presentacion": "1.75L.",
-        "cantidad_caja": 24,
-        "precio_unidad": 3.9,
-        "precio_caja": 93.6
+        "cantidad_caja": 6,
+        "precio_unidad": 4,
+        "precio_caja": 24
       },
       {
         "presentacion": "1.75L PROMO 4 CAJAS",
@@ -2754,14 +2754,14 @@ export const products: Product[] = [
     ],
     "cantidad_caja": 6,
     "imagenUrl": "/images/productos/corrales.png",
-    "precio_unidad": 14.9,
-    "precio_caja": 89.4,
+    "precio_unidad": 13.7,
+    "precio_caja": 82.2,
     "variantes": [
       {
         "presentacion": "930ml.",
         "cantidad_caja": 6,
-        "precio_unidad": 14.9,
-        "precio_caja": 89.4
+        "precio_unidad": 13.7,
+        "precio_caja": 82.2
       }
     ]
   },
@@ -3135,14 +3135,14 @@ export const products: Product[] = [
     ],
     "cantidad_caja": 12,
     "imagenUrl": "/images/productos/137.webp",
-    "precio_unidad": 10.45,
-    "precio_caja": 125.4,
+    "precio_unidad": 10.98,
+    "precio_caja": 131.76,
     "variantes": [
       {
         "presentacion": "Única",
         "cantidad_caja": 12,
-        "precio_unidad": 10.45,
-        "precio_caja": 125.4
+        "precio_unidad": 10.98,
+        "precio_caja": 131.76
       }
     ]
   },
@@ -3175,14 +3175,14 @@ export const products: Product[] = [
     ],
     "cantidad_caja": 6,
     "imagenUrl": "/images/productos/139.webp",
-    "precio_unidad": 7.25,
-    "precio_caja": 43.5,
+    "precio_unidad": 8.9,
+    "precio_caja": 53.4,
     "variantes": [
       {
         "presentacion": "0.70L.",
         "cantidad_caja": 6,
-        "precio_unidad": 7.25,
-        "precio_caja": 43.5
+        "precio_unidad": 8.9,
+        "precio_caja": 53.4
       }
     ]
   },
@@ -3215,14 +3215,14 @@ export const products: Product[] = [
     ],
     "cantidad_caja": 6,
     "imagenUrl": "/images/productos/Stolichnaya.png",
-    "precio_unidad": 25.8,
-    "precio_caja": 154.8,
+    "precio_unidad": 25.5,
+    "precio_caja": 153,
     "variantes": [
       {
         "presentacion": "0.75L.",
         "cantidad_caja": 6,
-        "precio_unidad": 25.8,
-        "precio_caja": 154.8
+        "precio_unidad": 25.5,
+        "precio_caja": 153
       }
     ]
   },
@@ -3461,14 +3461,14 @@ export const products: Product[] = [
     ],
     "cantidad_caja": 12,
     "imagenUrl": "/images/productos/87.webp",
-    "precio_unidad": 8.95,
-    "precio_caja": 107.4,
+    "precio_unidad": 9.44,
+    "precio_caja": 113.28,
     "variantes": [
       {
         "presentacion": "Única",
         "cantidad_caja": 12,
-        "precio_unidad": 8.95,
-        "precio_caja": 107.4
+        "precio_unidad": 9.44,
+        "precio_caja": 113.28
       }
     ]
   },
@@ -3614,14 +3614,14 @@ export const products: Product[] = [
     ],
     "cantidad_caja": 1,
     "imagenUrl": "/images/productos/144.webp",
-    "precio_unidad": 116,
-    "precio_caja": 116,
+    "precio_unidad": 111,
+    "precio_caja": 111,
     "variantes": [
       {
         "presentacion": "0.75L.",
         "cantidad_caja": 1,
-        "precio_unidad": 116,
-        "precio_caja": 116
+        "precio_unidad": 111,
+        "precio_caja": 111
       }
     ]
   },
@@ -3767,14 +3767,14 @@ export const products: Product[] = [
     ],
     "cantidad_caja": 1,
     "imagenUrl": "/images/productos/151.webp",
-    "precio_unidad": 26.3,
-    "precio_caja": 26.3,
+    "precio_unidad": 25,
+    "precio_caja": 25,
     "variantes": [
       {
         "presentacion": "0.75L.",
         "cantidad_caja": 1,
-        "precio_unidad": 26.3,
-        "precio_caja": 26.3
+        "precio_unidad": 25,
+        "precio_caja": 25
       }
     ]
   },
@@ -3787,14 +3787,14 @@ export const products: Product[] = [
     ],
     "cantidad_caja": 1,
     "imagenUrl": "/images/productos/153.webp",
-    "precio_unidad": 18.7,
-    "precio_caja": 18.7,
+    "precio_unidad": 14.55,
+    "precio_caja": 14.55,
     "variantes": [
       {
         "presentacion": "0.75L.",
         "cantidad_caja": 1,
-        "precio_unidad": 18.7,
-        "precio_caja": 18.7
+        "precio_unidad": 14.55,
+        "precio_caja": 14.55
       }
     ]
   },
